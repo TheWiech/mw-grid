@@ -91,7 +91,8 @@ module.exports = {
   "output": {
     "path": path.join(process.cwd(), "docs"),
     "filename": "[name].bundle.js",
-    "chunkFilename": "[id].chunk.js"
+    "chunkFilename": "[id].chunk.js",
+    "publicPath": "mw-grid/"
   },
   "module": {
     "rules": [
@@ -352,7 +353,8 @@ module.exports = {
     new GlobCopyWebpackPlugin({
       "patterns": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        "404.html"
       ],
       "globOptions": {
         "cwd": path.join(process.cwd(), "src"),
@@ -394,7 +396,7 @@ module.exports = {
         }
     }
     }),
-    new BaseHrefWebpackPlugin({ baseHref: 'mw-grid' }),
+    new BaseHrefWebpackPlugin({ baseHref: '/' }),
     new CommonsChunkPlugin({
       "name": [
         "inline"
