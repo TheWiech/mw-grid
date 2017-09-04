@@ -1,10 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, HostListener } from '@angular/core';
+
+const VERTICAL_MENU_BREAKPOINT = 767;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+    isMenuShown = false;
+    windowWidth: Number;
+
+    @HostListener('window:resize', ['$event']) onResize(event) {
+        this.windowWidth = event.target.innerWidth;
+
+        if (this.windowWidth > VERTICAL_MENU_BREAKPOINT && this.isMenuShown) {
+            this.hideMenu();
+        }
+    };
+
+    toggleMenu(event: Event) {
+        event.preventDefault();
+        if (this.windowWidth > VERTICAL_MENU_BREAKPOINT) {
+            return;
+        }
+        if (this.isMenuShown) {
+            this.hideMenu();
+        } else {
+            this.showMenu();
+        }
+    }
+
+    hideMenu() {
+        this.isMenuShown = false;
+    }
+
+    showMenu() {
+        this.isMenuShown = true;
+    }
 }
