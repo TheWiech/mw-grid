@@ -396,7 +396,7 @@ module.exports = {
         }
     }
     }),
-    new BaseHrefWebpackPlugin({ baseHref: '/' }),
+    new BaseHrefWebpackPlugin({ baseHref: '/mw-grid' }),
     new CommonsChunkPlugin({
       "name": [
         "inline"
