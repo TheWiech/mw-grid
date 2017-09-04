@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "webpack-dev-server --port=4200 --open",
-    "build": "webpack",
+    "start": "webpack-dev-server --port=4200 --open --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.js",
     "test": "karma start ./karma.conf.js",
     "lint": "ng lint",
     "e2e": "protractor ./protractor.conf.js",
