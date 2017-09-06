@@ -58,6 +58,7 @@ var VERTICAL_MENU_BREAKPOINT = 767;
 var AppComponent = (function () {
     function AppComponent() {
         this.isMenuShown = false;
+        this.windowWidth = window.screen.width;
     }
     AppComponent.prototype.onResize = function (event) {
         this.windowWidth = event.target.innerWidth;
@@ -97,7 +98,8 @@ AppComponent = __decorate([
         selector: 'app-root',
         template: __webpack_require__("./src/app/app.component.html"),
         styles: [__webpack_require__("./src/app/app.component.scss")]
-    })
+    }),
+    __metadata("design:paramtypes", [])
 ], AppComponent);
 
 //# sourceMappingURL=app.component.js.map
@@ -165,7 +167,7 @@ AppModule = __decorate([
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */].forRoot(appRoutes, { enableTracing: true })
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */].forRoot(appRoutes)
         ],
         providers: [],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
