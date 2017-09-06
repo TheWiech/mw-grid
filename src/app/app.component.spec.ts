@@ -39,6 +39,10 @@ describe('AppComponent', () => {
         expect(component.isMenuShown).toEqual(false);
     });
 
+    it(`should set windowWidth to be truthy`, () => {
+        expect(component.windowWidth).toBeTruthy();
+    });
+
     it(`hideMenu method should set isMenuShown to false`, () => {
         component.isMenuShown = true;
         component.hideMenu();
