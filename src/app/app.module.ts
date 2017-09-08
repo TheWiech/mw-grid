@@ -10,33 +10,37 @@ import { SupportComponent } from './support/support.component';
 import { DonateComponent } from './donate/donate.component';
 import { HomeComponent } from './home/home.component';
 import { DownloadComponent } from './download/download.component';
+import { MwColumnDirective } from '../mw-column/mw-column.directive';
+import { MwCellComponent } from '../mw-cell/mw-cell.component';
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'download', component: DownloadComponent },
-  { path: 'documentation', component: DocumentationComponent },
-  { path: 'support', component: SupportComponent },
-  { path: 'donate', component: DonateComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+    { path: 'home', component: HomeComponent },
+    { path: 'download', component: DownloadComponent },
+    { path: 'documentation', component: DocumentationComponent },
+    { path: 'support', component: SupportComponent },
+    { path: 'donate', component: DonateComponent },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MwGridComponent,
-    PageNotFoundComponent,
-    DocumentationComponent,
-    SupportComponent,
-    DonateComponent,
-    HomeComponent,
-    DownloadComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes)
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MwGridComponent,
+        PageNotFoundComponent,
+        DocumentationComponent,
+        SupportComponent,
+        DonateComponent,
+        HomeComponent,
+        DownloadComponent,
+        MwColumnDirective,
+        MwCellComponent
+    ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(appRoutes)
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

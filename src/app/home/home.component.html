@@ -12,3 +12,24 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h4>Basic Features</h4>
+            <ul>
+                <li>Dom Virtualization (Under development)</li>
+                <li>Pagination and infinite scroll (Under development)</li>
+                <li>Custom cell templates (Under development)</li>
+                <li>Dynamic column sizing (Under development)</li>
+                <li>Sorting (Under development)</li>
+                <li>Searching (Under development)</li>
+            </ul>
+        </div>
+        <div class="col-6">
+            <mw-grid [data]="users">
+                <mw-column [binding]="'name'"></mw-column>
+                <mw-column [binding]="'email'"></mw-column>
+            </mw-grid>
+        </div>
+    </div>
+</div>

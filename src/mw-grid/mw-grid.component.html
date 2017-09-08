@@ -1,3 +1,10 @@
-<div>
-  mw-grid - This will be the main grid
+<div *ngFor="let item of data">
+    <span class="mw-row" *ngIf="columnDefinitions.length !== 0">
+        <mw-cell *ngFor="let colDefinition of columnDefinitions">
+            {{ item[colDefinition.binding] }}
+        </mw-cell>
+    </span>
+    <span *ngIf="columnDefinitions.length === 0">
+        {{ item }}
+    </span>
 </div>
