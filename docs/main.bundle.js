@@ -16,7 +16,7 @@ webpackEmptyAsyncContext.id = "./src/$$_gendir lazy recursive";
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-light\">\n    <div class=\"container\">\n        <span class=\"h1\" class=\"navbar-brand\">\n            <span class=\"mw-logo\">\n                <span>MW</span><span>Grid</span>\n            </span>\n        </span>\n        <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleMenu($event)\">\n            <span class=\"navbar-toggler-icon\"></span>\n        </button>\n\n        <div class=\"mw-grid-menu\" id=\"navbarSupportedContent\" [ngClass]=\"{'menu-shown': isMenuShown }\">\n            <div class=\"navbar-nav ml-auto\">\n                <a class=\"nav-item nav-link\" routerLink=\"/home\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Home</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/documentation\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Docs</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/download\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Download</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/support\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Support</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/donate\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Donate</a>\n            </div>\n        </div>\n    </div>\n</nav>\n<router-outlet></router-outlet>\n<div class=\"menu-overlay\" (click)=\"toggleMenu($event)\" [ngClass]=\"{'overlay-shown': isMenuShown }\"></div>\n"
+module.exports = "<div class=\"under-construction-banner d-flex justify-content-center align-items-center\">\n    <span>mw-grid is in early development and the api is subject to change.</span>\n</div>\n<nav class=\"navbar navbar-expand-md navbar-light\">\n    <div class=\"container\">\n        <span class=\"h1\" class=\"navbar-brand\">\n            <span class=\"mw-logo\">\n                <span>MW</span><span>Grid</span>\n            </span>\n        </span>\n        <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleMenu($event)\">\n            <span class=\"navbar-toggler-icon\"></span>\n        </button>\n\n        <div class=\"mw-grid-menu\" id=\"navbarSupportedContent\" [ngClass]=\"{'menu-shown': isMenuShown }\">\n            <div class=\"navbar-nav ml-auto\">\n                <a class=\"nav-item nav-link\" routerLink=\"/home\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Home</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/documentation\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Docs</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/download\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Download</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/support\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Support</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/donate\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Donate</a>\n            </div>\n        </div>\n    </div>\n</nav>\n<router-outlet></router-outlet>\n<div class=\"menu-overlay\" (click)=\"toggleMenu($event)\" [ngClass]=\"{'overlay-shown': isMenuShown }\"></div>\n"
 
 /***/ }),
 
@@ -28,7 +28,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".mw-logo span {\n  color: #2A5E92;\n  font-weight: 600;\n  font-size: 1.8em; }\n\n.mw-logo span:first-of-type {\n  color: #8C939B;\n  font-weight: 400;\n  font-size: 1.4em; }\n\n.navbar {\n  padding-top: 0;\n  padding-bottom: 0; }\n  @media (min-width: 768px) {\n    .navbar .container .navbar-nav .nav-item {\n      padding: .6em;\n      color: #8C939B;\n      font-size: 1.2em; }\n      .navbar .container .navbar-nav .nav-item.active, .navbar .container .navbar-nav .nav-item:hover {\n        color: #2A5E92;\n        border-bottom: .1em solid #2A5E92; } }\n\n@media (max-width: 767px) {\n  .mw-grid-menu {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    background: #FFFFFF;\n    left: -300px;\n    width: 300px;\n    z-index: 1; }\n    .mw-grid-menu .navbar-nav .nav-item {\n      padding-left: 1em;\n      height: 3em;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      .mw-grid-menu .navbar-nav .nav-item.active, .mw-grid-menu .navbar-nav .nav-item:hover {\n        color: #2A5E92;\n        background: #E7E7E7;\n        border-left: .5em solid #2A5E92;\n        padding-left: .5em; } }\n\n.mw-grid-menu.menu-shown {\n  left: 0px; }\n\n.menu-overlay {\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  background: #000;\n  opacity: .5;\n  display: none; }\n  .menu-overlay.overlay-shown {\n    display: initial; }\n", ""]);
+exports.push([module.i, ".mw-logo span {\n  color: #2A5E92;\n  font-weight: 600;\n  font-size: 1.8em; }\n\n.mw-logo span:first-of-type {\n  color: #8C939B;\n  font-weight: 400;\n  font-size: 1.4em; }\n\n.navbar {\n  padding-top: 0;\n  padding-bottom: 0; }\n  @media (min-width: 768px) {\n    .navbar .container .navbar-nav .nav-item {\n      padding: .6em;\n      color: #8C939B;\n      font-size: 1.2em; }\n      .navbar .container .navbar-nav .nav-item.active, .navbar .container .navbar-nav .nav-item:hover {\n        color: #2A5E92;\n        border-bottom: .1em solid #2A5E92; } }\n\n@media (max-width: 767px) {\n  .mw-grid-menu {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    background: #FFFFFF;\n    left: -300px;\n    width: 300px;\n    z-index: 1; }\n    .mw-grid-menu .navbar-nav .nav-item {\n      padding-left: 1em;\n      height: 3em;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      .mw-grid-menu .navbar-nav .nav-item.active, .mw-grid-menu .navbar-nav .nav-item:hover {\n        color: #2A5E92;\n        background: #E7E7E7;\n        border-left: .5em solid #2A5E92;\n        padding-left: .5em; } }\n\n.mw-grid-menu.menu-shown {\n  left: 0px; }\n\n.menu-overlay {\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  background: #000;\n  opacity: .5;\n  display: none; }\n  .menu-overlay.overlay-shown {\n    display: initial; }\n\n.under-construction-banner {\n  background: #2A5E92;\n  color: #FFFFFF;\n  height: 2.4em;\n  font-size: 1.2em;\n  font-weight: 200; }\n", ""]);
 
 // exports
 
@@ -122,12 +122,16 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__donate_donate_component__ = __webpack_require__("./src/app/donate/donate.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__home_home_component__ = __webpack_require__("./src/app/home/home.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__download_download_component__ = __webpack_require__("./src/app/download/download.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__mw_column_mw_column_directive__ = __webpack_require__("./src/mw-column/mw-column.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__mw_cell_mw_cell_component__ = __webpack_require__("./src/mw-cell/mw-cell.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -163,7 +167,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_7__support_support_component__["a" /* SupportComponent */],
             __WEBPACK_IMPORTED_MODULE_8__donate_donate_component__["a" /* DonateComponent */],
             __WEBPACK_IMPORTED_MODULE_9__home_home_component__["a" /* HomeComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__download_download_component__["a" /* DownloadComponent */]
+            __WEBPACK_IMPORTED_MODULE_10__download_download_component__["a" /* DownloadComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__mw_column_mw_column_directive__["a" /* MwColumnDirective */],
+            __WEBPACK_IMPORTED_MODULE_12__mw_cell_mw_cell_component__["a" /* MwCellComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -364,7 +370,7 @@ DownloadComponent = __decorate([
 /***/ "./src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"welcome-banner\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-12 primary-text\">\n                A open source Angular 4 grid\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-12 secondary-text\">\n                Easily display a modern fully customizable grid with enterprise quality features in your applications\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-12 under-construction\">\n            Under Construction.\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"welcome-banner\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-12 primary-text\">\n                An open source Angular 4 grid\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-12 secondary-text\">\n                Easily display a modern fully customizable grid with enterprise quality features in your applications\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-6\">\n            <h4>Basic Features</h4>\n            <ul>\n                <li>Dom Virtualization (Under development)</li>\n                <li>Pagination and infinite scroll (Under development)</li>\n                <li>Custom cell templates (Under development)</li>\n                <li>Dynamic column sizing (Under development)</li>\n                <li>Sorting (Under development)</li>\n                <li>Searching (Under development)</li>\n            </ul>\n        </div>\n        <div class=\"col-6\">\n            <mw-grid [data]=\"users\">\n                <mw-column [binding]=\"'name'\"></mw-column>\n                <mw-column [binding]=\"'email'\"></mw-column>\n            </mw-grid>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -376,7 +382,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".welcome-banner {\n  background: url(" + __webpack_require__("./src/assets/header-background.png") + ");\n  width: 100%;\n  color: #FFFFFF;\n  padding: 2.5em 0; }\n  .welcome-banner .primary-text {\n    font-size: 2.2em;\n    font-weight: 200;\n    padding-bottom: .3em; }\n  .welcome-banner .secondary-text {\n    font-size: 1.3em;\n    font-weight: 100; }\n\n.under-construction {\n  font-size: 2em;\n  font-weight: 300;\n  padding-top: 1em;\n  text-align: center; }\n", ""]);
+exports.push([module.i, ".welcome-banner {\n  background: url(" + __webpack_require__("./src/assets/header-background.png") + ");\n  width: 100%;\n  color: #FFFFFF;\n  padding: 2.5em 0;\n  margin-bottom: 2.5em; }\n  .welcome-banner .primary-text {\n    font-size: 2.2em;\n    font-weight: 200;\n    padding-bottom: .3em; }\n  .welcome-banner .secondary-text {\n    font-size: 1.3em;\n    font-weight: 100; }\n", ""]);
 
 // exports
 
@@ -404,6 +410,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var HomeComponent = (function () {
     function HomeComponent() {
+        this.users = [
+            { name: 'Matthew Wiechec', email: 'testemail1' },
+            { name: 'John Doe', email: 'testemail2' },
+            { name: 'Jane Doe', email: 'testemail3' },
+            { name: 'Matthew Wiechec', email: 'testemail1' },
+            { name: 'John Doe', email: 'testemail2' },
+            { name: 'Jane Doe', email: 'testemail3' },
+            { name: 'Matthew Wiechec', email: 'testemail1' },
+            { name: 'John Doe', email: 'testemail2' },
+            { name: 'Jane Doe', email: 'testemail3' }
+        ];
     }
     HomeComponent.prototype.ngOnInit = function () {
     };
@@ -592,10 +609,109 @@ Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
+/***/ "./src/mw-cell/mw-cell.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"mw-cell\">\n    <ng-content></ng-content>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/mw-cell/mw-cell.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".mw-cell {\n  display: inline-block;\n  border: 1px solid black;\n  width: 200px;\n  position: relative;\n  padding: 0 1em; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "./src/mw-cell/mw-cell.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwCellComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MwCellComponent = (function () {
+    function MwCellComponent() {
+    }
+    MwCellComponent.prototype.ngOnInit = function () {
+    };
+    return MwCellComponent;
+}());
+MwCellComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'mw-cell',
+        template: __webpack_require__("./src/mw-cell/mw-cell.component.html"),
+        styles: [__webpack_require__("./src/mw-cell/mw-cell.component.scss")]
+    }),
+    __metadata("design:paramtypes", [])
+], MwCellComponent);
+
+//# sourceMappingURL=mw-cell.component.js.map
+
+/***/ }),
+
+/***/ "./src/mw-column/mw-column.directive.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwColumnDirective; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MwColumnDirective = (function () {
+    function MwColumnDirective() {
+    }
+    MwColumnDirective.prototype.ngOnInit = function () {
+    };
+    return MwColumnDirective;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwColumnDirective.prototype, "binding", void 0);
+MwColumnDirective = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* Directive */])({
+        selector: 'mw-column'
+    }),
+    __metadata("design:paramtypes", [])
+], MwColumnDirective);
+
+//# sourceMappingURL=mw-column.directive.js.map
+
+/***/ }),
+
 /***/ "./src/mw-grid/mw-grid.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  mw-grid - This will be the main grid\n</div>\n"
+module.exports = "<div *ngFor=\"let item of data\">\n    <span class=\"mw-row\" *ngIf=\"columnDefinitions.length !== 0\">\n        <mw-cell *ngFor=\"let colDefinition of columnDefinitions\">\n            {{ item[colDefinition.binding] }}\n        </mw-cell>\n    </span>\n    <span *ngIf=\"columnDefinitions.length === 0\">\n        {{ item }}\n    </span>\n</div>\n"
 
 /***/ }),
 
@@ -607,7 +723,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".mw-row {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n", ""]);
 
 // exports
 
@@ -623,6 +739,7 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwGridComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mw_column_mw_column_directive__ = __webpack_require__("./src/mw-column/mw-column.directive.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -633,6 +750,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var MwGridComponent = (function () {
     function MwGridComponent() {
     }
@@ -640,6 +758,18 @@ var MwGridComponent = (function () {
     };
     return MwGridComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwGridComponent.prototype, "data", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwGridComponent.prototype, "bindings", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ContentChildren */])(__WEBPACK_IMPORTED_MODULE_1__mw_column_mw_column_directive__["a" /* MwColumnDirective */]),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* QueryList */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* QueryList */]) === "function" && _a || Object)
+], MwGridComponent.prototype, "columnDefinitions", void 0);
 MwGridComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-grid',
@@ -649,6 +779,7 @@ MwGridComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], MwGridComponent);
 
+var _a;
 //# sourceMappingURL=mw-grid.component.js.map
 
 /***/ }),
