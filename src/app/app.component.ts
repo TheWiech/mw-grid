@@ -10,6 +10,7 @@ const VERTICAL_MENU_BREAKPOINT = 767;
 export class AppComponent {
     isMenuShown = false;
     windowWidth: Number;
+    shouldShowConstructionBanner = true;
 
     constructor() {
         this.windowWidth = window.screen.width;

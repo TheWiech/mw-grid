@@ -95,7 +95,27 @@
 .under-construction-banner {
     background: #2A5E92;
     color: #FFFFFF;
-    height: 2.4em;
     font-size: 1.2em;
     font-weight: 200;
+    padding: 10px 15px;
+    text-align: center;
+
+    > span {
+        display: inline-block;
+        min-height: 1.5em;
+    }
+
+    button {
+        color: white;
+        opacity: 1;
+        font-size: 2em;
+
+        position: absolute;
+        right: 15px;
+        top: 0;
+
+        span:hover {
+            cursor: pointer;
+        }
+    }
 }
