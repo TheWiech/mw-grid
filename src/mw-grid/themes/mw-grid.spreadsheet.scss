@@ -2,23 +2,37 @@ $border-color: #000000;
 $border-thickness: 1px;
 $border-style: solid;
 $font-color: #747C85;
+$header-font-color: #313942;
+$header-backround-color: #F3F5F7;
 
 mw-grid > .mw-grid-container.spreadsheet {
+
+    //
+    // Draw bottom border only on grid headers
+    //
+    mw-grid-header .mw-header {
+        border-top: $border-thickness $border-style $border-color;
+        border-left: $border-thickness $border-style $border-color;
+        border-bottom: $border-thickness $border-style $border-color;
+        color: $header-font-color;
+        background: $header-backround-color;
+        display: inline-block;
+        min-width: 200px;
+        position: relative;
+        padding: 0 1em;
+        font-weight: 500;
+
+        &:last-child {
+            border-right: $border-thickness $border-style $border-color;
+        }
+    }
+
     .mw-row {
         //
         // Turn individual rows into flex containers
         //
         > span {
             display: flex;
-        }
-
-        //
-        // Draw top boder only on cells in the first row
-        //
-        &:first-child {
-            mw-cell .mw-cell {
-                border-top: $border-thickness $border-style $border-color;
-            }
         }
 
         //
@@ -37,7 +51,7 @@ mw-grid > .mw-grid-container.spreadsheet {
         //
         // Draw right border on last cell in a row
         //
-        mw-cell:last-child {
+        mw-cell:last-child .mw-cell {
             border-right: $border-thickness $border-style $border-color;
         }
     }

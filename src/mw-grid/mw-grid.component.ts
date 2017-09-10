@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, QueryList, ContentChildren, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, QueryList, ContentChildren, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
 
 @Component({
@@ -18,11 +18,16 @@ export class MwGridComponent implements OnInit {
     @ContentChildren(MwColumnDirective) columnDefinitions: QueryList<MwColumnDirective>;
 
     gridTheme: String;
+    gridHeaders: Array<String> = [];
 
-    constructor() { }
+    constructor(private ref: ChangeDetectorRef) { }
 
     ngOnInit() {
         this.setGridTheme();
+    }
+
+    ngAfterViewInit() {
+        this.setGridHeaders();
     }
 
     setGridTheme() {
@@ -36,6 +41,14 @@ export class MwGridComponent implements OnInit {
             default:
                 this.gridTheme = 'modern';
         }
+    }
+
+    setGridHeaders() {
+        this.columnDefinitions.forEach(element => {
+            this.gridHeaders.push(element.binding);
+        });
+
+        this.ref.detectChanges();
     }
 
 }

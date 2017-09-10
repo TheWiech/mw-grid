@@ -3,10 +3,25 @@ $border-color: #C0C3C8;
 $border-thickness: 1px;
 $border-style: solid;
 $font-color: #747C85;
+$header-font-color: #313942;
 $even-backround-color: #FFFFFF;
 $odd-backround-color: #F3F5F7;
 
 mw-grid > .mw-grid-container.modern {
+
+    //
+    // Draw bottom border only on grid headers
+    //
+    mw-grid-header .mw-header {
+        border-bottom: $border-thickness $border-style $top-border-color;
+        color: $header-font-color;
+        display: inline-block;
+        min-width: 200px;
+        position: relative;
+        padding: 0 1em;
+        font-weight: 500;
+    }
+
     .mw-row {
         //
         // Turn individual rows into flex containers
@@ -21,15 +36,6 @@ mw-grid > .mw-grid-container.modern {
 
         &.mw-odd mw-cell .mw-cell {
             background: $odd-backround-color;
-        }
-
-        //
-        // Draw top boder only on cells in the first row
-        //
-        &:first-child {
-            mw-cell .mw-cell {
-                border-top: $border-thickness $border-style $top-border-color;
-            }
         }
 
         //

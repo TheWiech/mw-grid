@@ -9,9 +9,9 @@ import { MwGridTheme } from '../../mw-grid/mw-grid.component';
 })
 export class GridExampleComponent implements OnInit {
     users: Array<any>;
+    theme: MwGridTheme = MwGridTheme.Modern;
 
     constructor() {
-        let theme = MwGridTheme.Modern;
         this.users = [
             {name: 'Matthew Wiechec', username: 'wiechec.matthew', email: 'thewiech@gmail.com', phoneNumber: '111-111-1111'},
             {name: 'Barbara Cunningham', username: 'cunningham.barbara', email: 'thewiech@gmail.com', phoneNumber: '222-222-2222'},

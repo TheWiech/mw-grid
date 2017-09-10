@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, Input } from '@angular/core';
 
 import { MwGridComponent, MwGridTheme } from './mw-grid.component';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
@@ -7,18 +7,23 @@ import { MwColumnDirective } from '../mw-column/mw-column.directive';
 @Component({selector: 'mw-cell', template: '<div class="mock-mw-cell"></div>'})
 export class MwCell { }
 
+@Component({selector: 'mw-grid-headers', template: '<div class="mock-grid-headers"></div>'})
+export class MwGridHeaders {
+    @Input() headers: Array<String>;
+}
+
 @Component({
     selector: 'mw-test-wrapper',
     template: `<mw-grid [data]=mockData [theme]=theme>
-                <mw-column></mw-column>
-                <mw-column></mw-column>
-                <mw-column></mw-column>
-            </mw-grid>`,
-    })
-    class MwTestWrapperComponent {
-        mockData = ['test1'];
-        theme: MwGridTheme;
-    }
+        <mw-column binding="col1Header"></mw-column>
+        <mw-column binding="col2Header"></mw-column>
+        <mw-column binding="col3Header"></mw-column>
+    </mw-grid>`
+})
+class MwTestWrapperComponent {
+    mockData = ['test1'];
+    theme: MwGridTheme;
+}
 
 describe('MwGridComponent', () => {
     let component: MwGridComponent;
@@ -33,9 +38,9 @@ describe('MwGridComponent', () => {
             MwGridComponent,
             MwCell,
             MwTestWrapperComponent,
-            MwColumnDirective
-        ],
-        }).compileComponents();
+            MwColumnDirective,
+            MwGridHeaders
+        ]}).compileComponents();
     }));
 
     beforeEach(() => {
@@ -110,6 +115,20 @@ describe('MwGridComponent', () => {
             spyOn(component, 'setGridTheme');
             component.ngOnInit();
             expect(component.setGridTheme).toHaveBeenCalled();
+        });
+    });
+
+    describe('setGridHeaders method', () => {
+        it('should populate grid headers from column definitions', () => {
+            // Setup
+            fixture.detectChanges();
+            component.gridHeaders = [];
+
+            // Act
+            component.setGridHeaders();
+
+            // Assert
+            expect(component.gridHeaders).toEqual(['col1Header', 'col2Header', 'col3Header']);
         });
     });
 });

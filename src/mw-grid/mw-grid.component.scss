@@ -1,1 +1,7 @@
+mw-grid > .mw-grid-container {
+    overflow: scroll;
 
+    mw-grid-header {
+        display: flex;
+    }
+}

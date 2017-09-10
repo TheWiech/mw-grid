@@ -1,4 +1,5 @@
 <div class="mw-grid-container {{gridTheme}}">
+    <mw-grid-headers [headers]="gridHeaders"></mw-grid-headers>
     <div class="mw-row" *ngFor="let item of data; let i = index;"
             [ngClass]="{'mw-even': i % 2 === 0, 'mw-odd': i % 2 !== 0 }">
         <span *ngIf="columnDefinitions.length !== 0">
