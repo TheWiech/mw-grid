@@ -449,7 +449,7 @@ GridExampleComponent = __decorate([
 /***/ "./src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"welcome-banner\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-12 primary-text\">\n                An open source Angular 4 grid\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-12 secondary-text\">\n                Easily display a modern fully customizable grid with enterprise quality features in your applications\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"container\">\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-sm-12 col-md-6\">\n            <h4>Basic Features</h4>\n            <ul>\n                <li>Dom Virtualization (Under development)</li>\n                <li>Pagination and infinite scroll (Under development)</li>\n                <li>Custom cell templates (Under development)</li>\n                <li>Dynamic column sizing (Under development)</li>\n                <li>Sorting (Under development)</li>\n                <li>Searching (Under development)</li>\n            </ul>\n        </div>\n        <div class=\"col-sm-12 col-md-6\">\n            <img class=\"grid-image\" src=\"../../assets/mw-grid.png\" />\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"welcome-banner\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-12 primary-text\">\n                An open source Angular 4 grid\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-12 secondary-text\">\n                Easily display a modern fully customizable grid with enterprise quality features in your applications\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"container\">\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-xs-12 col-md-6\">\n            <h4>Basic Features</h4>\n            <ul>\n                <li>Dom Virtualization (Under development)</li>\n                <li>Pagination and infinite scroll (Under development)</li>\n                <li>Custom cell templates (Under development)</li>\n                <li>Dynamic column sizing (Under development)</li>\n                <li>Sorting (Under development)</li>\n                <li>Searching (Under development)</li>\n            </ul>\n        </div>\n        <div class=\"col-xs-12 col-md-6\">\n            <div class=\"grid-image\"></div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -461,7 +461,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".welcome-banner {\n  background: url(" + __webpack_require__("./src/assets/header-background.png") + ");\n  width: 100%;\n  color: #FFFFFF;\n  padding: 2.5em 0;\n  margin-bottom: 2.5em; }\n  .welcome-banner .primary-text {\n    font-size: 2.2em;\n    font-weight: 200;\n    padding-bottom: .3em; }\n  .welcome-banner .secondary-text {\n    font-size: 1.3em;\n    font-weight: 100; }\n\n.grid-image {\n  width: 100%; }\n", ""]);
+exports.push([module.i, ".welcome-banner {\n  background: url(" + __webpack_require__("./src/assets/header-background.png") + ");\n  width: 100%;\n  color: #FFFFFF;\n  padding: 2.5em 0;\n  margin-bottom: 2.5em; }\n  .welcome-banner .primary-text {\n    font-size: 2.2em;\n    font-weight: 200;\n    padding-bottom: .3em; }\n  .welcome-banner .secondary-text {\n    font-size: 1.3em;\n    font-weight: 100; }\n\n.grid-image {\n  min-height: 240px;\n  background: url(" + __webpack_require__("./src/assets/mw-grid.png") + ");\n  background-size: contain;\n  background-repeat: no-repeat; }\n", ""]);
 
 // exports
 
@@ -633,6 +633,13 @@ SupportComponent = __decorate([
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "header-background.d6342d72dd673adcbfb5.png";
+
+/***/ }),
+
+/***/ "./src/assets/mw-grid.png":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "mw-grid.1022152970a3644419db.png";
 
 /***/ }),
 

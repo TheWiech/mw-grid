@@ -18,5 +18,8 @@
 }
 
 .grid-image {
-    width: 100%;
+    min-height: 240px;
+    background: url('../../assets/mw-grid.png');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
