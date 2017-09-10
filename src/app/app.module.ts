@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { DownloadComponent } from './download/download.component';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
 import { MwCellComponent } from '../mw-cell/mw-cell.component';
+import { GridExampleComponent } from './grid-example/grid-example.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
         HomeComponent,
         DownloadComponent,
         MwColumnDirective,
-        MwCellComponent
+        MwCellComponent,
+        GridExampleComponent
     ],
     imports: [
         BrowserModule,

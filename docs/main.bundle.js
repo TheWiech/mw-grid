@@ -125,12 +125,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__download_download_component__ = __webpack_require__("./src/app/download/download.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__mw_column_mw_column_directive__ = __webpack_require__("./src/mw-column/mw-column.directive.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__mw_cell_mw_cell_component__ = __webpack_require__("./src/mw-cell/mw-cell.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__grid_example_grid_example_component__ = __webpack_require__("./src/app/grid-example/grid-example.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -170,7 +172,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_9__home_home_component__["a" /* HomeComponent */],
             __WEBPACK_IMPORTED_MODULE_10__download_download_component__["a" /* DownloadComponent */],
             __WEBPACK_IMPORTED_MODULE_11__mw_column_mw_column_directive__["a" /* MwColumnDirective */],
-            __WEBPACK_IMPORTED_MODULE_12__mw_cell_mw_cell_component__["a" /* MwCellComponent */]
+            __WEBPACK_IMPORTED_MODULE_12__mw_cell_mw_cell_component__["a" /* MwCellComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__grid_example_grid_example_component__["a" /* GridExampleComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -188,7 +191,7 @@ AppModule = __decorate([
 /***/ "./src/app/documentation/documentation.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  Welcome to the docs!\n</p>\n"
+module.exports = "<div class=\"container\">\n    <div class=\"row mw-row\">\n        <div class=\"col-12\">\n            <h5>Getting Started</h5>\n        </div>\n    </div>\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-12\">\n            <grid-example></grid-example>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -368,10 +371,85 @@ DownloadComponent = __decorate([
 
 /***/ }),
 
+/***/ "./src/app/grid-example/grid-example.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<mw-grid [data]=\"users\" [theme]=\"theme\">\n    <mw-column [binding]=\"'name'\"></mw-column>\n    <mw-column [binding]=\"'username'\"></mw-column>\n    <mw-column [binding]=\"'email'\"></mw-column>\n    <mw-column [binding]=\"'phoneNumber'\"></mw-column>\n</mw-grid>\n"
+
+/***/ }),
+
+/***/ "./src/app/grid-example/grid-example.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "./src/app/grid-example/grid-example.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GridExampleComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mw_grid_mw_grid_component__ = __webpack_require__("./src/mw-grid/mw-grid.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var GridExampleComponent = (function () {
+    function GridExampleComponent() {
+        var theme = __WEBPACK_IMPORTED_MODULE_1__mw_grid_mw_grid_component__["b" /* MwGridTheme */].Modern;
+        this.users = [
+            { name: 'Matthew Wiechec', username: 'wiechec.matthew', email: 'thewiech@gmail.com', phoneNumber: '111-111-1111' },
+            { name: 'Barbara Cunningham', username: 'cunningham.barbara', email: 'thewiech@gmail.com', phoneNumber: '222-222-2222' },
+            { name: 'Tia Green', username: 'green.tia', email: 'thewiech@gmail.com', phoneNumber: '333-333-3333' },
+            { name: 'John Carter', username: 'carter.john', email: 'thewiech@gmail.com', phoneNumber: '111-222-3333' },
+            { name: 'Laura Jones', username: 'jones.laura', email: 'thewiech@gmail.com', phoneNumber: '222-333-4444' },
+            { name: 'Brian Webb', username: 'webb.brian', email: 'thewiech@gmail.com', phoneNumber: '555-222-9999' },
+            { name: 'Nancy Meyer', username: 'meyer.nancy', email: 'thewiech@gmail.com', phoneNumber: '123-123-1234' },
+            { name: 'Marian Higgin', username: 'higgin.marian', email: 'thewiech@gmail.com', phoneNumber: '123-456-7890' },
+            { name: 'Kerri Gotcher', username: 'gotcher.kerri', email: 'thewiech@gmail.com', phoneNumber: '543-221-1212' },
+        ];
+    }
+    GridExampleComponent.prototype.ngOnInit = function () {
+    };
+    return GridExampleComponent;
+}());
+GridExampleComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'grid-example',
+        template: __webpack_require__("./src/app/grid-example/grid-example.component.html"),
+        styles: [__webpack_require__("./src/app/grid-example/grid-example.component.scss")]
+    }),
+    __metadata("design:paramtypes", [])
+], GridExampleComponent);
+
+//# sourceMappingURL=grid-example.component.js.map
+
+/***/ }),
+
 /***/ "./src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"welcome-banner\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-12 primary-text\">\n                An open source Angular 4 grid\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-12 secondary-text\">\n                Easily display a modern fully customizable grid with enterprise quality features in your applications\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-6\">\n            <h4>Basic Features</h4>\n            <ul>\n                <li>Dom Virtualization (Under development)</li>\n                <li>Pagination and infinite scroll (Under development)</li>\n                <li>Custom cell templates (Under development)</li>\n                <li>Dynamic column sizing (Under development)</li>\n                <li>Sorting (Under development)</li>\n                <li>Searching (Under development)</li>\n            </ul>\n        </div>\n        <div class=\"col-6\">\n            <mw-grid [data]=\"users\" [theme]=\"theme\">\n                <mw-column [binding]=\"'name'\"></mw-column>\n                <mw-column [binding]=\"'email'\"></mw-column>\n            </mw-grid>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"welcome-banner\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-12 primary-text\">\n                An open source Angular 4 grid\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-12 secondary-text\">\n                Easily display a modern fully customizable grid with enterprise quality features in your applications\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"container\">\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-sm-12 col-md-6\">\n            <h4>Basic Features</h4>\n            <ul>\n                <li>Dom Virtualization (Under development)</li>\n                <li>Pagination and infinite scroll (Under development)</li>\n                <li>Custom cell templates (Under development)</li>\n                <li>Dynamic column sizing (Under development)</li>\n                <li>Sorting (Under development)</li>\n                <li>Searching (Under development)</li>\n            </ul>\n        </div>\n        <div class=\"col-sm-12 col-md-6\">\n            <img class=\"grid-image\" src=\"../../assets/mw-grid.png\" />\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -383,7 +461,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".welcome-banner {\n  background: url(" + __webpack_require__("./src/assets/header-background.png") + ");\n  width: 100%;\n  color: #FFFFFF;\n  padding: 2.5em 0;\n  margin-bottom: 2.5em; }\n  .welcome-banner .primary-text {\n    font-size: 2.2em;\n    font-weight: 200;\n    padding-bottom: .3em; }\n  .welcome-banner .secondary-text {\n    font-size: 1.3em;\n    font-weight: 100; }\n", ""]);
+exports.push([module.i, ".welcome-banner {\n  background: url(" + __webpack_require__("./src/assets/header-background.png") + ");\n  width: 100%;\n  color: #FFFFFF;\n  padding: 2.5em 0;\n  margin-bottom: 2.5em; }\n  .welcome-banner .primary-text {\n    font-size: 2.2em;\n    font-weight: 200;\n    padding-bottom: .3em; }\n  .welcome-banner .secondary-text {\n    font-size: 1.3em;\n    font-weight: 100; }\n\n.grid-image {\n  width: 100%; }\n", ""]);
 
 // exports
 
@@ -399,7 +477,6 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mw_grid_mw_grid_component__ = __webpack_require__("./src/mw-grid/mw-grid.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -410,21 +487,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
 var HomeComponent = (function () {
     function HomeComponent() {
-        var theme = __WEBPACK_IMPORTED_MODULE_1__mw_grid_mw_grid_component__["b" /* MwGridTheme */].Modern;
-        this.users = [
-            { name: 'Matthew Wiechec', email: 'testemail1' },
-            { name: 'John Doe', email: 'testemail2' },
-            { name: 'Jane Doe', email: 'testemail3' },
-            { name: 'Matthew Wiechec', email: 'testemail1' },
-            { name: 'John Doe', email: 'testemail2' },
-            { name: 'Jane Doe', email: 'testemail3' },
-            { name: 'Matthew Wiechec', email: 'testemail1' },
-            { name: 'John Doe', email: 'testemail2' },
-            { name: 'Jane Doe', email: 'testemail3' }
-        ];
     }
     HomeComponent.prototype.ngOnInit = function () {
     };
@@ -628,7 +692,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".mw-cell {\n  height: 100%; }\n", ""]);
 
 // exports
 

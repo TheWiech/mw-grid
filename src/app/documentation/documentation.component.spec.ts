@@ -1,25 +1,33 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
 
 import { DocumentationComponent } from './documentation.component';
 
+
+@Component({selector: 'grid-example', template: ''})
+export class GridExampleComponent {
+}
+
 describe('DocumentationComponent', () => {
-  let component: DocumentationComponent;
-  let fixture: ComponentFixture<DocumentationComponent>;
+    let component: DocumentationComponent;
+    let fixture: ComponentFixture<DocumentationComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DocumentationComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+        declarations: [
+            DocumentationComponent,
+            GridExampleComponent
+        ]})
+        .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DocumentationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(DocumentationComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should be created', () => {
+        expect(component).toBeTruthy();
+    });
 });

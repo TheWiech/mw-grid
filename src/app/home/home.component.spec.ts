@@ -1,19 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input } from '@angular/core';
 
 import { HomeComponent } from './home.component';
-import { MwGridTheme } from '../../mw-grid/mw-grid.component';
-
-@Component({selector: 'mw-grid', template: ''})
-export class MwGrid {
-    @Input() data: Array<any>;
-    @Input() theme: MwGridTheme;
-}
-
-@Component({selector: 'mw-column', template: ''})
-export class MwColumn {
-    @Input() binding: String;
-}
 
 describe('HomeComponent', () => {
     let component: HomeComponent;
@@ -21,11 +8,7 @@ describe('HomeComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-        declarations: [
-            HomeComponent,
-            MwGrid,
-            MwColumn
-            ]
+        declarations: [ HomeComponent ]
         })
         .compileComponents();
     }));

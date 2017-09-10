@@ -13,8 +13,8 @@
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-6">
+    <div class="row mw-bootstrap-row">
+        <div class="col-sm-12 col-md-6">
             <h4>Basic Features</h4>
             <ul>
                 <li>Dom Virtualization (Under development)</li>
@@ -25,11 +25,8 @@
                 <li>Searching (Under development)</li>
             </ul>
         </div>
-        <div class="col-6">
-            <mw-grid [data]="users" [theme]="theme">
-                <mw-column [binding]="'name'"></mw-column>
-                <mw-column [binding]="'email'"></mw-column>
-            </mw-grid>
+        <div class="col-sm-12 col-md-6">
+            <img class="grid-image" src="../../assets/mw-grid.png" />
         </div>
     </div>
 </div>
