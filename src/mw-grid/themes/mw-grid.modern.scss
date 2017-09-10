@@ -1,0 +1,47 @@
+$top-border-color: #BFC3C7;
+$border-color: #C0C3C8;
+$border-thickness: 1px;
+$border-style: solid;
+$font-color: #747C85;
+$even-backround-color: #FFFFFF;
+$odd-backround-color: #F3F5F7;
+
+mw-grid > .mw-grid-container.modern {
+    .mw-row {
+        //
+        // Turn individual rows into flex containers
+        //
+        > span {
+            display: flex;
+        }
+
+        &.mw-even mw-cell .mw-cell {
+            background: $even-backround-color;
+        }
+
+        &.mw-odd mw-cell .mw-cell {
+            background: $odd-backround-color;
+        }
+
+        //
+        // Draw top boder only on cells in the first row
+        //
+        &:first-child {
+            mw-cell .mw-cell {
+                border-top: $border-thickness $border-style $top-border-color;
+            }
+        }
+
+        //
+        // Draw bottom border on all cells
+        //
+        mw-cell .mw-cell {
+            border-bottom: $border-thickness $border-style $border-color;
+            color: $font-color;
+            display: inline-block;
+            width: 200px;
+            position: relative;
+            padding: 1em 1em;
+        }
+    }
+}
