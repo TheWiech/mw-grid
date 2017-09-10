@@ -12,7 +12,7 @@ mw-grid > .mw-grid-container.modern {
     //
     // Draw bottom border only on grid headers
     //
-    mw-grid-header .mw-header {
+    mw-grid-headers .mw-header {
         border-bottom: $border-thickness $border-style $top-border-color;
         color: $header-font-color;
         display: inline-block;

@@ -10,7 +10,7 @@ mw-grid > .mw-grid-container.spreadsheet {
     //
     // Draw bottom border only on grid headers
     //
-    mw-grid-header .mw-header {
+    mw-grid-headers .mw-header {
         border-top: $border-thickness $border-style $border-color;
         border-left: $border-thickness $border-style $border-color;
         border-bottom: $border-thickness $border-style $border-color;
