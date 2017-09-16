@@ -3,7 +3,7 @@
     <div class="mw-row" *ngFor="let item of data; let i = index;"
             [ngClass]="{'mw-even': i % 2 === 0, 'mw-odd': i % 2 !== 0 }">
         <span *ngIf="columnDefinitions.length !== 0">
-            <mw-cell *ngFor="let colDefinition of columnDefinitions">
+            <mw-cell *ngFor="let colDefinition of columnDefinitions" [style.width]="colDefinition.calculatedWidth" [style.minWidth]="colDefinition.getMinWidth()" [style.maxWidth]="colDefinition.getMaxWidth()">
                 {{ item[colDefinition.binding] }}
             </mw-cell>
         </span>

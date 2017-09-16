@@ -1,6 +1,6 @@
 <mw-grid [data]="users" [theme]="theme">
     <mw-column [binding]="'name'"></mw-column>
-    <mw-column [binding]="'username'"></mw-column>
-    <mw-column [binding]="'email'"></mw-column>
-    <mw-column [binding]="'phoneNumber'"></mw-column>
+    <mw-column [binding]="'username'" [width]="'1*'" [minWidth]="150"></mw-column>
+    <mw-column [binding]="'email'" [width]="'1*'"></mw-column>
+    <mw-column [binding]="'phoneNumber'" [maxWidth]="150"></mw-column>
 </mw-grid>

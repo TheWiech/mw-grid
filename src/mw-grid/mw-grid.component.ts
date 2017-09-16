@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, QueryList, ContentChildren, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, QueryList, ContentChildren, ViewEncapsulation } from '@angular/core';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
+import { MwGridHeader } from '../mw-grid-headers/mw-grid-headers.component';
 
 @Component({
     selector: 'mw-grid',
@@ -18,16 +19,19 @@ export class MwGridComponent implements OnInit {
     @ContentChildren(MwColumnDirective) columnDefinitions: QueryList<MwColumnDirective>;
 
     gridTheme: String;
-    gridHeaders: Array<String> = [];
+    gridHeaders: Array<MwGridHeader> = [];
 
-    constructor(private ref: ChangeDetectorRef) { }
+    constructor() { }
 
     ngOnInit() {
         this.setGridTheme();
     }
 
     ngAfterViewInit() {
-        this.setGridHeaders();
+        setTimeout(() => {
+            this.setGridHeaders();
+            this.setColWidths();
+        });
     }
 
     setGridTheme() {
@@ -45,10 +49,32 @@ export class MwGridComponent implements OnInit {
 
     setGridHeaders() {
         this.columnDefinitions.forEach(element => {
-            this.gridHeaders.push(element.binding);
+            this.gridHeaders.push(new MwGridHeader(element.binding));
         });
+    }
 
-        this.ref.detectChanges();
+    setColWidths() {
+        let starSizeTotalWidth = 0;
+        let starSizedColumns = new Map<number, MwColumnDirective>();
+        let colDefintionArray = this.columnDefinitions.toArray();
+
+        for(let i = 0; i < colDefintionArray.length; i++) {
+
+            // If a column is star sized we must wait until we add up all star sizing properties before we know the width of the column
+            if (colDefintionArray[i].isStarSizedWidth()) {
+                starSizeTotalWidth += colDefintionArray[i].getStarSizedWidth();
+                starSizedColumns.set(i, colDefintionArray[i]);
+            } else {
+                this.gridHeaders[i].width = colDefintionArray[i].calculatedWidth = `${ colDefintionArray[i].width }px`;
+            }
+
+            this.gridHeaders[i].minWidth = colDefintionArray[i].getMinWidth();
+            this.gridHeaders[i].maxWidth = colDefintionArray[i].getMaxWidth();
+        }
+
+        starSizedColumns.forEach((value, key) => {
+            this.gridHeaders[key].width = colDefintionArray[key].calculatedWidth = `${colDefintionArray[key].getStarSizedWidth() / starSizeTotalWidth * 100}%`;
+        });
     }
 
 }

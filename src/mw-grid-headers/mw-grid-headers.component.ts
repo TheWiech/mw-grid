@@ -6,11 +6,20 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./mw-grid-headers.component.scss']
 })
 export class MwGridHeadersComponent implements OnInit {
-    @Input() public headers: Array<String>;
+    @Input() public headers: Array<MwGridHeader>;
 
     constructor() { }
 
     ngOnInit() {
     }
 
+}
+
+export class MwGridHeader {
+    constructor(public title: String) {
+    }
+
+    width: String;
+    minWidth: String;
+    maxWidth: String;
 }

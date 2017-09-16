@@ -1,7 +1,21 @@
 mw-grid > .mw-grid-container {
+    //
+    // Make the grid container display inline block and take up 100% of the available space.
+    //
+    display: inline-block;
+    width: 100%;
+
     overflow: scroll;
 
-    mw-grid-headers {
+    //
+    // All headers and cells should hide overflow and prevent it from wrapping to the next line
+    //
+    mw-grid-headers .mw-header, mw-cell {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    mw-grid-headers, .mw-row > span {
         display: flex;
     }
 }

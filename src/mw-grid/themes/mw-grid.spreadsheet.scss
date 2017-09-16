@@ -7,44 +7,30 @@ $header-backround-color: #F3F5F7;
 
 mw-grid > .mw-grid-container.spreadsheet {
 
-    //
-    // Draw bottom border only on grid headers
-    //
     mw-grid-headers .mw-header {
-        border-top: $border-thickness $border-style $border-color;
-        border-left: $border-thickness $border-style $border-color;
-        border-bottom: $border-thickness $border-style $border-color;
-        color: $header-font-color;
-        background: $header-backround-color;
-        display: inline-block;
-        min-width: 200px;
-        position: relative;
-        padding: 0 1em;
-        font-weight: 500;
+        > div {
+            border-top: $border-thickness $border-style $border-color;
+            border-left: $border-thickness $border-style $border-color;
+            border-bottom: $border-thickness $border-style $border-color;
+            color: $header-font-color;
+            background: $header-backround-color;
+            padding: 0 1em;
+            font-weight: 500;
+        }
 
+        //
+        // Draw right border on last cell in a row
+        //
         &:last-child {
             border-right: $border-thickness $border-style $border-color;
         }
     }
 
     .mw-row {
-        //
-        // Turn individual rows into flex containers
-        //
-        > span {
-            display: flex;
-        }
-
-        //
-        // Draw bottom and left border on all cells
-        //
         mw-cell .mw-cell {
             border-left: $border-thickness $border-style $border-color;
             border-bottom: $border-thickness $border-style $border-color;
             color: $font-color;
-            display: inline-block;
-            width: 200px;
-            position: relative;
             padding: 0 1em;
         }
 

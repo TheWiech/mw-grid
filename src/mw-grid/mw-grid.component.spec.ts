@@ -1,5 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, Input } from '@angular/core';
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { Component, DebugElement, Input, QueryList } from '@angular/core';
 
 import { MwGridComponent, MwGridTheme } from './mw-grid.component';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
@@ -8,8 +8,20 @@ import { MwColumnDirective } from '../mw-column/mw-column.directive';
 export class MwCell { }
 
 @Component({selector: 'mw-grid-headers', template: '<div class="mock-grid-headers"></div>'})
+class MwGridHeader {
+    constructor (public title: string) { }
+
+    width: String;
+    minWidth: String;
+    maxWidth: String;
+}
+
+@Component({
+    selector: 'mw-grid-headers',
+    template: '<div class="mock-grid-headers"></div>',
+})
 export class MwGridHeaders {
-    @Input() headers: Array<String>;
+    @Input() headers: Array<MwGridHeader>;
 }
 
 @Component({
@@ -118,6 +130,17 @@ describe('MwGridComponent', () => {
         });
     });
 
+    describe('ngAfterViewInit method', () => {
+        it('should call setGridHeaders and setColWidths', <any>fakeAsync((): void => {
+            spyOn(component, 'setGridHeaders');
+            spyOn(component, 'setColWidths');
+            component.ngAfterViewInit();
+            tick();
+            expect(component.setGridHeaders).toHaveBeenCalled();
+            expect(component.setColWidths).toHaveBeenCalled();
+        }));
+    });
+
     describe('setGridHeaders method', () => {
         it('should populate grid headers from column definitions', () => {
             // Setup
@@ -128,7 +151,97 @@ describe('MwGridComponent', () => {
             component.setGridHeaders();
 
             // Assert
-            expect(component.gridHeaders).toEqual(['col1Header', 'col2Header', 'col3Header']);
+            expect(component.gridHeaders[0].title).toEqual('col1Header');
+            expect(component.gridHeaders[1].title).toEqual('col2Header');
+            expect(component.gridHeaders[2].title).toEqual('col3Header');
+        });
+    });
+});
+
+describe('MwGridComponent', () => {
+    let colDefinition1: MwColumnDirective;
+    let colDefinition2: MwColumnDirective;
+    let colDefinition3: MwColumnDirective;
+
+    beforeEach(() => {
+        colDefinition1 = new MwColumnDirective();
+        mockColumnDefinitions(colDefinition1);
+        colDefinition2 = new MwColumnDirective();
+        mockColumnDefinitions(colDefinition2);
+        colDefinition3 = new MwColumnDirective();
+        mockColumnDefinitions(colDefinition3);
+
+        function mockColumnDefinitions(colDefinition) {
+            colDefinition.width = '120';
+            colDefinition.binding = 'name';
+            colDefinition.minWidth =  10;
+            colDefinition.maxWidth = 220;
+            spyOn(colDefinition, 'isStarSizedWidth').and.returnValue(false);
+            spyOn(colDefinition, 'getStarSizedWidth').and.callFake(() => {
+                return Number(colDefinition.width);
+            });
+            spyOn(colDefinition, 'getMinWidth').and.callFake(() => {
+                return `${ colDefinition.minWidth }px`;
+            });
+            spyOn(colDefinition, 'getMaxWidth').and.callFake(() => {
+                return `${ colDefinition.maxWidth }px`;
+            });
+        }
+    });
+
+    describe('setColWidths method', () => {
+        it('should set gridHeaders minWidth, maxWidth, and width for each column definition when not starSized', () => {
+            // Setup
+            let component = new MwGridComponent();
+            component.gridHeaders = [new MwGridHeader('name'), new MwGridHeader('email')];
+
+            colDefinition1.width = '140';
+            colDefinition1.minWidth = 40;
+            colDefinition1.maxWidth = 300;
+
+            let contentChildren = new QueryList<MwColumnDirective>();
+            contentChildren.reset([colDefinition1, colDefinition2]);
+            component.columnDefinitions = contentChildren;
+
+            // Act
+            component.setColWidths();
+
+            // Assert
+            expect(component.gridHeaders[0].width).toEqual('140px');
+            expect(component.gridHeaders[0].minWidth).toEqual('40px');
+            expect(component.gridHeaders[0].maxWidth).toEqual('300px');
+            expect(component.columnDefinitions.toArray()[0].calculatedWidth).toEqual('140px');
+
+            expect(component.gridHeaders[1].width).toEqual('120px');
+            expect(component.gridHeaders[1].minWidth).toEqual('10px');
+            expect(component.gridHeaders[1].maxWidth).toEqual('220px');
+            expect(component.columnDefinitions.toArray()[1].calculatedWidth).toEqual('120px');
+        });
+
+        it('should properly set width for each column definition when starSized', () => {
+            // Setup
+            let component = new MwGridComponent();
+            component.gridHeaders = [new MwGridHeader('name'), new MwGridHeader('email')];
+
+            colDefinition1.width = '3';
+            colDefinition2.width = '1';
+
+            colDefinition1.isStarSizedWidth = jasmine.createSpy('starSizedSpy1').and.returnValue(true);
+            colDefinition2.isStarSizedWidth = jasmine.createSpy('starSizedSpy2').and.returnValue(true);
+
+            let contentChildren = new QueryList<MwColumnDirective>();
+            contentChildren.reset([colDefinition1, colDefinition2]);
+            component.columnDefinitions = contentChildren;
+
+            // Act
+            component.setColWidths();
+
+            // Assert
+            expect(component.gridHeaders[0].width).toEqual('75%');
+            expect(component.columnDefinitions.toArray()[0].calculatedWidth).toEqual('75%');
+
+            expect(component.gridHeaders[1].width).toEqual('25%');
+            expect(component.columnDefinitions.toArray()[1].calculatedWidth).toEqual('25%');
         });
     });
 });

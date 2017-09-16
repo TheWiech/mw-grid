@@ -13,6 +13,9 @@ export class MwGrid {
 @Component({selector: 'mw-column', template: ''})
 export class MwColumn {
     @Input() binding: String;
+    @Input() width: String;
+    @Input() minWidth: Number;
+    @Input() maxWidth: Number;
 }
 
 describe('GridExampleComponent', () => {

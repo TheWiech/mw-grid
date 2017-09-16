@@ -1,3 +1,13 @@
 .mw-cell {
+    //
+    // Ensure each cell takes up 100% of the height. This will ensure when one cells
+    // content wraps to the next line all other cells will be the same height
+    //
     height: 100%;
+
+    //
+    // Pevent a cells content from wapping to the next line or into cells next to it
+    //
+    white-space: nowrap;
+    overflow: hidden;
 }

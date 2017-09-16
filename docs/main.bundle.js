@@ -176,7 +176,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_11__mw_column_mw_column_directive__["a" /* MwColumnDirective */],
             __WEBPACK_IMPORTED_MODULE_12__mw_cell_mw_cell_component__["a" /* MwCellComponent */],
             __WEBPACK_IMPORTED_MODULE_13__grid_example_grid_example_component__["a" /* GridExampleComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__mw_grid_headers_mw_grid_headers_component__["a" /* MwGridHeadersComponent */]
+            __WEBPACK_IMPORTED_MODULE_14__mw_grid_headers_mw_grid_headers_component__["b" /* MwGridHeadersComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -194,7 +194,7 @@ AppModule = __decorate([
 /***/ "./src/app/documentation/documentation.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <div class=\"row mw-row\">\n        <div class=\"col-12\">\n            <h5>Getting Started</h5>\n        </div>\n    </div>\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-12\">\n            <grid-example></grid-example>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"container-fluid\">\n    <div class=\"row mw-row\">\n        <div class=\"col-12\">\n            <h5>Getting Started</h5>\n        </div>\n    </div>\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-12\">\n            <grid-example></grid-example>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -377,7 +377,7 @@ DownloadComponent = __decorate([
 /***/ "./src/app/grid-example/grid-example.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mw-grid [data]=\"users\" [theme]=\"theme\">\n    <mw-column [binding]=\"'name'\"></mw-column>\n    <mw-column [binding]=\"'username'\"></mw-column>\n    <mw-column [binding]=\"'email'\"></mw-column>\n    <mw-column [binding]=\"'phoneNumber'\"></mw-column>\n</mw-grid>\n"
+module.exports = "<mw-grid [data]=\"users\" [theme]=\"theme\">\n    <mw-column [binding]=\"'name'\"></mw-column>\n    <mw-column [binding]=\"'username'\" [width]=\"'1*'\" [minWidth]=\"150\"></mw-column>\n    <mw-column [binding]=\"'email'\" [width]=\"'1*'\"></mw-column>\n    <mw-column [binding]=\"'phoneNumber'\" [maxWidth]=\"150\"></mw-column>\n</mw-grid>\n"
 
 /***/ }),
 
@@ -452,7 +452,7 @@ GridExampleComponent = __decorate([
 /***/ "./src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"welcome-banner\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-12 primary-text\">\n                An open source Angular 4 grid\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-12 secondary-text\">\n                Easily display a modern, fully customizable grid with enterprise quality features in your applications\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"container\">\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-xs-12 col-md-6\">\n            <h4>Basic Features</h4>\n            <ul>\n                <li>Dom Virtualization (Under development)</li>\n                <li>Pagination and infinite scroll (Under development)</li>\n                <li>Custom cell templates (Under development)</li>\n                <li>Dynamic column sizing (Under development)</li>\n                <li>Sorting (Under development)</li>\n                <li>Searching (Under development)</li>\n            </ul>\n        </div>\n        <div class=\"col-xs-12 col-md-6\">\n            <div class=\"grid-image\"></div>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"welcome-banner\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-12 primary-text\">\n                An open source Angular 4 grid\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-12 secondary-text\">\n                Easily display a modern, fully customizable grid with enterprise quality features in your applications\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"container\">\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-xs-12 col-md-6\">\n            <h4>Basic Features</h4>\n            <ul>\n                <li>Dom Virtualization (Under development)</li>\n                <li>Pagination and infinite scroll (Under development)</li>\n                <li>Custom cell templates (Under development)</li>\n                <li>Dynamic column sizing</li>\n                <li>Sorting (Under development)</li>\n                <li>Searching (Under development)</li>\n            </ul>\n        </div>\n        <div class=\"col-xs-12 col-md-6\">\n            <div class=\"grid-image\"></div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -702,7 +702,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".mw-cell {\n  height: 100%; }\n", ""]);
+exports.push([module.i, ".mw-cell {\n  height: 100%;\n  white-space: nowrap;\n  overflow: hidden; }\n", ""]);
 
 // exports
 
@@ -754,6 +754,8 @@ MwCellComponent = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwColumnDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_util_isNumeric__ = __webpack_require__("./node_modules/rxjs/util/isNumeric.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_util_isNumeric___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_util_isNumeric__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -764,10 +766,67 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var MwColumnDirective = (function () {
     function MwColumnDirective() {
+        this.standardWidth = '150px';
     }
     MwColumnDirective.prototype.ngOnInit = function () {
+        this.validateWidths();
+    };
+    MwColumnDirective.prototype.validateWidths = function () {
+        if (this.width) {
+            var parsedWidth = void 0;
+            // Handle star sizing binding.
+            if (this.width.search(/\*$/) > -1) {
+                parsedWidth = this.width.split('*')[0];
+            }
+            else if (this.width.search(/\*/) > -1) {
+                throw new Error('star sized width on mw-column must have * at the end');
+            }
+            else {
+                parsedWidth = this.width;
+            }
+            this.validateWidthValue(parsedWidth, 'width');
+        }
+        if (this.minWidth) {
+            this.validateWidthValue(this.minWidth, 'minWidth');
+        }
+        if (this.maxWidth) {
+            this.validateWidthValue(this.maxWidth, 'maxWidth');
+        }
+    };
+    MwColumnDirective.prototype.validateWidthValue = function (width, inputBinding) {
+        if (!Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_util_isNumeric__["isNumeric"])(width)) {
+            throw new Error(inputBinding + " on mw-column must be a number");
+        }
+        if (Number(width) < 0) {
+            throw new Error(inputBinding + " on mw-column must be greater than 0");
+        }
+    };
+    MwColumnDirective.prototype.isStarSizedWidth = function () {
+        return this.width !== undefined ? this.width.search(/\*$/) >= 0 : false;
+    };
+    MwColumnDirective.prototype.getStarSizedWidth = function () {
+        return Number(this.width.split('*')[0]);
+    };
+    MwColumnDirective.prototype.getMinWidth = function () {
+        // When minWidth and width are not set use the maxWidth if it is set otherwise default to
+        // the standard width.
+        if (this.minWidth === undefined && this.width === undefined) {
+            return this.maxWidth !== undefined ? this.maxWidth + "px" : this.standardWidth;
+        }
+        // Returning 0 when minWidth is undefined tells flexbox to allow the content shrink to 0px
+        // Without this flexbox will try as hard as it can to keep the entire content in the column visible
+        return this.minWidth !== undefined ? this.minWidth + "px" : '0';
+    };
+    MwColumnDirective.prototype.getMaxWidth = function () {
+        // When maxWidth and width are not set use the minWidth if it is set otherwise default to
+        // the standard width.
+        if (this.maxWidth === undefined && this.width === undefined) {
+            return this.minWidth !== undefined ? this.minWidth + "px" : this.standardWidth;
+        }
+        return this.maxWidth !== undefined ? this.maxWidth + "px" : '';
     };
     return MwColumnDirective;
 }());
@@ -775,6 +834,18 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
     __metadata("design:type", Object)
 ], MwColumnDirective.prototype, "binding", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwColumnDirective.prototype, "width", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwColumnDirective.prototype, "minWidth", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwColumnDirective.prototype, "maxWidth", void 0);
 MwColumnDirective = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* Directive */])({
         selector: 'mw-column'
@@ -789,7 +860,7 @@ MwColumnDirective = __decorate([
 /***/ "./src/mw-grid-headers/mw-grid-headers.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<span *ngFor=\"let header of headers\" class=\"mw-header\">\n    {{ header }}\n</span>\n"
+module.exports = "<div *ngFor=\"let header of headers\" class=\"mw-header\" [style.width]=\"header.width\" [style.minWidth]=\"header.minWidth\" [style.maxWidth]=\"header.maxWidth\">\n    <div>{{ header.title }}</div>\n</div>\n"
 
 /***/ }),
 
@@ -815,7 +886,8 @@ module.exports = module.exports.toString();
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwGridHeadersComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MwGridHeadersComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwGridHeader; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -847,6 +919,13 @@ MwGridHeadersComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], MwGridHeadersComponent);
 
+var MwGridHeader = (function () {
+    function MwGridHeader(title) {
+        this.title = title;
+    }
+    return MwGridHeader;
+}());
+
 //# sourceMappingURL=mw-grid-headers.component.js.map
 
 /***/ }),
@@ -854,7 +933,7 @@ MwGridHeadersComponent = __decorate([
 /***/ "./src/mw-grid/mw-grid.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mw-grid-container {{gridTheme}}\">\n    <mw-grid-headers [headers]=\"gridHeaders\"></mw-grid-headers>\n    <div class=\"mw-row\" *ngFor=\"let item of data; let i = index;\"\n            [ngClass]=\"{'mw-even': i % 2 === 0, 'mw-odd': i % 2 !== 0 }\">\n        <span *ngIf=\"columnDefinitions.length !== 0\">\n            <mw-cell *ngFor=\"let colDefinition of columnDefinitions\">\n                {{ item[colDefinition.binding] }}\n            </mw-cell>\n        </span>\n        <span *ngIf=\"columnDefinitions.length === 0\">\n            {{ item }}\n        </span>\n    </div>\n</div>\n"
+module.exports = "<div class=\"mw-grid-container {{gridTheme}}\">\n    <mw-grid-headers [headers]=\"gridHeaders\"></mw-grid-headers>\n    <div class=\"mw-row\" *ngFor=\"let item of data; let i = index;\"\n            [ngClass]=\"{'mw-even': i % 2 === 0, 'mw-odd': i % 2 !== 0 }\">\n        <span *ngIf=\"columnDefinitions.length !== 0\">\n            <mw-cell *ngFor=\"let colDefinition of columnDefinitions\" [style.width]=\"colDefinition.calculatedWidth\" [style.minWidth]=\"colDefinition.getMinWidth()\" [style.maxWidth]=\"colDefinition.getMaxWidth()\">\n                {{ item[colDefinition.binding] }}\n            </mw-cell>\n        </span>\n        <span *ngIf=\"columnDefinitions.length === 0\">\n            {{ item }}\n        </span>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -866,7 +945,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "mw-grid > .mw-grid-container {\n  overflow: scroll; }\n  mw-grid > .mw-grid-container mw-grid-headers {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n", ""]);
+exports.push([module.i, "mw-grid > .mw-grid-container {\n  display: inline-block;\n  width: 100%;\n  overflow: scroll; }\n  mw-grid > .mw-grid-container mw-grid-headers .mw-header, mw-grid > .mw-grid-container mw-cell {\n    overflow: hidden;\n    white-space: nowrap; }\n  mw-grid > .mw-grid-container mw-grid-headers, mw-grid > .mw-grid-container .mw-row > span {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n", ""]);
 
 // exports
 
@@ -884,6 +963,7 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MwGridTheme; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mw_column_mw_column_directive__ = __webpack_require__("./src/mw-column/mw-column.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mw_grid_headers_mw_grid_headers_component__ = __webpack_require__("./src/mw-grid-headers/mw-grid-headers.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -895,16 +975,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var MwGridComponent = (function () {
-    function MwGridComponent(ref) {
-        this.ref = ref;
+    function MwGridComponent() {
         this.gridHeaders = [];
     }
     MwGridComponent.prototype.ngOnInit = function () {
         this.setGridTheme();
     };
     MwGridComponent.prototype.ngAfterViewInit = function () {
-        this.setGridHeaders();
+        var _this = this;
+        setTimeout(function () {
+            _this.setGridHeaders();
+            _this.setColWidths();
+        });
     };
     MwGridComponent.prototype.setGridTheme = function () {
         switch (this.theme) {
@@ -921,9 +1005,29 @@ var MwGridComponent = (function () {
     MwGridComponent.prototype.setGridHeaders = function () {
         var _this = this;
         this.columnDefinitions.forEach(function (element) {
-            _this.gridHeaders.push(element.binding);
+            _this.gridHeaders.push(new __WEBPACK_IMPORTED_MODULE_2__mw_grid_headers_mw_grid_headers_component__["a" /* MwGridHeader */](element.binding));
         });
-        this.ref.detectChanges();
+    };
+    MwGridComponent.prototype.setColWidths = function () {
+        var _this = this;
+        var starSizeTotalWidth = 0;
+        var starSizedColumns = new Map();
+        var colDefintionArray = this.columnDefinitions.toArray();
+        for (var i = 0; i < colDefintionArray.length; i++) {
+            // If a column is star sized we must wait until we add up all star sizing properties before we know the width of the column
+            if (colDefintionArray[i].isStarSizedWidth()) {
+                starSizeTotalWidth += colDefintionArray[i].getStarSizedWidth();
+                starSizedColumns.set(i, colDefintionArray[i]);
+            }
+            else {
+                this.gridHeaders[i].width = colDefintionArray[i].calculatedWidth = colDefintionArray[i].width + "px";
+            }
+            this.gridHeaders[i].minWidth = colDefintionArray[i].getMinWidth();
+            this.gridHeaders[i].maxWidth = colDefintionArray[i].getMaxWidth();
+        }
+        starSizedColumns.forEach(function (value, key) {
+            _this.gridHeaders[key].width = colDefintionArray[key].calculatedWidth = colDefintionArray[key].getStarSizedWidth() / starSizeTotalWidth * 100 + "%";
+        });
     };
     return MwGridComponent;
 }());
@@ -950,7 +1054,7 @@ MwGridComponent = __decorate([
         styles: [__webpack_require__("./src/mw-grid/mw-grid.component.scss"), __webpack_require__("./src/mw-grid/themes/mw-grid.modern.scss"), __webpack_require__("./src/mw-grid/themes/mw-grid.spreadsheet.scss")],
         encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* ViewEncapsulation */].None
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [])
 ], MwGridComponent);
 
 var MwGridTheme;
@@ -958,7 +1062,7 @@ var MwGridTheme;
     MwGridTheme[MwGridTheme["Modern"] = 0] = "Modern";
     MwGridTheme[MwGridTheme["Spreadsheet"] = 1] = "Spreadsheet";
 })(MwGridTheme || (MwGridTheme = {}));
-var _a, _b;
+var _a;
 //# sourceMappingURL=mw-grid.component.js.map
 
 /***/ }),
@@ -971,7 +1075,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "mw-grid > .mw-grid-container.modern mw-grid-headers .mw-header {\n  border-bottom: 1px solid #BFC3C7;\n  color: #313942;\n  display: inline-block;\n  min-width: 200px;\n  position: relative;\n  padding: 0 1em;\n  font-weight: 500; }\n\nmw-grid > .mw-grid-container.modern .mw-row > span {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\nmw-grid > .mw-grid-container.modern .mw-row.mw-even mw-cell .mw-cell {\n  background: #FFFFFF; }\n\nmw-grid > .mw-grid-container.modern .mw-row.mw-odd mw-cell .mw-cell {\n  background: #F3F5F7; }\n\nmw-grid > .mw-grid-container.modern .mw-row mw-cell .mw-cell {\n  border-bottom: 1px solid #C0C3C8;\n  color: #747C85;\n  display: inline-block;\n  width: 200px;\n  position: relative;\n  padding: 1em 1em; }\n", ""]);
+exports.push([module.i, "mw-grid > .mw-grid-container.modern mw-grid-headers .mw-header {\n  border-bottom: 1px solid #BFC3C7;\n  color: #313942; }\n  mw-grid > .mw-grid-container.modern mw-grid-headers .mw-header > div {\n    padding: 0 1em;\n    font-weight: 500; }\n\nmw-grid > .mw-grid-container.modern .mw-row.mw-even mw-cell .mw-cell {\n  background: #FFFFFF; }\n\nmw-grid > .mw-grid-container.modern .mw-row.mw-odd mw-cell .mw-cell {\n  background: #F3F5F7; }\n\nmw-grid > .mw-grid-container.modern .mw-row mw-cell .mw-cell {\n  border-bottom: 1px solid #C0C3C8;\n  color: #747C85;\n  padding: 1em 1em; }\n", ""]);
 
 // exports
 
@@ -989,7 +1093,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "mw-grid > .mw-grid-container.spreadsheet mw-grid-headers .mw-header {\n  border-top: 1px solid #000000;\n  border-left: 1px solid #000000;\n  border-bottom: 1px solid #000000;\n  color: #313942;\n  background: #F3F5F7;\n  display: inline-block;\n  min-width: 200px;\n  position: relative;\n  padding: 0 1em;\n  font-weight: 500; }\n  mw-grid > .mw-grid-container.spreadsheet mw-grid-headers .mw-header:last-child {\n    border-right: 1px solid #000000; }\n\nmw-grid > .mw-grid-container.spreadsheet .mw-row > span {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\nmw-grid > .mw-grid-container.spreadsheet .mw-row mw-cell .mw-cell {\n  border-left: 1px solid #000000;\n  border-bottom: 1px solid #000000;\n  color: #747C85;\n  display: inline-block;\n  width: 200px;\n  position: relative;\n  padding: 0 1em; }\n\nmw-grid > .mw-grid-container.spreadsheet .mw-row mw-cell:last-child .mw-cell {\n  border-right: 1px solid #000000; }\n", ""]);
+exports.push([module.i, "mw-grid > .mw-grid-container.spreadsheet mw-grid-headers .mw-header > div {\n  border-top: 1px solid #000000;\n  border-left: 1px solid #000000;\n  border-bottom: 1px solid #000000;\n  color: #313942;\n  background: #F3F5F7;\n  padding: 0 1em;\n  font-weight: 500; }\n\nmw-grid > .mw-grid-container.spreadsheet mw-grid-headers .mw-header:last-child {\n  border-right: 1px solid #000000; }\n\nmw-grid > .mw-grid-container.spreadsheet .mw-row mw-cell .mw-cell {\n  border-left: 1px solid #000000;\n  border-bottom: 1px solid #000000;\n  color: #747C85;\n  padding: 0 1em; }\n\nmw-grid > .mw-grid-container.spreadsheet .mw-row mw-cell:last-child .mw-cell {\n  border-right: 1px solid #000000; }\n", ""]);
 
 // exports
 

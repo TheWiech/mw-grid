@@ -15,21 +15,13 @@ mw-grid > .mw-grid-container.modern {
     mw-grid-headers .mw-header {
         border-bottom: $border-thickness $border-style $top-border-color;
         color: $header-font-color;
-        display: inline-block;
-        min-width: 200px;
-        position: relative;
-        padding: 0 1em;
-        font-weight: 500;
+        > div {
+            padding: 0 1em;
+            font-weight: 500;
+        }
     }
 
     .mw-row {
-        //
-        // Turn individual rows into flex containers
-        //
-        > span {
-            display: flex;
-        }
-
         &.mw-even mw-cell .mw-cell {
             background: $even-backround-color;
         }
@@ -38,15 +30,9 @@ mw-grid > .mw-grid-container.modern {
             background: $odd-backround-color;
         }
 
-        //
-        // Draw bottom border on all cells
-        //
         mw-cell .mw-cell {
             border-bottom: $border-thickness $border-style $border-color;
             color: $font-color;
-            display: inline-block;
-            width: 200px;
-            position: relative;
             padding: 1em 1em;
         }
     }
