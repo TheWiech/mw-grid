@@ -1,0 +1,95 @@
+.mw-logo {
+    span {
+        color: #2A5E92;
+        font-weight: 600;
+        font-size: 1.8em;
+    }
+
+    span:first-of-type {
+        color: #8C939B;
+        font-weight: 400;
+        font-size: 1.4em;
+    }
+}
+
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+    z-index: 2001;
+
+    .container {
+        .navbar-nav {
+            //
+            // Override bootstap navbar button on horizontal menu
+            //
+            @media (min-width: 768px) {
+                .nav-item {
+                    padding: .6em;
+                    color: #8C939B;
+                    font-size: 1.2em;
+
+                    // Styling for the active button
+                    &.active, &:hover {
+                        color: #2A5E92;
+                        border-bottom: .1em solid #2A5E92;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mw-grid-menu {
+    @media (max-width: 767px) {
+        //
+        // Hide the horizontal menu when the screen width goes below md
+        // and turn into a vertical menu.
+        //
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        background: #FFFFFF;
+        left: -300px;
+        width: 300px;
+        z-index: 1;
+
+        //
+        // Override bootstap navbar button for vertical menu
+        //
+        .navbar-nav {
+            .nav-item {
+                padding-left: 1em;
+                height: 3em;
+                display: flex;
+                align-items: center;
+
+                &.active, &:hover {
+                    color: #2A5E92;
+                    background: #E7E7E7;
+                    border-left: .5em solid #2A5E92;
+                    padding-left: .5em;
+                }
+            }
+        }
+    }
+
+    &.menu-shown {
+        left: 0px;
+    }
+}
+
+.menu-overlay {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #000;
+    opacity: .5;
+    display: none;
+    z-index: 2000;
+
+    &.overlay-shown {
+        display: initial;
+    }
+}

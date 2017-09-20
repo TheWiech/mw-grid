@@ -16,7 +16,7 @@ webpackEmptyAsyncContext.id = "./src/$$_gendir lazy recursive";
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"shouldShowConstructionBanner\" class=\"under-construction-banner\">\n    <span>mw-grid is in early development and the api is subject to change.</span>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"shouldShowConstructionBanner = false\">\n        <span aria-hidden=\"true\">&times;</span>\n    </button>\n</div>\n<nav class=\"navbar navbar-expand-md navbar-light\">\n    <div class=\"container\">\n        <span class=\"h1\" class=\"navbar-brand\">\n            <span class=\"mw-logo\">\n                <span>MW</span><span>Grid</span>\n            </span>\n        </span>\n        <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleMenu($event)\">\n            <span class=\"navbar-toggler-icon\"></span>\n        </button>\n\n        <div class=\"mw-grid-menu\" id=\"navbarSupportedContent\" [ngClass]=\"{'menu-shown': isMenuShown }\">\n            <div class=\"navbar-nav ml-auto\">\n                <a class=\"nav-item nav-link\" routerLink=\"/home\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Home</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/documentation\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Docs</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/download\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Download</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/support\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Support</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/donate\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Donate</a>\n            </div>\n        </div>\n    </div>\n</nav>\n<router-outlet></router-outlet>\n<div class=\"menu-overlay\" (click)=\"toggleMenu($event)\" [ngClass]=\"{'overlay-shown': isMenuShown }\"></div>\n"
+module.exports = "<div *ngIf=\"shouldShowConstructionBanner\" class=\"under-construction-banner\">\n    <span>mw-grid is in early development and the api is subject to change.</span>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"shouldShowConstructionBanner = false\">\n        <span aria-hidden=\"true\">&times;</span>\n    </button>\n</div>\n<mw-nav-menu></mw-nav-menu>\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -28,7 +28,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".mw-logo span {\n  color: #2A5E92;\n  font-weight: 600;\n  font-size: 1.8em; }\n\n.mw-logo span:first-of-type {\n  color: #8C939B;\n  font-weight: 400;\n  font-size: 1.4em; }\n\n.navbar {\n  padding-top: 0;\n  padding-bottom: 0; }\n  @media (min-width: 768px) {\n    .navbar .container .navbar-nav .nav-item {\n      padding: .6em;\n      color: #8C939B;\n      font-size: 1.2em; }\n      .navbar .container .navbar-nav .nav-item.active, .navbar .container .navbar-nav .nav-item:hover {\n        color: #2A5E92;\n        border-bottom: .1em solid #2A5E92; } }\n\n@media (max-width: 767px) {\n  .mw-grid-menu {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    background: #FFFFFF;\n    left: -300px;\n    width: 300px;\n    z-index: 1; }\n    .mw-grid-menu .navbar-nav .nav-item {\n      padding-left: 1em;\n      height: 3em;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      .mw-grid-menu .navbar-nav .nav-item.active, .mw-grid-menu .navbar-nav .nav-item:hover {\n        color: #2A5E92;\n        background: #E7E7E7;\n        border-left: .5em solid #2A5E92;\n        padding-left: .5em; } }\n\n.mw-grid-menu.menu-shown {\n  left: 0px; }\n\n.menu-overlay {\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  background: #000;\n  opacity: .5;\n  display: none; }\n  .menu-overlay.overlay-shown {\n    display: initial; }\n\n.under-construction-banner {\n  background: #2A5E92;\n  color: #FFFFFF;\n  font-size: 1.2em;\n  font-weight: 200;\n  padding: 10px 15px;\n  text-align: center; }\n  .under-construction-banner > span {\n    display: inline-block;\n    min-height: 1.5em; }\n  .under-construction-banner button {\n    color: white;\n    opacity: 1;\n    font-size: 2em;\n    position: absolute;\n    right: 15px;\n    top: 0; }\n    .under-construction-banner button span:hover {\n      cursor: pointer; }\n", ""]);
+exports.push([module.i, ".under-construction-banner {\n  background: #2A5E92;\n  color: #FFFFFF;\n  font-size: 1.2em;\n  font-weight: 200;\n  padding: 10px 15px;\n  text-align: center; }\n  .under-construction-banner > span {\n    display: inline-block;\n    min-height: 1.5em; }\n  .under-construction-banner button {\n    color: white;\n    opacity: 1;\n    font-size: 2em;\n    position: absolute;\n    right: 15px;\n    top: 0; }\n    .under-construction-banner button span:hover {\n      cursor: pointer; }\n", ""]);
 
 // exports
 
@@ -54,46 +54,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var VERTICAL_MENU_BREAKPOINT = 767;
 var AppComponent = (function () {
     function AppComponent() {
-        this.isMenuShown = false;
         this.shouldShowConstructionBanner = true;
-        this.windowWidth = window.screen.width;
     }
-    AppComponent.prototype.onResize = function (event) {
-        this.windowWidth = event.target.innerWidth;
-        if (this.windowWidth > VERTICAL_MENU_BREAKPOINT && this.isMenuShown) {
-            this.hideMenu();
-        }
-    };
-    ;
-    AppComponent.prototype.toggleMenu = function (event) {
-        event.preventDefault();
-        if (this.windowWidth > VERTICAL_MENU_BREAKPOINT) {
-            return;
-        }
-        if (this.isMenuShown) {
-            this.hideMenu();
-        }
-        else {
-            this.showMenu();
-        }
-    };
-    AppComponent.prototype.hideMenu = function () {
-        this.isMenuShown = false;
-    };
-    AppComponent.prototype.showMenu = function () {
-        this.isMenuShown = true;
-    };
     return AppComponent;
 }());
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* HostListener */])('window:resize', ['$event']),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], AppComponent.prototype, "onResize", null);
 AppComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-root',
@@ -127,12 +93,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__mw_cell_mw_cell_component__ = __webpack_require__("./src/mw-cell/mw-cell.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__grid_example_grid_example_component__ = __webpack_require__("./src/app/grid-example/grid-example.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__mw_grid_headers_mw_grid_headers_component__ = __webpack_require__("./src/mw-grid-headers/mw-grid-headers.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__mw_nav_menu_mw_nav_menu_component__ = __webpack_require__("./src/app/mw-nav-menu/mw-nav-menu.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -176,7 +144,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_11__mw_column_mw_column_directive__["a" /* MwColumnDirective */],
             __WEBPACK_IMPORTED_MODULE_12__mw_cell_mw_cell_component__["a" /* MwCellComponent */],
             __WEBPACK_IMPORTED_MODULE_13__grid_example_grid_example_component__["a" /* GridExampleComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__mw_grid_headers_mw_grid_headers_component__["b" /* MwGridHeadersComponent */]
+            __WEBPACK_IMPORTED_MODULE_14__mw_grid_headers_mw_grid_headers_component__["b" /* MwGridHeadersComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__mw_nav_menu_mw_nav_menu_component__["a" /* MwNavMenuComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -507,6 +476,99 @@ HomeComponent = __decorate([
 ], HomeComponent);
 
 //# sourceMappingURL=home.component.js.map
+
+/***/ }),
+
+/***/ "./src/app/mw-nav-menu/mw-nav-menu.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-light\">\n    <div class=\"container\">\n        <span class=\"h1\" class=\"navbar-brand\">\n            <span class=\"mw-logo\">\n                <span>MW</span><span>Grid</span>\n            </span>\n        </span>\n        <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleMenu($event)\">\n            <span class=\"navbar-toggler-icon\"></span>\n        </button>\n\n        <div class=\"mw-grid-menu\" id=\"navbarSupportedContent\" [ngClass]=\"{'menu-shown': isMenuShown }\">\n            <div class=\"navbar-nav ml-auto\">\n                <a class=\"nav-item nav-link\" routerLink=\"/home\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Home</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/documentation\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Docs</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/download\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Download</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/support\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Support</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/donate\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Donate</a>\n            </div>\n        </div>\n    </div>\n</nav>\n<div class=\"menu-overlay\" (click)=\"toggleMenu($event)\" [ngClass]=\"{'overlay-shown': isMenuShown }\"></div>\n"
+
+/***/ }),
+
+/***/ "./src/app/mw-nav-menu/mw-nav-menu.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".mw-logo span {\n  color: #2A5E92;\n  font-weight: 600;\n  font-size: 1.8em; }\n\n.mw-logo span:first-of-type {\n  color: #8C939B;\n  font-weight: 400;\n  font-size: 1.4em; }\n\n.navbar {\n  padding-top: 0;\n  padding-bottom: 0;\n  z-index: 2001; }\n  @media (min-width: 768px) {\n    .navbar .container .navbar-nav .nav-item {\n      padding: .6em;\n      color: #8C939B;\n      font-size: 1.2em; }\n      .navbar .container .navbar-nav .nav-item.active, .navbar .container .navbar-nav .nav-item:hover {\n        color: #2A5E92;\n        border-bottom: .1em solid #2A5E92; } }\n\n@media (max-width: 767px) {\n  .mw-grid-menu {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    background: #FFFFFF;\n    left: -300px;\n    width: 300px;\n    z-index: 1; }\n    .mw-grid-menu .navbar-nav .nav-item {\n      padding-left: 1em;\n      height: 3em;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      .mw-grid-menu .navbar-nav .nav-item.active, .mw-grid-menu .navbar-nav .nav-item:hover {\n        color: #2A5E92;\n        background: #E7E7E7;\n        border-left: .5em solid #2A5E92;\n        padding-left: .5em; } }\n\n.mw-grid-menu.menu-shown {\n  left: 0px; }\n\n.menu-overlay {\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  background: #000;\n  opacity: .5;\n  display: none;\n  z-index: 2000; }\n  .menu-overlay.overlay-shown {\n    display: initial; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "./src/app/mw-nav-menu/mw-nav-menu.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwNavMenuComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var VERTICAL_MENU_BREAKPOINT = 767;
+var MwNavMenuComponent = (function () {
+    function MwNavMenuComponent() {
+        this.isMenuShown = false;
+        this.windowWidth = window.innerWidth;
+    }
+    MwNavMenuComponent.prototype.onResize = function (event) {
+        this.windowWidth = event.target.innerWidth;
+        if (this.windowWidth > VERTICAL_MENU_BREAKPOINT && this.isMenuShown) {
+            this.hideMenu();
+        }
+    };
+    ;
+    MwNavMenuComponent.prototype.toggleMenu = function (event) {
+        event.preventDefault();
+        if (this.windowWidth > VERTICAL_MENU_BREAKPOINT) {
+            return;
+        }
+        if (this.isMenuShown) {
+            this.hideMenu();
+        }
+        else {
+            this.showMenu();
+        }
+    };
+    MwNavMenuComponent.prototype.hideMenu = function () {
+        this.isMenuShown = false;
+    };
+    MwNavMenuComponent.prototype.showMenu = function () {
+        this.isMenuShown = true;
+    };
+    return MwNavMenuComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* HostListener */])('window:resize', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], MwNavMenuComponent.prototype, "onResize", null);
+MwNavMenuComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'mw-nav-menu',
+        template: __webpack_require__("./src/app/mw-nav-menu/mw-nav-menu.component.html"),
+        styles: [__webpack_require__("./src/app/mw-nav-menu/mw-nav-menu.component.scss")]
+    }),
+    __metadata("design:paramtypes", [])
+], MwNavMenuComponent);
+
+//# sourceMappingURL=mw-nav-menu.component.js.map
 
 /***/ }),
 

@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-md navbar-light">
+    <div class="container">
+        <span class="h1" class="navbar-brand">
+            <span class="mw-logo">
+                <span>MW</span><span>Grid</span>
+            </span>
+        </span>
+        <button class="navbar-toggler" type="button" (click)="toggleMenu($event)">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="mw-grid-menu" id="navbarSupportedContent" [ngClass]="{'menu-shown': isMenuShown }">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" routerLink="/home" routerLinkActive="active" (click)="toggleMenu($event)">Home</a>
+                <a class="nav-item nav-link" routerLink="/documentation" routerLinkActive="active" (click)="toggleMenu($event)">Docs</a>
+                <a class="nav-item nav-link" routerLink="/download" routerLinkActive="active" (click)="toggleMenu($event)">Download</a>
+                <a class="nav-item nav-link" routerLink="/support" routerLinkActive="active" (click)="toggleMenu($event)">Support</a>
+                <a class="nav-item nav-link" routerLink="/donate" routerLinkActive="active" (click)="toggleMenu($event)">Donate</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="menu-overlay" (click)="toggleMenu($event)" [ngClass]="{'overlay-shown': isMenuShown }"></div>
