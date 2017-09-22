@@ -1,0 +1,137 @@
+$triangle-size: 10px;
+$dropdown-menu-color: #313942;
+.navbar .mw-grid-menu .navbar-nav {
+    //
+    // Style dropdown menu when horizontal menu is shown
+    //
+    @media (min-width: 768px) {
+        .nav-item:hover .dropdown-menu {
+            background-color: $dropdown-menu-color;
+
+            .dropdown-item {
+                height: 2.7em;
+                color: #8c939b;
+                display: flex;
+                align-items: center;
+
+                &.active , &:hover, &:focus {
+                    background-color: #747c85;
+                    color: #FFFFFF;
+                }
+            }
+        }
+
+        // Display the dropdown menu when hovering over a dropdown menu item
+        .dropdown:hover .dropdown-toggle {
+            + .dropdown-menu {
+                top: 3.6em;
+                left: .6em;
+                display: block;
+            }
+        }
+    }
+
+
+    //
+    // Style dropdown menu when vertical menu is shown
+    //
+    @media (max-width: 767px) {
+        .nav-item.dropdown {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            height: 100%;
+
+            // Override bootstrap padding
+            padding: 0;
+
+            //
+            // Ovverride standard navitem styling
+            //
+            border-left: 0;
+            background: #FFFFFF;
+
+            &:hover .nav-link{
+                color: #8C939B;
+            }
+
+            //
+            // Style the top level dropdown button
+            //
+            .nav-link.dropdown-toggle {
+                width: 100%;
+                padding-left: 1em;
+                height: 3em;
+                display: flex;
+                align-items: center;
+
+                &.active, &:hover {
+                    color: #2A5E92;
+                    background: #E7E7E7;
+                    border-left: .5em solid #2A5E92;
+                    padding-left: .5em;
+                }
+            }
+
+            &:hover {
+                // Override bootstap dropdown positioning on hover
+                .dropdown-menu {
+                    top: initial;
+                    left: initial;
+                }
+            }
+
+            //
+            // Style the dropdown menu
+            //
+            .dropdown-menu {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+
+                padding: 0;
+                border-top: 1px solid #E7E7E7;
+                border-bottom: 1px solid #E7E7E7;
+
+                // Hide the triangle on top of the dropdown menu
+                &::before {
+                    display: none;
+                }
+
+                .dropdown-item {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    height: 3em;
+                    padding-left: 2em;
+
+                    &.active, &:hover {
+                        color: #2A5E92;
+                        background: #E7E7E7;
+                        border-left: .5em solid #2A5E92;
+                        padding-left: 1.5em;
+                    }
+                }
+            }
+        }
+    }
+
+    // Hide the bootstrap caret after the text in the dropdown item
+    .dropdown-toggle:after {
+        display: none;
+    }
+
+    .dropdown-menu:before {
+        content: '';
+        position: absolute;
+        left: 11px;
+        top: -$triangle-size;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 $triangle-size $triangle-size $triangle-size;
+        border-color: transparent transparent $dropdown-menu-color transparent;
+        z-index:9999;
+    }
+}

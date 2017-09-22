@@ -10,13 +10,21 @@
         </button>
 
         <div class="mw-grid-menu" id="navbarSupportedContent" [ngClass]="{'menu-shown': isMenuShown }">
-            <div class="navbar-nav ml-auto">
-                <a class="nav-item nav-link" routerLink="/home" routerLinkActive="active" (click)="toggleMenu($event)">Home</a>
-                <a class="nav-item nav-link" routerLink="/documentation" routerLinkActive="active" (click)="toggleMenu($event)">Docs</a>
-                <a class="nav-item nav-link" routerLink="/download" routerLinkActive="active" (click)="toggleMenu($event)">Download</a>
-                <a class="nav-item nav-link" routerLink="/support" routerLinkActive="active" (click)="toggleMenu($event)">Support</a>
-                <a class="nav-item nav-link" routerLink="/donate" routerLinkActive="active" (click)="toggleMenu($event)">Donate</a>
-            </div>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" routerLinkActive="active" routerLink="/home" (click)="toggleMenu($event)">
+                    <a class="nav-link">Home</a>
+                </li>
+                <mw-dropdown-nav-item (menuItemClick)="toggleMenu()"></mw-dropdown-nav-item>
+                <li class="nav-item" routerLink="/download" routerLinkActive="active" (click)="toggleMenu($event)">
+                    <a class="nav-link">Download</a>
+                </li>
+                <li class="nav-item" routerLink="/support" routerLinkActive="active" (click)="toggleMenu($event)">
+                    <a class="nav-link">Support</a>
+                </li>
+                <li class="nav-item" routerLink="/donate" routerLinkActive="active" (click)="toggleMenu($event)">
+                    <a class="nav-link">Donate</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>

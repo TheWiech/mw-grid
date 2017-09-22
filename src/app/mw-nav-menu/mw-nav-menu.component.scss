@@ -1,3 +1,5 @@
+$hover-color: #2A5E92;
+
 .mw-logo {
     span {
         color: #2A5E92;
@@ -29,9 +31,13 @@
                     font-size: 1.2em;
 
                     // Styling for the active button
-                    &.active, &:hover {
-                        color: #2A5E92;
-                        border-bottom: .1em solid #2A5E92;
+                    &.active, &:hover, &:focus {
+                        cursor: pointer;
+                        a {
+                            color: $hover-color;
+                        }
+                        border-bottom: .1em solid $hover-color;
+                        outline: none;
                     }
                 }
             }
@@ -39,7 +45,7 @@
     }
 }
 
-.mw-grid-menu {
+.navbar .mw-grid-menu {
     @media (max-width: 767px) {
         //
         // Hide the horizontal menu when the screen width goes below md
@@ -64,9 +70,12 @@
                 align-items: center;
 
                 &.active, &:hover {
-                    color: #2A5E92;
+                    cursor: pointer;
+                    .nav-link {
+                        color: $hover-color;
+                    }
                     background: #E7E7E7;
-                    border-left: .5em solid #2A5E92;
+                    border-left: .5em solid $hover-color;
                     padding-left: .5em;
                 }
             }

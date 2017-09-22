@@ -15,6 +15,7 @@ import { MwCellComponent } from '../mw-cell/mw-cell.component';
 import { GridExampleComponent } from './grid-example/grid-example.component';
 import { MwGridHeadersComponent } from '../mw-grid-headers/mw-grid-headers.component';
 import { MwNavMenuComponent } from './mw-nav-menu/mw-nav-menu.component';
+import { MwDropdownNavItemComponent } from './mw-nav-menu/mw-dropdown-nav-item/mw-dropdown-nav-item.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
         MwCellComponent,
         GridExampleComponent,
         MwGridHeadersComponent,
-        MwNavMenuComponent
+        MwNavMenuComponent,
+        MwDropdownNavItemComponent
     ],
     imports: [
         BrowserModule,

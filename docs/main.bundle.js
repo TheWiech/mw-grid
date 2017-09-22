@@ -94,12 +94,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__grid_example_grid_example_component__ = __webpack_require__("./src/app/grid-example/grid-example.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__mw_grid_headers_mw_grid_headers_component__ = __webpack_require__("./src/mw-grid-headers/mw-grid-headers.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__mw_nav_menu_mw_nav_menu_component__ = __webpack_require__("./src/app/mw-nav-menu/mw-nav-menu.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__mw_nav_menu_mw_dropdown_nav_item_mw_dropdown_nav_item_component__ = __webpack_require__("./src/app/mw-nav-menu/mw-dropdown-nav-item/mw-dropdown-nav-item.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -145,7 +147,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_12__mw_cell_mw_cell_component__["a" /* MwCellComponent */],
             __WEBPACK_IMPORTED_MODULE_13__grid_example_grid_example_component__["a" /* GridExampleComponent */],
             __WEBPACK_IMPORTED_MODULE_14__mw_grid_headers_mw_grid_headers_component__["b" /* MwGridHeadersComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__mw_nav_menu_mw_nav_menu_component__["a" /* MwNavMenuComponent */]
+            __WEBPACK_IMPORTED_MODULE_15__mw_nav_menu_mw_nav_menu_component__["a" /* MwNavMenuComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__mw_nav_menu_mw_dropdown_nav_item_mw_dropdown_nav_item_component__["a" /* MwDropdownNavItemComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -479,10 +482,79 @@ HomeComponent = __decorate([
 
 /***/ }),
 
+/***/ "./src/app/mw-nav-menu/mw-dropdown-nav-item/mw-dropdown-nav-item.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<li class=\"nav-item dropdown\" routerLinkActive=\"active\">\n    <a class=\"nav-link dropdown-toggle\">Docs</a>\n    <div class=\"dropdown-menu\">\n        <a class=\"dropdown-item\" routerLink=\"/documentation/api\" routerLinkActive=\"active\" (click)=\"onMenuItemClick($event)\">API Docs</a>\n        <a class=\"dropdown-item\" routerLink=\"/documentation/examples\" routerLinkActive=\"active\" (click)=\"onMenuItemClick($event)\">Live Examples</a>\n    </div>\n</li>\n"
+
+/***/ }),
+
+/***/ "./src/app/mw-nav-menu/mw-dropdown-nav-item/mw-dropdown-nav-item.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "@media (min-width: 768px) {\n  .navbar .mw-grid-menu .navbar-nav .nav-item:hover .dropdown-menu {\n    background-color: #313942; }\n    .navbar .mw-grid-menu .navbar-nav .nav-item:hover .dropdown-menu .dropdown-item {\n      height: 2.7em;\n      color: #8c939b;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      .navbar .mw-grid-menu .navbar-nav .nav-item:hover .dropdown-menu .dropdown-item.active, .navbar .mw-grid-menu .navbar-nav .nav-item:hover .dropdown-menu .dropdown-item:hover, .navbar .mw-grid-menu .navbar-nav .nav-item:hover .dropdown-menu .dropdown-item:focus {\n        background-color: #747c85;\n        color: #FFFFFF; }\n  .navbar .mw-grid-menu .navbar-nav .dropdown:hover .dropdown-toggle + .dropdown-menu {\n    top: 3.6em;\n    left: .6em;\n    display: block; } }\n\n@media (max-width: 767px) {\n  .navbar .mw-grid-menu .navbar-nav .nav-item.dropdown {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: start;\n        -ms-flex-align: start;\n            align-items: flex-start;\n    height: 100%;\n    padding: 0;\n    border-left: 0;\n    background: #FFFFFF; }\n    .navbar .mw-grid-menu .navbar-nav .nav-item.dropdown:hover .nav-link {\n      color: #8C939B; }\n    .navbar .mw-grid-menu .navbar-nav .nav-item.dropdown .nav-link.dropdown-toggle {\n      width: 100%;\n      padding-left: 1em;\n      height: 3em;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      .navbar .mw-grid-menu .navbar-nav .nav-item.dropdown .nav-link.dropdown-toggle.active, .navbar .mw-grid-menu .navbar-nav .nav-item.dropdown .nav-link.dropdown-toggle:hover {\n        color: #2A5E92;\n        background: #E7E7E7;\n        border-left: .5em solid #2A5E92;\n        padding-left: .5em; }\n    .navbar .mw-grid-menu .navbar-nav .nav-item.dropdown:hover .dropdown-menu {\n      top: initial;\n      left: initial; }\n    .navbar .mw-grid-menu .navbar-nav .nav-item.dropdown .dropdown-menu {\n      position: relative;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      width: 100%;\n      padding: 0;\n      border-top: 1px solid #E7E7E7;\n      border-bottom: 1px solid #E7E7E7; }\n      .navbar .mw-grid-menu .navbar-nav .nav-item.dropdown .dropdown-menu::before {\n        display: none; }\n      .navbar .mw-grid-menu .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        width: 100%;\n        height: 3em;\n        padding-left: 2em; }\n        .navbar .mw-grid-menu .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item.active, .navbar .mw-grid-menu .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item:hover {\n          color: #2A5E92;\n          background: #E7E7E7;\n          border-left: .5em solid #2A5E92;\n          padding-left: 1.5em; } }\n\n.navbar .mw-grid-menu .navbar-nav .dropdown-toggle:after {\n  display: none; }\n\n.navbar .mw-grid-menu .navbar-nav .dropdown-menu:before {\n  content: '';\n  position: absolute;\n  left: 11px;\n  top: -10px;\n  width: 0;\n  height: 0;\n  border-style: solid;\n  border-width: 0 10px 10px 10px;\n  border-color: transparent transparent #313942 transparent;\n  z-index: 9999; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "./src/app/mw-nav-menu/mw-dropdown-nav-item/mw-dropdown-nav-item.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwDropdownNavItemComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MwDropdownNavItemComponent = (function () {
+    function MwDropdownNavItemComponent() {
+        this.menuItemClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
+    }
+    MwDropdownNavItemComponent.prototype.onMenuItemClick = function (event) {
+        event.preventDefault();
+        this.menuItemClick.emit('MenuItemClicked');
+    };
+    return MwDropdownNavItemComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
+    __metadata("design:type", Object)
+], MwDropdownNavItemComponent.prototype, "menuItemClick", void 0);
+MwDropdownNavItemComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'mw-dropdown-nav-item',
+        template: __webpack_require__("./src/app/mw-nav-menu/mw-dropdown-nav-item/mw-dropdown-nav-item.component.html"),
+        styles: [__webpack_require__("./src/app/mw-nav-menu/mw-dropdown-nav-item/mw-dropdown-nav-item.component.scss")],
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* ViewEncapsulation */].None
+    }),
+    __metadata("design:paramtypes", [])
+], MwDropdownNavItemComponent);
+
+//# sourceMappingURL=mw-dropdown-nav-item.component.js.map
+
+/***/ }),
+
 /***/ "./src/app/mw-nav-menu/mw-nav-menu.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-light\">\n    <div class=\"container\">\n        <span class=\"h1\" class=\"navbar-brand\">\n            <span class=\"mw-logo\">\n                <span>MW</span><span>Grid</span>\n            </span>\n        </span>\n        <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleMenu($event)\">\n            <span class=\"navbar-toggler-icon\"></span>\n        </button>\n\n        <div class=\"mw-grid-menu\" id=\"navbarSupportedContent\" [ngClass]=\"{'menu-shown': isMenuShown }\">\n            <div class=\"navbar-nav ml-auto\">\n                <a class=\"nav-item nav-link\" routerLink=\"/home\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Home</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/documentation\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Docs</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/download\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Download</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/support\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Support</a>\n                <a class=\"nav-item nav-link\" routerLink=\"/donate\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">Donate</a>\n            </div>\n        </div>\n    </div>\n</nav>\n<div class=\"menu-overlay\" (click)=\"toggleMenu($event)\" [ngClass]=\"{'overlay-shown': isMenuShown }\"></div>\n"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-light\">\n    <div class=\"container\">\n        <span class=\"h1\" class=\"navbar-brand\">\n            <span class=\"mw-logo\">\n                <span>MW</span><span>Grid</span>\n            </span>\n        </span>\n        <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleMenu($event)\">\n            <span class=\"navbar-toggler-icon\"></span>\n        </button>\n\n        <div class=\"mw-grid-menu\" id=\"navbarSupportedContent\" [ngClass]=\"{'menu-shown': isMenuShown }\">\n            <ul class=\"navbar-nav ml-auto\">\n                <li class=\"nav-item\" routerLinkActive=\"active\" routerLink=\"/home\" (click)=\"toggleMenu($event)\">\n                    <a class=\"nav-link\">Home</a>\n                </li>\n                <mw-dropdown-nav-item (menuItemClick)=\"toggleMenu()\"></mw-dropdown-nav-item>\n                <li class=\"nav-item\" routerLink=\"/download\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">\n                    <a class=\"nav-link\">Download</a>\n                </li>\n                <li class=\"nav-item\" routerLink=\"/support\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">\n                    <a class=\"nav-link\">Support</a>\n                </li>\n                <li class=\"nav-item\" routerLink=\"/donate\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">\n                    <a class=\"nav-link\">Donate</a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<div class=\"menu-overlay\" (click)=\"toggleMenu($event)\" [ngClass]=\"{'overlay-shown': isMenuShown }\"></div>\n"
 
 /***/ }),
 
@@ -494,7 +566,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".mw-logo span {\n  color: #2A5E92;\n  font-weight: 600;\n  font-size: 1.8em; }\n\n.mw-logo span:first-of-type {\n  color: #8C939B;\n  font-weight: 400;\n  font-size: 1.4em; }\n\n.navbar {\n  padding-top: 0;\n  padding-bottom: 0;\n  z-index: 2001; }\n  @media (min-width: 768px) {\n    .navbar .container .navbar-nav .nav-item {\n      padding: .6em;\n      color: #8C939B;\n      font-size: 1.2em; }\n      .navbar .container .navbar-nav .nav-item.active, .navbar .container .navbar-nav .nav-item:hover {\n        color: #2A5E92;\n        border-bottom: .1em solid #2A5E92; } }\n\n@media (max-width: 767px) {\n  .mw-grid-menu {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    background: #FFFFFF;\n    left: -300px;\n    width: 300px;\n    z-index: 1; }\n    .mw-grid-menu .navbar-nav .nav-item {\n      padding-left: 1em;\n      height: 3em;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      .mw-grid-menu .navbar-nav .nav-item.active, .mw-grid-menu .navbar-nav .nav-item:hover {\n        color: #2A5E92;\n        background: #E7E7E7;\n        border-left: .5em solid #2A5E92;\n        padding-left: .5em; } }\n\n.mw-grid-menu.menu-shown {\n  left: 0px; }\n\n.menu-overlay {\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  background: #000;\n  opacity: .5;\n  display: none;\n  z-index: 2000; }\n  .menu-overlay.overlay-shown {\n    display: initial; }\n", ""]);
+exports.push([module.i, ".mw-logo span {\n  color: #2A5E92;\n  font-weight: 600;\n  font-size: 1.8em; }\n\n.mw-logo span:first-of-type {\n  color: #8C939B;\n  font-weight: 400;\n  font-size: 1.4em; }\n\n.navbar {\n  padding-top: 0;\n  padding-bottom: 0;\n  z-index: 2001; }\n  @media (min-width: 768px) {\n    .navbar .container .navbar-nav .nav-item {\n      padding: .6em;\n      color: #8C939B;\n      font-size: 1.2em; }\n      .navbar .container .navbar-nav .nav-item.active, .navbar .container .navbar-nav .nav-item:hover, .navbar .container .navbar-nav .nav-item:focus {\n        cursor: pointer;\n        border-bottom: 0.1em solid #2A5E92;\n        outline: none; }\n        .navbar .container .navbar-nav .nav-item.active a, .navbar .container .navbar-nav .nav-item:hover a, .navbar .container .navbar-nav .nav-item:focus a {\n          color: #2A5E92; } }\n\n@media (max-width: 767px) {\n  .navbar .mw-grid-menu {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    background: #FFFFFF;\n    left: -300px;\n    width: 300px;\n    z-index: 1; }\n    .navbar .mw-grid-menu .navbar-nav .nav-item {\n      padding-left: 1em;\n      height: 3em;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      .navbar .mw-grid-menu .navbar-nav .nav-item.active, .navbar .mw-grid-menu .navbar-nav .nav-item:hover {\n        cursor: pointer;\n        background: #E7E7E7;\n        border-left: 0.5em solid #2A5E92;\n        padding-left: .5em; }\n        .navbar .mw-grid-menu .navbar-nav .nav-item.active .nav-link, .navbar .mw-grid-menu .navbar-nav .nav-item:hover .nav-link {\n          color: #2A5E92; } }\n\n.navbar .mw-grid-menu.menu-shown {\n  left: 0px; }\n\n.menu-overlay {\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  background: #000;\n  opacity: .5;\n  display: none;\n  z-index: 2000; }\n  .menu-overlay.overlay-shown {\n    display: initial; }\n", ""]);
 
 // exports
 
@@ -534,7 +606,9 @@ var MwNavMenuComponent = (function () {
     };
     ;
     MwNavMenuComponent.prototype.toggleMenu = function (event) {
-        event.preventDefault();
+        if (event) {
+            event.preventDefault();
+        }
         if (this.windowWidth > VERTICAL_MENU_BREAKPOINT) {
             return;
         }
@@ -563,7 +637,8 @@ MwNavMenuComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-nav-menu',
         template: __webpack_require__("./src/app/mw-nav-menu/mw-nav-menu.component.html"),
-        styles: [__webpack_require__("./src/app/mw-nav-menu/mw-nav-menu.component.scss")]
+        styles: [__webpack_require__("./src/app/mw-nav-menu/mw-nav-menu.component.scss")],
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* ViewEncapsulation */].None
     }),
     __metadata("design:paramtypes", [])
 ], MwNavMenuComponent);

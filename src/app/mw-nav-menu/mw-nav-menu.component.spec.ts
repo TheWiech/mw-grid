@@ -1,14 +1,14 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { MwNavMenuComponent } from './mw-nav-menu.component';
 
 describe('MwNavMenuComponent', () => {
-  let component: MwNavMenuComponent;
-  let fixture:   ComponentFixture<MwNavMenuComponent>;
-  let de:        DebugElement;
-  let el:        HTMLElement;
-  let mockEvent = new Event('Mock Event');
+    let component: MwNavMenuComponent;
+    let fixture:   ComponentFixture<MwNavMenuComponent>;
+    let de:        DebugElement;
+    let el:        HTMLElement;
+    let mockEvent = new Event('Mock Event');
 
     beforeEach(async(() => {
         spyOn(mockEvent, 'preventDefault');
@@ -17,15 +17,16 @@ describe('MwNavMenuComponent', () => {
         declarations: [
             MwNavMenuComponent,
         ],
+        schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
     }));
 
-        beforeEach(() => {
-            fixture = TestBed.createComponent(MwNavMenuComponent);
-            component = fixture.componentInstance;
-            de = fixture.debugElement;
-            el = de.nativeElement;
-        });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(MwNavMenuComponent);
+        component = fixture.componentInstance;
+        de = fixture.debugElement;
+        el = de.nativeElement;
+    });
 
     it('should create the app', () => {
         expect(fixture).toBeTruthy();

@@ -1,11 +1,12 @@
-import { Component, ElementRef, ViewChild, HostListener, Inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, HostListener, Inject, ViewEncapsulation } from '@angular/core';
 
 const VERTICAL_MENU_BREAKPOINT = 767;
 
 @Component({
   selector: 'mw-nav-menu',
   templateUrl: './mw-nav-menu.component.html',
-  styleUrls: ['./mw-nav-menu.component.scss']
+  styleUrls: ['./mw-nav-menu.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MwNavMenuComponent {
     isMenuShown = false;
@@ -24,7 +25,7 @@ export class MwNavMenuComponent {
     };
 
     toggleMenu(event: Event) {
-        event.preventDefault();
+        if (event) { event.preventDefault(); }
         if (this.windowWidth > VERTICAL_MENU_BREAKPOINT) {
             return;
         }
