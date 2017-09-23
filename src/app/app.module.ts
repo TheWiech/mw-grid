@@ -16,11 +16,14 @@ import { GridExampleComponent } from './grid-example/grid-example.component';
 import { MwGridHeadersComponent } from '../mw-grid-headers/mw-grid-headers.component';
 import { MwNavMenuComponent } from './mw-nav-menu/mw-nav-menu.component';
 import { MwDropdownNavItemComponent } from './mw-nav-menu/mw-dropdown-nav-item/mw-dropdown-nav-item.component';
+import { MwLiveExampleComponent } from './mw-live-example/mw-live-example.component';
+import { MwBannerComponent } from './mw-banner/mw-banner.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'download', component: DownloadComponent },
-    { path: 'documentation', component: DocumentationComponent },
+    { path: 'documentation/api', component: DocumentationComponent },
+    { path: 'documentation/examples', component: MwLiveExampleComponent },
     { path: 'support', component: SupportComponent },
     { path: 'donate', component: DonateComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -42,7 +45,9 @@ const appRoutes: Routes = [
         GridExampleComponent,
         MwGridHeadersComponent,
         MwNavMenuComponent,
-        MwDropdownNavItemComponent
+        MwDropdownNavItemComponent,
+        MwLiveExampleComponent,
+        MwBannerComponent
     ],
     imports: [
         BrowserModule,

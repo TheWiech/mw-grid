@@ -95,6 +95,8 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__mw_grid_headers_mw_grid_headers_component__ = __webpack_require__("./src/mw-grid-headers/mw-grid-headers.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__mw_nav_menu_mw_nav_menu_component__ = __webpack_require__("./src/app/mw-nav-menu/mw-nav-menu.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__mw_nav_menu_mw_dropdown_nav_item_mw_dropdown_nav_item_component__ = __webpack_require__("./src/app/mw-nav-menu/mw-dropdown-nav-item/mw-dropdown-nav-item.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__mw_live_example_mw_live_example_component__ = __webpack_require__("./src/app/mw-live-example/mw-live-example.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__mw_banner_mw_banner_component__ = __webpack_require__("./src/app/mw-banner/mw-banner.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -118,10 +120,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var appRoutes = [
     { path: 'home', component: __WEBPACK_IMPORTED_MODULE_9__home_home_component__["a" /* HomeComponent */] },
     { path: 'download', component: __WEBPACK_IMPORTED_MODULE_10__download_download_component__["a" /* DownloadComponent */] },
-    { path: 'documentation', component: __WEBPACK_IMPORTED_MODULE_6__documentation_documentation_component__["a" /* DocumentationComponent */] },
+    { path: 'documentation/api', component: __WEBPACK_IMPORTED_MODULE_6__documentation_documentation_component__["a" /* DocumentationComponent */] },
+    { path: 'documentation/examples', component: __WEBPACK_IMPORTED_MODULE_17__mw_live_example_mw_live_example_component__["a" /* MwLiveExampleComponent */] },
     { path: 'support', component: __WEBPACK_IMPORTED_MODULE_7__support_support_component__["a" /* SupportComponent */] },
     { path: 'donate', component: __WEBPACK_IMPORTED_MODULE_8__donate_donate_component__["a" /* DonateComponent */] },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -148,7 +153,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_13__grid_example_grid_example_component__["a" /* GridExampleComponent */],
             __WEBPACK_IMPORTED_MODULE_14__mw_grid_headers_mw_grid_headers_component__["b" /* MwGridHeadersComponent */],
             __WEBPACK_IMPORTED_MODULE_15__mw_nav_menu_mw_nav_menu_component__["a" /* MwNavMenuComponent */],
-            __WEBPACK_IMPORTED_MODULE_16__mw_nav_menu_mw_dropdown_nav_item_mw_dropdown_nav_item_component__["a" /* MwDropdownNavItemComponent */]
+            __WEBPACK_IMPORTED_MODULE_16__mw_nav_menu_mw_dropdown_nav_item_mw_dropdown_nav_item_component__["a" /* MwDropdownNavItemComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__mw_live_example_mw_live_example_component__["a" /* MwLiveExampleComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__mw_banner_mw_banner_component__["a" /* MwBannerComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -166,7 +173,7 @@ AppModule = __decorate([
 /***/ "./src/app/documentation/documentation.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n    <div class=\"row mw-row\">\n        <div class=\"col-12\">\n            <h5>Getting Started</h5>\n        </div>\n    </div>\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-12\">\n            <grid-example></grid-example>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<mw-banner [secondaryText]=\"'Docs / API'\"></mw-banner>\n"
 
 /***/ }),
 
@@ -424,7 +431,7 @@ GridExampleComponent = __decorate([
 /***/ "./src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"welcome-banner\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-12 primary-text\">\n                An open source Angular 4 grid\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-12 secondary-text\">\n                Easily display a modern, fully customizable grid with enterprise quality features in your applications\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"container\">\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-xs-12 col-md-6\">\n            <h4>Basic Features</h4>\n            <ul>\n                <li>Dom Virtualization (Under development)</li>\n                <li>Pagination and infinite scroll (Under development)</li>\n                <li>Custom cell templates (Under development)</li>\n                <li>Dynamic column sizing</li>\n                <li>Sorting (Under development)</li>\n                <li>Searching (Under development)</li>\n            </ul>\n        </div>\n        <div class=\"col-xs-12 col-md-6\">\n            <div class=\"grid-image\"></div>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<mw-banner [primaryText]=\"'An open source Angular 4 grid'\"\n    [secondaryText]=\"'Easily display a modern, fully customizable grid with enterprise quality features in your applications'\">\n</mw-banner>\n<div class=\"container\">\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-xs-12 col-md-6\">\n            <h4>Basic Features</h4>\n            <ul>\n                <li>Dom Virtualization (Under development)</li>\n                <li>Pagination and infinite scroll (Under development)</li>\n                <li>Custom cell templates (Under development)</li>\n                <li>Dynamic column sizing</li>\n                <li>Sorting (Under development)</li>\n                <li>Searching (Under development)</li>\n            </ul>\n        </div>\n        <div class=\"col-xs-12 col-md-6\">\n            <div class=\"grid-image\"></div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -436,7 +443,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".welcome-banner {\n  background: url(" + __webpack_require__("./src/assets/header-background.png") + ");\n  width: 100%;\n  color: #FFFFFF;\n  padding: 2.5em 0;\n  margin-bottom: 2.5em; }\n  .welcome-banner .primary-text {\n    font-size: 2.2em;\n    font-weight: 200;\n    padding-bottom: .3em; }\n  .welcome-banner .secondary-text {\n    font-size: 1.3em;\n    font-weight: 100; }\n\n.grid-image {\n  min-height: 240px;\n  background: url(" + __webpack_require__("./src/assets/mw-grid.png") + ");\n  background-size: contain;\n  background-repeat: no-repeat; }\n", ""]);
+exports.push([module.i, ".grid-image {\n  min-height: 240px;\n  background: url(" + __webpack_require__("./src/assets/mw-grid.png") + ");\n  background-size: contain;\n  background-repeat: no-repeat; }\n", ""]);
 
 // exports
 
@@ -479,6 +486,132 @@ HomeComponent = __decorate([
 ], HomeComponent);
 
 //# sourceMappingURL=home.component.js.map
+
+/***/ }),
+
+/***/ "./src/app/mw-banner/mw-banner.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"banner-container\">\n    <div class=\"container\">\n        <div *ngIf=\"primaryText\" class=\"row\">\n            <div class=\"col-12 primary-text\">\n                {{ primaryText }}\n            </div>\n        </div>\n        <div *ngIf=\"secondaryText\" class=\"row\">\n            <div class=\"col-12 secondary-text\">\n                {{ secondaryText }}\n            </div>\n        </div>\n    </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/mw-banner/mw-banner.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".banner-container {\n  background: url(" + __webpack_require__("./src/assets/header-background.png") + ");\n  width: 100%;\n  color: #FFFFFF;\n  padding: 2.5em 0;\n  margin-bottom: 2.5em; }\n  .banner-container .primary-text {\n    font-size: 2.2em;\n    font-weight: 200;\n    padding-bottom: .3em; }\n  .banner-container .secondary-text {\n    font-size: 1.3em;\n    font-weight: 100; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "./src/app/mw-banner/mw-banner.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwBannerComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MwBannerComponent = (function () {
+    function MwBannerComponent() {
+    }
+    return MwBannerComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwBannerComponent.prototype, "primaryText", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwBannerComponent.prototype, "secondaryText", void 0);
+MwBannerComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'mw-banner',
+        template: __webpack_require__("./src/app/mw-banner/mw-banner.component.html"),
+        styles: [__webpack_require__("./src/app/mw-banner/mw-banner.component.scss")]
+    }),
+    __metadata("design:paramtypes", [])
+], MwBannerComponent);
+
+//# sourceMappingURL=mw-banner.component.js.map
+
+/***/ }),
+
+/***/ "./src/app/mw-live-example/mw-live-example.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<mw-banner [secondaryText]=\"'Docs / Live Example'\"></mw-banner>\n<div class=\"container\">\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-12\">\n            <grid-example></grid-example>\n        </div>\n    </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/mw-live-example/mw-live-example.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "./src/app/mw-live-example/mw-live-example.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwLiveExampleComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MwLiveExampleComponent = (function () {
+    function MwLiveExampleComponent() {
+    }
+    return MwLiveExampleComponent;
+}());
+MwLiveExampleComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-mw-live-example',
+        template: __webpack_require__("./src/app/mw-live-example/mw-live-example.component.html"),
+        styles: [__webpack_require__("./src/app/mw-live-example/mw-live-example.component.scss")]
+    }),
+    __metadata("design:paramtypes", [])
+], MwLiveExampleComponent);
+
+//# sourceMappingURL=mw-live-example.component.js.map
 
 /***/ }),
 

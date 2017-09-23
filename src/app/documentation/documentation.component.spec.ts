@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { DocumentationComponent } from './documentation.component';
 
@@ -17,7 +17,8 @@ describe('DocumentationComponent', () => {
         declarations: [
             DocumentationComponent,
             GridExampleComponent
-        ]})
+        ],
+        schemas: [NO_ERRORS_SCHEMA]})
         .compileComponents();
     }));
 
