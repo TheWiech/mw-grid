@@ -23,7 +23,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 exports.i(__webpack_require__("./node_modules/css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!./node_modules/postcss-loader/index.js?{\"ident\":\"postcss\"}!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nhtml, body {\n  font-family: 'Raleway', sans-serif;\n  height: 100%;\n  width: 100%; }\n\nul li {\n  color: #8C939B;\n  padding: .1em 0;\n  font-size: 1.2em; }\n\n.mw-bootstrap-row {\n  padding-bottom: 2em; }\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nhtml, body {\n  font-family: 'Raleway', sans-serif;\n  height: 100%;\n  width: 100%; }\n\nul li {\n  color: #8C939B;\n  padding: .1em 0;\n  font-size: 1.2em; }\n\n.mw-bootstrap-row {\n  padding-bottom: 2em; }\n\nli:focus {\n  outline: none; }\n\nh1, h2, h3, h4, h5, h6 {\n  font-weight: 300; }\n", ""]);
 
 // exports
 

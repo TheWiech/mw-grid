@@ -18,11 +18,22 @@ import { MwNavMenuComponent } from './mw-nav-menu/mw-nav-menu.component';
 import { MwDropdownNavItemComponent } from './mw-nav-menu/mw-dropdown-nav-item/mw-dropdown-nav-item.component';
 import { MwLiveExampleComponent } from './mw-live-example/mw-live-example.component';
 import { MwBannerComponent } from './mw-banner/mw-banner.component';
+import { MwGridDocsComponent } from './documentation/component-docs/mw-grid-docs/mw-grid-docs.component';
+import { MwColumnDocsComponent } from './documentation/component-docs/mw-column-docs/mw-column-docs.component';
+import { IntroductionDocsComponent } from './documentation/getting-started-docs/introduction-docs/introduction-docs.component';
+import { ThemesDocsComponent } from './documentation/getting-started-docs/themes-docs/themes-docs.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'download', component: DownloadComponent },
-    { path: 'documentation/api', component: DocumentationComponent },
+    { path: 'documentation/api', component: DocumentationComponent,
+        children: [
+            { path: 'introduction', component: IntroductionDocsComponent },
+            { path: 'themes', component: ThemesDocsComponent },
+            { path: 'mw-grid', component: MwGridDocsComponent },
+            { path: 'mw-column', component: MwColumnDocsComponent }
+        ]
+    },
     { path: 'documentation/examples', component: MwLiveExampleComponent },
     { path: 'support', component: SupportComponent },
     { path: 'donate', component: DonateComponent },
@@ -47,7 +58,11 @@ const appRoutes: Routes = [
         MwNavMenuComponent,
         MwDropdownNavItemComponent,
         MwLiveExampleComponent,
-        MwBannerComponent
+        MwBannerComponent,
+        MwGridDocsComponent,
+        MwColumnDocsComponent,
+        IntroductionDocsComponent,
+        ThemesDocsComponent
     ],
     imports: [
         BrowserModule,

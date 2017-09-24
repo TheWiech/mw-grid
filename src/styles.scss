@@ -16,3 +16,13 @@ ul li {
 .mw-bootstrap-row {
     padding-bottom: 2em;
 }
+
+li {
+    &:focus {
+        outline: none;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}

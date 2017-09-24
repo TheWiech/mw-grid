@@ -1,8 +1,12 @@
-<div *ngIf="shouldShowConstructionBanner" class="under-construction-banner">
-    <span>mw-grid is in early development and the api is subject to change.</span>
-    <button type="button" class="close" aria-label="Close" (click)="shouldShowConstructionBanner = false">
-        <span aria-hidden="true">&times;</span>
-    </button>
+<div class="page-container">
+    <div *ngIf="shouldShowConstructionBanner" class="under-construction-banner">
+        <span>mw-grid is in early development and the api is subject to change.</span>
+        <button type="button" class="close" aria-label="Close" (click)="shouldShowConstructionBanner = false">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <mw-nav-menu></mw-nav-menu>
+    <div class="page-content">
+        <router-outlet></router-outlet>
+    </div>
 </div>
-<mw-nav-menu></mw-nav-menu>
-<router-outlet></router-outlet>

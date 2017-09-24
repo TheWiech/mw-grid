@@ -1,1 +1,32 @@
-<mw-banner [secondaryText]="'Docs / API'"></mw-banner>
+<mw-banner [secondaryText]="'Docs / API'" [applyMargin]=false></mw-banner>
+<div class="docs-container">
+    <div class="container">
+        <div class="row">
+            <div class="docs-nav">
+                <nav>
+                    <div class="nav-section">Getting Started</div>
+                    <ul>
+                        <li class="" routerLinkActive="active" routerLink="introduction">
+                            <a class="">Introduction</a>
+                        </li>
+                        <li class="" routerLinkActive="active" routerLink="themes">
+                            <a class="">Themes</a>
+                        </li>
+                    </ul>
+                    <div class="nav-section">Components</div>
+                    <ul>
+                        <li class="" routerLinkActive="active" routerLink="mw-grid">
+                            <a class="">mw-grid</a>
+                        </li>
+                        <li class="" routerLinkActive="active" routerLink="mw-column">
+                            <a class="">mw-column</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-sm-9">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

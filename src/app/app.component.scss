@@ -25,3 +25,27 @@
         }
     }
 }
+
+//
+// Make page container take up entire height of the viewport
+//
+.page-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    //
+    // Have page content grow to take up remaining space of page
+    //
+    .page-content {
+        flex-grow: 1;
+        min-height: 0;
+
+        //
+        // Turn the content into a flex container so individual pages can take advantage of
+        // flexbox features if needed
+        //
+        display: flex;
+        flex-direction: column;
+    }
+}

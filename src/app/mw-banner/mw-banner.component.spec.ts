@@ -47,4 +47,24 @@ describe('MwBannerComponent', () => {
         expect(de.nativeElement.querySelector('.primary-text')).toBeDefined();
         expect(de.nativeElement.querySelector('.secondary-text')).toBeDefined();
     });
+
+    describe('ngOnInit method', () => {
+        it('should set bannerMargin = 2.5em when applyMargin is undefined', () => {
+            component.applyMargin = undefined;
+            component.ngOnInit();
+            expect(component.bannerMargin).toEqual('2.5em');
+        });
+
+        it('should set bannerMargin = 2.5em when applyMargin is true', () => {
+            component.applyMargin = true;
+            component.ngOnInit();
+            expect(component.bannerMargin).toEqual('2.5em');
+        });
+
+        it('should set bannerMargin = 0 when applyMargin is false', () => {
+            component.applyMargin = false;
+            component.ngOnInit();
+            expect(component.bannerMargin).toEqual('0');
+        });
+    })
 });
