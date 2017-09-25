@@ -12,6 +12,10 @@
     flex-direction: column;
 }
 
+.docs-content-container {
+    overflow: scroll;
+}
+
 .container {
     flex-grow: 1;
     min-height: 0;
