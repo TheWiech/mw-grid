@@ -22,6 +22,7 @@ import { MwGridDocsComponent } from './documentation/component-docs/mw-grid-docs
 import { MwColumnDocsComponent } from './documentation/component-docs/mw-column-docs/mw-column-docs.component';
 import { IntroductionDocsComponent } from './documentation/getting-started-docs/introduction-docs/introduction-docs.component';
 import { ThemesDocsComponent } from './documentation/getting-started-docs/themes-docs/themes-docs.component';
+import { MwButtonComponent } from './mw-button/mw-button.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -62,7 +63,8 @@ const appRoutes: Routes = [
         MwGridDocsComponent,
         MwColumnDocsComponent,
         IntroductionDocsComponent,
-        ThemesDocsComponent
+        ThemesDocsComponent,
+        MwButtonComponent
     ],
     imports: [
         BrowserModule,

@@ -1,0 +1,26 @@
+$button-background-color: #FFFFFF;
+$button-foreground-hover-color: #FFFFFF;
+$button-foreground-color: #2A5E92;
+$button-background-hover-color: #2A5E92;
+
+.mw-button {
+    background: $button-background-color;
+    border: 1px solid $button-foreground-color;
+
+    &:hover {
+        a {
+            color: $button-foreground-hover-color;
+        }
+        background: $button-background-hover-color;
+    }
+
+    a {
+        color: $button-foreground-color;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    border-radius: 5px;
+    padding: .4em 1em;
+}
