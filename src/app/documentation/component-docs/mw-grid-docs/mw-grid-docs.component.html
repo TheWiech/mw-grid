@@ -1,1 +1,37 @@
-<h2>MwGridComponent</h2>
+<div class="component-doc-header">
+    <h2 class="component-name">MwGridComponent</h2>
+    <mw-button [link]="'https://github.com/TheWiech/mw-grid/blob/master/src/mw-grid/mw-grid.component.ts'"></mw-button>
+    <p><b>Selector:</b> mw-grid</p>
+</div>
+<div class="doc-section">
+    <h4>Overview</h4>
+    <p>The MwGridComponent is a fully featured control that displays a set of data in a grid. MwGridComponent includes features such as dynamic column sizing, row virtualization, filtering, searching, sorting, pagination, etc.</p>
+    <p>The most basic configuration of the grid requires setting the data property and bindings for values to display. To utilize advanced features such as dynamic column sizing MwColumnDirectives must be nested in the grid.</p>
+</div>
+<div class="doc-section clearfix">
+    <h4>Bindings</h4>
+    <div>
+        <div class="binding">
+            <span class="property">data</span>
+            <span class="type">Array&lt;any&gt;</span>
+            <span class="definition">(Required) Array of data to display in the grid.</span>
+        </div>
+        <div class="binding">
+            <span class="property">bindings</span>
+            <span class="type">Array&lt;string&gt;</span>
+            <span class="definition">Array of keys on the objects in the data array that contain values to display in a column. This property is ignored if MwColumnComponent is present.</span>
+        </div>
+        <div class="binding">
+            <span class="property">theme</span>
+            <span class="type">MwGridTheme</span>
+            <span class="definition">The style applied to the grid. Defaults to MwGridTheme.Modern.</span>
+        </div>
+    </div>
+</div>
+<div class="doc-section">
+    <h4>Nestable Components</h4>
+    <p>MwColumn</p>
+</div>
+<div class="doc-section">
+    <h4>Examples</h4>
+</div>

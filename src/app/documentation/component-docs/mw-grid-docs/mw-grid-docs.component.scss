@@ -1,0 +1,47 @@
+.component-doc-header {
+    .component-name {
+        display: inline-block;
+    }
+
+    mw-button {
+        float: right;
+    }
+}
+
+.doc-section {
+    margin-bottom: 3em;
+
+    h4 {
+        color: #000000;
+        font-weight: 400;
+    }
+
+    p {
+        color: #8C939B;
+    }
+}
+
+.binding {
+    float: left;
+    padding-left: 3em;
+
+    .property {
+        float: left;
+        font-weight: 700;
+        font-size: 1.1em;
+        width: 100px;
+        text-align: right;
+        padding-right: .5em;
+    }
+
+    .type {
+        float: left;
+        padding-right: .5em;
+        color: #2a5e92;
+        font-weight: 600;
+    }
+
+    .definition {
+        color: #8C939B;
+    }
+}
