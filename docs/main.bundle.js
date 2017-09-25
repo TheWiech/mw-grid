@@ -101,12 +101,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__documentation_component_docs_mw_column_docs_mw_column_docs_component__ = __webpack_require__("./src/app/documentation/component-docs/mw-column-docs/mw-column-docs.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__documentation_getting_started_docs_introduction_docs_introduction_docs_component__ = __webpack_require__("./src/app/documentation/getting-started-docs/introduction-docs/introduction-docs.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__documentation_getting_started_docs_themes_docs_themes_docs_component__ = __webpack_require__("./src/app/documentation/getting-started-docs/themes-docs/themes-docs.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__mw_button_mw_button_component__ = __webpack_require__("./src/app/mw-button/mw-button.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -174,7 +176,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_19__documentation_component_docs_mw_grid_docs_mw_grid_docs_component__["a" /* MwGridDocsComponent */],
             __WEBPACK_IMPORTED_MODULE_20__documentation_component_docs_mw_column_docs_mw_column_docs_component__["a" /* MwColumnDocsComponent */],
             __WEBPACK_IMPORTED_MODULE_21__documentation_getting_started_docs_introduction_docs_introduction_docs_component__["a" /* IntroductionDocsComponent */],
-            __WEBPACK_IMPORTED_MODULE_22__documentation_getting_started_docs_themes_docs_themes_docs_component__["a" /* ThemesDocsComponent */]
+            __WEBPACK_IMPORTED_MODULE_22__documentation_getting_started_docs_themes_docs_themes_docs_component__["a" /* ThemesDocsComponent */],
+            __WEBPACK_IMPORTED_MODULE_23__mw_button_mw_button_component__["a" /* MwButtonComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -253,7 +256,7 @@ MwColumnDocsComponent = __decorate([
 /***/ "./src/app/documentation/component-docs/mw-grid-docs/mw-grid-docs.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>MwGridComponent</h2>\n"
+module.exports = "<div class=\"component-doc-header\">\n    <h2 class=\"component-name\">MwGridComponent</h2>\n    <mw-button [link]=\"'https://github.com/TheWiech/mw-grid/blob/master/src/mw-grid/mw-grid.component.ts'\"></mw-button>\n    <p><b>Selector:</b> mw-grid</p>\n</div>\n<div class=\"doc-section\">\n    <h4>Overview</h4>\n    <p>The MwGridComponent is a fully featured control that displays a set of data in a grid. MwGridComponent includes features such as dynamic column sizing, row virtualization, filtering, searching, sorting, pagination, etc.</p>\n    <p>The most basic configuration of the grid requires setting the data property and bindings for values to display. To utilize advanced features such as dynamic column sizing MwColumnDirectives must be nested in the grid.</p>\n</div>\n<div class=\"doc-section clearfix\">\n    <h4>Bindings</h4>\n    <div>\n        <div class=\"binding\">\n            <span class=\"property\">data</span>\n            <span class=\"type\">Array&lt;any&gt;</span>\n            <span class=\"definition\">(Required) Array of data to display in the grid.</span>\n        </div>\n        <div class=\"binding\">\n            <span class=\"property\">bindings</span>\n            <span class=\"type\">Array&lt;string&gt;</span>\n            <span class=\"definition\">Array of keys on the objects in the data array that contain values to display in a column. This property is ignored if MwColumnComponent is present.</span>\n        </div>\n        <div class=\"binding\">\n            <span class=\"property\">theme</span>\n            <span class=\"type\">MwGridTheme</span>\n            <span class=\"definition\">The style applied to the grid. Defaults to MwGridTheme.Modern.</span>\n        </div>\n    </div>\n</div>\n<div class=\"doc-section\">\n    <h4>Nestable Components</h4>\n    <p>MwColumn</p>\n</div>\n<div class=\"doc-section\">\n    <h4>Examples</h4>\n</div>\n"
 
 /***/ }),
 
@@ -265,7 +268,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".component-doc-header .component-name {\n  display: inline-block; }\n\n.component-doc-header mw-button {\n  float: right; }\n\n.doc-section {\n  margin-bottom: 3em; }\n  .doc-section h4 {\n    color: #000000;\n    font-weight: 400; }\n  .doc-section p {\n    color: #8C939B; }\n\n.binding {\n  float: left;\n  padding-left: 3em; }\n  .binding .property {\n    float: left;\n    font-weight: 700;\n    font-size: 1.1em;\n    width: 100px;\n    text-align: right;\n    padding-right: .5em; }\n  .binding .type {\n    float: left;\n    padding-right: .5em;\n    color: #2a5e92;\n    font-weight: 600; }\n  .binding .definition {\n    color: #8C939B; }\n", ""]);
 
 // exports
 
@@ -314,7 +317,7 @@ MwGridDocsComponent = __decorate([
 /***/ "./src/app/documentation/documentation.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mw-banner [secondaryText]=\"'Docs / API'\" [applyMargin]=false></mw-banner>\n<div class=\"docs-container\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"docs-nav\">\n                <nav>\n                    <div class=\"nav-section\">Getting Started</div>\n                    <ul>\n                        <li class=\"\" routerLinkActive=\"active\" routerLink=\"introduction\">\n                            <a class=\"\">Introduction</a>\n                        </li>\n                        <li class=\"\" routerLinkActive=\"active\" routerLink=\"themes\">\n                            <a class=\"\">Themes</a>\n                        </li>\n                    </ul>\n                    <div class=\"nav-section\">Components</div>\n                    <ul>\n                        <li class=\"\" routerLinkActive=\"active\" routerLink=\"mw-grid\">\n                            <a class=\"\">mw-grid</a>\n                        </li>\n                        <li class=\"\" routerLinkActive=\"active\" routerLink=\"mw-column\">\n                            <a class=\"\">mw-column</a>\n                        </li>\n                    </ul>\n                </nav>\n            </div>\n            <div class=\"col-sm-9\">\n                <router-outlet></router-outlet>\n            </div>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<mw-banner [secondaryText]=\"'Docs / API'\" [applyMargin]=false></mw-banner>\n<div class=\"docs-container\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"docs-nav\">\n                <nav>\n                    <div class=\"nav-section\">Getting Started</div>\n                    <ul>\n                        <li class=\"\" routerLinkActive=\"active\" routerLink=\"introduction\">\n                            <a class=\"\">Introduction</a>\n                        </li>\n                        <li class=\"\" routerLinkActive=\"active\" routerLink=\"themes\">\n                            <a class=\"\">Themes</a>\n                        </li>\n                    </ul>\n                    <div class=\"nav-section\">Components</div>\n                    <ul>\n                        <li class=\"\" routerLinkActive=\"active\" routerLink=\"mw-grid\">\n                            <a class=\"\">mw-grid</a>\n                        </li>\n                        <li class=\"\" routerLinkActive=\"active\" routerLink=\"mw-column\">\n                            <a class=\"\">mw-column</a>\n                        </li>\n                    </ul>\n                </nav>\n            </div>\n            <div class=\"col-sm-10 docs-content-container\">\n                <router-outlet></router-outlet>\n            </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -326,7 +329,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ":host {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  min-height: 0; }\n\n.docs-container {\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  min-height: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column; }\n\n.container {\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  min-height: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  padding: 1em 0; }\n  .container .row {\n    -webkit-box-flex: 1;\n        -ms-flex-positive: 1;\n            flex-grow: 1;\n    min-height: 0; }\n\n.docs-nav {\n  min-height: 0;\n  overflow: scroll;\n  border-right: 1px solid #8C939B;\n  padding: 0 1em;\n  text-align: right; }\n  .docs-nav .nav-section {\n    font-weight: 400;\n    font-size: 1.2em; }\n  .docs-nav ul {\n    list-style: none;\n    padding-left: 0;\n    font-size: 1em; }\n    .docs-nav ul li {\n      padding: 0; }\n      .docs-nav ul li:hover, .docs-nav ul li.active {\n        color: #2A5E92;\n        cursor: pointer; }\n      .docs-nav ul li a {\n        font-weight: 400; }\n", ""]);
+exports.push([module.i, ":host {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  min-height: 0; }\n\n.docs-container {\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  min-height: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column; }\n\n.docs-content-container {\n  overflow: scroll; }\n\n.container {\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  min-height: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  padding: 1em 0; }\n  .container .row {\n    -webkit-box-flex: 1;\n        -ms-flex-positive: 1;\n            flex-grow: 1;\n    min-height: 0; }\n\n.docs-nav {\n  min-height: 0;\n  overflow: scroll;\n  border-right: 1px solid #8C939B;\n  padding: 0 1em;\n  text-align: right; }\n  .docs-nav .nav-section {\n    font-weight: 400;\n    font-size: 1.2em; }\n  .docs-nav ul {\n    list-style: none;\n    padding-left: 0;\n    font-size: 1em; }\n    .docs-nav ul li {\n      padding: 0; }\n      .docs-nav ul li:hover, .docs-nav ul li.active {\n        color: #2A5E92;\n        cursor: pointer; }\n      .docs-nav ul li a {\n        font-weight: 400; }\n", ""]);
 
 // exports
 
@@ -823,6 +826,69 @@ MwBannerComponent = __decorate([
 ], MwBannerComponent);
 
 //# sourceMappingURL=mw-banner.component.js.map
+
+/***/ }),
+
+/***/ "./src/app/mw-button/mw-button.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<button class=\"mw-button\">\n    <a href=\"{{ link }}\" target=\"_blank\">View Source</a>\n</button>\n"
+
+/***/ }),
+
+/***/ "./src/app/mw-button/mw-button.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".mw-button {\n  background: #FFFFFF;\n  border: 1px solid #2A5E92;\n  border-radius: 5px;\n  padding: .4em 1em; }\n  .mw-button:hover {\n    background: #2A5E92; }\n    .mw-button:hover a {\n      color: #FFFFFF; }\n  .mw-button a {\n    color: #2A5E92; }\n    .mw-button a:hover {\n      text-decoration: none; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "./src/app/mw-button/mw-button.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwButtonComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MwButtonComponent = (function () {
+    function MwButtonComponent() {
+    }
+    return MwButtonComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwButtonComponent.prototype, "link", void 0);
+MwButtonComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'mw-button',
+        template: __webpack_require__("./src/app/mw-button/mw-button.component.html"),
+        styles: [__webpack_require__("./src/app/mw-button/mw-button.component.scss")]
+    }),
+    __metadata("design:paramtypes", [])
+], MwButtonComponent);
+
+//# sourceMappingURL=mw-button.component.js.map
 
 /***/ }),
 
