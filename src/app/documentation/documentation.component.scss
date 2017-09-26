@@ -1,3 +1,5 @@
+$docs-nav-width: 170px;
+
 :host {
     display: flex;
     flex-direction: column;
@@ -10,28 +12,22 @@
     min-height: 0;
     display: flex;
     flex-direction: column;
+    // Position so doc nav height will be based off this container
+    position: relative;
 }
 
 .docs-content-container {
     overflow: scroll;
-}
 
-.container {
-    flex-grow: 1;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-
-    padding: 1em 0;
-
-    .row {
-        flex-grow: 1;
-        min-height: 0;
+    @media (min-width: 768px) {
+        padding-left: calc(#{$docs-nav-width} + 15px);
     }
 }
 
 .docs-nav {
-    min-height: 0;
+    width: $docs-nav-width;
+    position: absolute;
+    height: 100%;
     overflow: scroll;
 
     border-right: 1px solid #8C939B;
@@ -57,12 +53,15 @@
         li {
             padding: 0;
             &:hover, &.active {
+                a {
+                    font-weight: 400;
+                }
                 color: #2A5E92;
                 cursor: pointer;
             }
 
             a {
-                font-weight: 400;
+                font-weight: 300;
             }
         }
     }
