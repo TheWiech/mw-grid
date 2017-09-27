@@ -1,6 +1,6 @@
 <mw-banner [secondaryText]="'Docs / API'"></mw-banner>
 <div class="container docs-container">
-    <div class="docs-nav d-none d-md-block">
+    <div class="docs-nav d-none d-md-block" #docNavMenu [style.height.px]="docsNavMenuHeight">
         <nav>
             <div class="nav-section">Getting Started</div>
             <ul>
