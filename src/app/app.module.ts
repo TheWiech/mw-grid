@@ -23,6 +23,7 @@ import { MwColumnDocsComponent } from './documentation/component-docs/mw-column-
 import { IntroductionDocsComponent } from './documentation/getting-started-docs/introduction-docs/introduction-docs.component';
 import { ThemesDocsComponent } from './documentation/getting-started-docs/themes-docs/themes-docs.component';
 import { MwButtonComponent } from './mw-button/mw-button.component';
+import { MwBindingDocComponent } from './documentation/mw-binding-doc/mw-binding-doc.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
         MwColumnDocsComponent,
         IntroductionDocsComponent,
         ThemesDocsComponent,
-        MwButtonComponent
+        MwButtonComponent,
+        MwBindingDocComponent
     ],
     imports: [
         BrowserModule,
