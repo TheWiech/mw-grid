@@ -1,0 +1,43 @@
+.desktop-layout {
+    display: flex;
+
+    .input-definition {
+        width: 120px;
+        min-width: 120px;
+
+        .property {
+            width: 100%;
+            text-align: right;
+            padding-right: .5em;
+        }
+    }
+
+    .type {
+        padding-right: .5em;
+    }
+}
+
+.mobile-layout {
+    display: none;
+    margin-bottom: 1.5em;
+}
+
+.type {
+    color: #2a5e92;
+    font-weight: 500;
+}
+
+.property {
+    display: inline-block;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 576px) {
+    .desktop-layout {
+        display: none;
+    }
+
+    .mobile-layout {
+        display: block;
+    }
+}

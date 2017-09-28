@@ -1,0 +1,23 @@
+<div class="desktop-layout">
+    <div class="input-definition">
+        <span class="property">{{ binding }}</span>
+    </div>
+    <div class="input-description">
+        <span class="type">{{ type }}</span>
+        <span class="definition" #contentWrapper>
+            <ng-content></ng-content>
+        </span>
+    </div>
+</div>
+
+<div class="mobile-layout">
+    <div class="def-container">
+        <span class="property">{{ binding }} </span>
+        <span class="type">{{ type }}</span>
+    </div>
+    <div>
+        <span class="definition">
+            {{ contentHtml }}
+        </span>
+    </div>
+</div>
