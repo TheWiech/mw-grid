@@ -103,12 +103,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__documentation_getting_started_docs_themes_docs_themes_docs_component__ = __webpack_require__("./src/app/documentation/getting-started-docs/themes-docs/themes-docs.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__mw_button_mw_button_component__ = __webpack_require__("./src/app/mw-button/mw-button.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__documentation_mw_binding_doc_mw_binding_doc_component__ = __webpack_require__("./src/app/documentation/mw-binding-doc/mw-binding-doc.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__documentation_mw_component_header_doc_mw_component_header_doc_component__ = __webpack_require__("./src/app/documentation/mw-component-header-doc/mw-component-header-doc.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -180,7 +182,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_21__documentation_getting_started_docs_introduction_docs_introduction_docs_component__["a" /* IntroductionDocsComponent */],
             __WEBPACK_IMPORTED_MODULE_22__documentation_getting_started_docs_themes_docs_themes_docs_component__["a" /* ThemesDocsComponent */],
             __WEBPACK_IMPORTED_MODULE_23__mw_button_mw_button_component__["a" /* MwButtonComponent */],
-            __WEBPACK_IMPORTED_MODULE_24__documentation_mw_binding_doc_mw_binding_doc_component__["a" /* MwBindingDocComponent */]
+            __WEBPACK_IMPORTED_MODULE_24__documentation_mw_binding_doc_mw_binding_doc_component__["a" /* MwBindingDocComponent */],
+            __WEBPACK_IMPORTED_MODULE_25__documentation_mw_component_header_doc_mw_component_header_doc_component__["a" /* MwComponentHeaderDocsComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -259,7 +262,7 @@ MwColumnDocsComponent = __decorate([
 /***/ "./src/app/documentation/component-docs/mw-grid-docs/mw-grid-docs.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"component-doc-header\">\n    <div class=\"component-info\">\n        <span class=\"component-name\">MwGridComponent</span>\n        <p class=\"selector\"><span>Selector:</span> mw-grid</p>\n    </div>\n    <mw-button [link]=\"'https://github.com/TheWiech/mw-grid/blob/master/src/mw-grid/mw-grid.component.ts'\"></mw-button>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Overview</div>\n    <p>The MwGridComponent is a fully featured control that displays a set of data in a grid. MwGridComponent includes features such as dynamic column sizing, row virtualization, filtering, searching, sorting, pagination, etc.</p>\n    <p>The most basic configuration of the grid requires setting the data property and bindings for values to display. To utilize advanced features such as dynamic column sizing MwColumnDirectives must be nested in the grid.</p>\n</div>\n<div class=\"doc-section clearfix\">\n    <div class=\"section-header\">Bindings</div>\n    <div>\n        <mw-binding-doc binding=\"data\" type=\"Array&lt;any&gt;\">\n            (Required) Array of data to display in the grid.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"bindings\" type=\"Array&lt;String&gt;\">\n            Array of keys on the objects in the data array that contain values to display in a column. This property is ignored if MwColumnComponent is present.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"theme\" type=\"MwGridTheme\">\n            The style applied to the grid. Defaults to MwGridTheme.Modern.\n        </mw-binding-doc>\n    </div>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Examples</div>\n</div>\n"
+module.exports = "<mw-component-header-doc [componentName]=\"'MwGridComponent'\" [selector]=\"'mw-grid'\" [link]=\"'https://github.com/TheWiech/mw-grid/blob/master/src/mw-grid/mw-grid.component.ts'\"></mw-component-header-doc>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Overview</div>\n    <p>The MwGridComponent is a fully featured control that displays a set of data in a grid. MwGridComponent includes features such as dynamic column sizing, row virtualization, filtering, searching, sorting, pagination, etc.</p>\n    <p>The most basic configuration of the grid requires setting the data property and bindings for values to display. To utilize advanced features such as dynamic column sizing MwColumnDirectives must be nested in the grid.</p>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Bindings</div>\n    <div>\n        <mw-binding-doc binding=\"data\" type=\"Array&lt;any&gt;\">\n            (Required) Array of data to display in the grid.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"bindings\" type=\"Array&lt;String&gt;\">\n            Array of keys on the objects in the data array that contain values to display in a column. This property is ignored if MwColumnComponent is present.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"theme\" type=\"MwGridTheme\">\n            The style applied to the grid. Defaults to MwGridTheme.Modern.\n        </mw-binding-doc>\n    </div>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Examples</div>\n</div>\n"
 
 /***/ }),
 
@@ -271,7 +274,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".component-doc-header {\n  margin-bottom: 1.6em; }\n  .component-doc-header .component-info {\n    display: inline-block; }\n    .component-doc-header .component-info .component-name {\n      font-size: 1.7em;\n      font-weight: 400; }\n    .component-doc-header .component-info .selector {\n      font-size: .9em;\n      font-weight: 300; }\n      .component-doc-header .component-info .selector span {\n        font-weight: 500; }\n  .component-doc-header mw-button {\n    float: right; }\n\n.doc-section {\n  margin-bottom: 2em; }\n  .doc-section .section-header {\n    color: #000000;\n    font-weight: 400;\n    font-size: 1.3em;\n    margin-bottom: .7em; }\n  .doc-section p {\n    color: #333333; }\n", ""]);
+exports.push([module.i, ".doc-section {\n  margin-bottom: 2em; }\n  .doc-section .section-header {\n    color: #000000;\n    font-weight: 400;\n    font-size: 1.3em;\n    margin-bottom: .7em; }\n  .doc-section p {\n    color: #333333; }\n", ""]);
 
 // exports
 
@@ -642,6 +645,76 @@ MwBindingDocComponent = __decorate([
 
 var _a;
 //# sourceMappingURL=mw-binding-doc.component.js.map
+
+/***/ }),
+
+/***/ "./src/app/documentation/mw-component-header-doc/mw-component-header-doc.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"component-doc-header\">\n    <div class=\"component-info\">\n        <span class=\"component-name\">{{ componentName }}</span>\n        <p class=\"selector\"><span>Selector:</span> {{ selector }}</p>\n    </div>\n    <mw-button [link]=\"link\"></mw-button>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/documentation/mw-component-header-doc/mw-component-header-doc.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".component-doc-header {\n  margin-bottom: 1.6em; }\n  .component-doc-header .component-info {\n    display: inline-block; }\n    .component-doc-header .component-info .component-name {\n      font-size: 1.7em;\n      font-weight: 400; }\n    .component-doc-header .component-info .selector {\n      font-size: .9em;\n      font-weight: 300; }\n      .component-doc-header .component-info .selector span {\n        font-weight: 500; }\n  .component-doc-header mw-button {\n    float: right; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "./src/app/documentation/mw-component-header-doc/mw-component-header-doc.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwComponentHeaderDocsComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MwComponentHeaderDocsComponent = (function () {
+    function MwComponentHeaderDocsComponent() {
+    }
+    return MwComponentHeaderDocsComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwComponentHeaderDocsComponent.prototype, "componentName", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwComponentHeaderDocsComponent.prototype, "selector", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwComponentHeaderDocsComponent.prototype, "link", void 0);
+MwComponentHeaderDocsComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'mw-component-header-doc',
+        template: __webpack_require__("./src/app/documentation/mw-component-header-doc/mw-component-header-doc.component.html"),
+        styles: [__webpack_require__("./src/app/documentation/mw-component-header-doc/mw-component-header-doc.component.scss")]
+    })
+], MwComponentHeaderDocsComponent);
+
+//# sourceMappingURL=mw-component-header-doc.component.js.map
 
 /***/ }),
 
