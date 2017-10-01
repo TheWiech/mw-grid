@@ -23,7 +23,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 exports.i(__webpack_require__("./node_modules/css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!./node_modules/postcss-loader/index.js?{\"ident\":\"postcss\"}!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nhtml, body {\n  font-family: 'Raleway', sans-serif;\n  height: 100%;\n  width: 100%; }\n\nul li {\n  color: #8C939B;\n  padding: .1em 0;\n  font-size: 1.2em; }\n\n.mw-bootstrap-row {\n  padding-bottom: 2em; }\n\nli:focus {\n  outline: none; }\n\nh1, h2, h3, h4, h5, h6 {\n  font-weight: 300; }\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nhtml, body {\n  font-family: 'Roboto', sans-serif;\n  height: 100%;\n  width: 100%; }\n\nul li {\n  color: #8C939B;\n  padding: .1em 0;\n  font-size: 1.2em; }\n\n.mw-bootstrap-row {\n  padding-bottom: 2em; }\n\nli:focus {\n  outline: none; }\n\nh1, h2, h3, h4, h5, h6 {\n  font-weight: 300; }\n\n.hamburger-menu-button {\n  height: 100%;\n  width: 50px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center; }\n  .hamburger-menu-button .hamburger-menu {\n    height: 18px;\n    width: 22px;\n    background: url(\"" + __webpack_require__("./src/assets/Hamburger Button.svg") + "\");\n    background-size: contain;\n    background-repeat: no-repeat; }\n  .hamburger-menu-button:hover {\n    background: #e8e8e8;\n    cursor: pointer; }\n", ""]);
 
 // exports
 
@@ -363,6 +363,13 @@ function updateLink(linkElement, obj) {
 		URL.revokeObjectURL(oldSrc);
 }
 
+
+/***/ }),
+
+/***/ "./src/assets/Hamburger Button.svg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "Hamburger Button.1fb29d9bbd08d352fa5f.svg";
 
 /***/ }),
 

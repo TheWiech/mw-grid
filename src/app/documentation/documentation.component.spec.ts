@@ -1,12 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { DocumentationComponent } from './documentation.component';
-
 
 @Component({selector: 'grid-example', template: ''})
 export class GridExampleComponent {
 }
+
+let mockRouter = {
+    events: {
+        subscribe: jasmine.createSpy('subscribe')
+    }
+};
 
 describe('DocumentationComponent', () => {
     let component: DocumentationComponent;
@@ -18,6 +24,7 @@ describe('DocumentationComponent', () => {
             DocumentationComponent,
             GridExampleComponent
         ],
+        providers: [ { provide: Router, useValue: mockRouter } ],
         schemas: [NO_ERRORS_SCHEMA]})
         .compileComponents();
     }));

@@ -102,12 +102,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__documentation_getting_started_docs_introduction_docs_introduction_docs_component__ = __webpack_require__("./src/app/documentation/getting-started-docs/introduction-docs/introduction-docs.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__documentation_getting_started_docs_themes_docs_themes_docs_component__ = __webpack_require__("./src/app/documentation/getting-started-docs/themes-docs/themes-docs.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__mw_button_mw_button_component__ = __webpack_require__("./src/app/mw-button/mw-button.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__documentation_mw_binding_doc_mw_binding_doc_component__ = __webpack_require__("./src/app/documentation/mw-binding-doc/mw-binding-doc.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -177,11 +179,12 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_20__documentation_component_docs_mw_column_docs_mw_column_docs_component__["a" /* MwColumnDocsComponent */],
             __WEBPACK_IMPORTED_MODULE_21__documentation_getting_started_docs_introduction_docs_introduction_docs_component__["a" /* IntroductionDocsComponent */],
             __WEBPACK_IMPORTED_MODULE_22__documentation_getting_started_docs_themes_docs_themes_docs_component__["a" /* ThemesDocsComponent */],
-            __WEBPACK_IMPORTED_MODULE_23__mw_button_mw_button_component__["a" /* MwButtonComponent */]
+            __WEBPACK_IMPORTED_MODULE_23__mw_button_mw_button_component__["a" /* MwButtonComponent */],
+            __WEBPACK_IMPORTED_MODULE_24__documentation_mw_binding_doc_mw_binding_doc_component__["a" /* MwBindingDocComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */].forRoot(appRoutes)
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* RouterModule */].forRoot(appRoutes)
         ],
         providers: [],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
@@ -256,7 +259,7 @@ MwColumnDocsComponent = __decorate([
 /***/ "./src/app/documentation/component-docs/mw-grid-docs/mw-grid-docs.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"component-doc-header\">\n    <h2 class=\"component-name\">MwGridComponent</h2>\n    <mw-button [link]=\"'https://github.com/TheWiech/mw-grid/blob/master/src/mw-grid/mw-grid.component.ts'\"></mw-button>\n    <p><b>Selector:</b> mw-grid</p>\n</div>\n<div class=\"doc-section\">\n    <h4>Overview</h4>\n    <p>The MwGridComponent is a fully featured control that displays a set of data in a grid. MwGridComponent includes features such as dynamic column sizing, row virtualization, filtering, searching, sorting, pagination, etc.</p>\n    <p>The most basic configuration of the grid requires setting the data property and bindings for values to display. To utilize advanced features such as dynamic column sizing MwColumnDirectives must be nested in the grid.</p>\n</div>\n<div class=\"doc-section clearfix\">\n    <h4>Bindings</h4>\n    <div>\n        <div class=\"binding\">\n            <span class=\"property\">data</span>\n            <span class=\"type\">Array&lt;any&gt;</span>\n            <span class=\"definition\">(Required) Array of data to display in the grid.</span>\n        </div>\n        <div class=\"binding\">\n            <span class=\"property\">bindings</span>\n            <span class=\"type\">Array&lt;string&gt;</span>\n            <span class=\"definition\">Array of keys on the objects in the data array that contain values to display in a column. This property is ignored if MwColumnComponent is present.</span>\n        </div>\n        <div class=\"binding\">\n            <span class=\"property\">theme</span>\n            <span class=\"type\">MwGridTheme</span>\n            <span class=\"definition\">The style applied to the grid. Defaults to MwGridTheme.Modern.</span>\n        </div>\n    </div>\n</div>\n<div class=\"doc-section\">\n    <h4>Nestable Components</h4>\n    <p>MwColumn</p>\n</div>\n<div class=\"doc-section\">\n    <h4>Examples</h4>\n</div>\n"
+module.exports = "<div class=\"component-doc-header\">\n    <div class=\"component-info\">\n        <span class=\"component-name\">MwGridComponent</span>\n        <p class=\"selector\"><span>Selector:</span> mw-grid</p>\n    </div>\n    <mw-button [link]=\"'https://github.com/TheWiech/mw-grid/blob/master/src/mw-grid/mw-grid.component.ts'\"></mw-button>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Overview</div>\n    <p>The MwGridComponent is a fully featured control that displays a set of data in a grid. MwGridComponent includes features such as dynamic column sizing, row virtualization, filtering, searching, sorting, pagination, etc.</p>\n    <p>The most basic configuration of the grid requires setting the data property and bindings for values to display. To utilize advanced features such as dynamic column sizing MwColumnDirectives must be nested in the grid.</p>\n</div>\n<div class=\"doc-section clearfix\">\n    <div class=\"section-header\">Bindings</div>\n    <div>\n        <mw-binding-doc binding=\"data\" type=\"Array&lt;any&gt;\">\n            (Required) Array of data to display in the grid.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"bindings\" type=\"Array&lt;String&gt;\">\n            Array of keys on the objects in the data array that contain values to display in a column. This property is ignored if MwColumnComponent is present.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"theme\" type=\"MwGridTheme\">\n            The style applied to the grid. Defaults to MwGridTheme.Modern.\n        </mw-binding-doc>\n    </div>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Examples</div>\n</div>\n"
 
 /***/ }),
 
@@ -268,7 +271,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".component-doc-header .component-name {\n  display: inline-block; }\n\n.component-doc-header mw-button {\n  float: right; }\n\n.doc-section {\n  margin-bottom: 3em; }\n  .doc-section h4 {\n    color: #000000;\n    font-weight: 400; }\n  .doc-section p {\n    color: #8C939B; }\n\n.binding {\n  float: left;\n  padding-left: 3em; }\n  .binding .property {\n    float: left;\n    font-weight: 700;\n    font-size: 1.1em;\n    width: 100px;\n    text-align: right;\n    padding-right: .5em; }\n  .binding .type {\n    float: left;\n    padding-right: .5em;\n    color: #2a5e92;\n    font-weight: 600; }\n  .binding .definition {\n    color: #8C939B; }\n", ""]);
+exports.push([module.i, ".component-doc-header {\n  margin-bottom: 1.6em; }\n  .component-doc-header .component-info {\n    display: inline-block; }\n    .component-doc-header .component-info .component-name {\n      font-size: 1.7em;\n      font-weight: 400; }\n    .component-doc-header .component-info .selector {\n      font-size: .9em;\n      font-weight: 300; }\n      .component-doc-header .component-info .selector span {\n        font-weight: 500; }\n  .component-doc-header mw-button {\n    float: right; }\n\n.doc-section {\n  margin-bottom: 2em; }\n  .doc-section .section-header {\n    color: #000000;\n    font-weight: 400;\n    font-size: 1.3em;\n    margin-bottom: .7em; }\n  .doc-section p {\n    color: #333333; }\n", ""]);
 
 // exports
 
@@ -317,7 +320,7 @@ MwGridDocsComponent = __decorate([
 /***/ "./src/app/documentation/documentation.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mw-banner [secondaryText]=\"'Docs / API'\" [applyMargin]=false></mw-banner>\n<div class=\"docs-container\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"docs-nav\">\n                <nav>\n                    <div class=\"nav-section\">Getting Started</div>\n                    <ul>\n                        <li class=\"\" routerLinkActive=\"active\" routerLink=\"introduction\">\n                            <a class=\"\">Introduction</a>\n                        </li>\n                        <li class=\"\" routerLinkActive=\"active\" routerLink=\"themes\">\n                            <a class=\"\">Themes</a>\n                        </li>\n                    </ul>\n                    <div class=\"nav-section\">Components</div>\n                    <ul>\n                        <li class=\"\" routerLinkActive=\"active\" routerLink=\"mw-grid\">\n                            <a class=\"\">mw-grid</a>\n                        </li>\n                        <li class=\"\" routerLinkActive=\"active\" routerLink=\"mw-column\">\n                            <a class=\"\">mw-column</a>\n                        </li>\n                    </ul>\n                </nav>\n            </div>\n            <div class=\"col-sm-10 docs-content-container\">\n                <router-outlet></router-outlet>\n            </div>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<mw-banner [secondaryText]=\"'Docs / API'\" [applyMargin]=\"!showMobileNav\"></mw-banner>\n<div class=\"container docs-container\">\n    <div class=\"docs-nav\" #docNavMenu [style.height]=\"docsNavMenuHeight\">\n        <div *ngIf=\"showMobileNav\" class=\"selected-nav-item\">\n            {{ currentNavLocation }}\n            <div class=\"hamburger-menu-button\" (click)=\"toggleDocNav()\">\n                <div class=\"hamburger-menu\"></div>\n            </div>\n        </div>\n        <nav *ngIf=\"showDocsNav\">\n            <div class=\"nav-section\">Getting Started</div>\n            <ul>\n                <li routerLinkActive=\"active\" routerLink=\"introduction\" (click)=\"toggleDocNav()\">\n                    <a>Introduction</a>\n                </li>\n                <li routerLinkActive=\"active\" routerLink=\"themes\" (click)=\"toggleDocNav()\">\n                    <a>Themes</a>\n                </li>\n            </ul>\n            <div class=\"nav-section\">Components</div>\n            <ul>\n                <li routerLinkActive=\"active\" routerLink=\"mw-grid\" (click)=\"toggleDocNav()\">\n                    <a>mw-grid</a>\n                </li>\n                <li routerLinkActive=\"active\" routerLink=\"mw-column\" (click)=\"toggleDocNav()\">\n                    <a>mw-column</a>\n                </li>\n            </ul>\n        </nav>\n    </div>\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-12 docs-content-container\">\n                <router-outlet></router-outlet>\n            </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -329,7 +332,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ":host {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  min-height: 0; }\n\n.docs-container {\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  min-height: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column; }\n\n.docs-content-container {\n  overflow: scroll; }\n\n.container {\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  min-height: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  padding: 1em 0; }\n  .container .row {\n    -webkit-box-flex: 1;\n        -ms-flex-positive: 1;\n            flex-grow: 1;\n    min-height: 0; }\n\n.docs-nav {\n  min-height: 0;\n  overflow: scroll;\n  border-right: 1px solid #8C939B;\n  padding: 0 1em;\n  text-align: right; }\n  .docs-nav .nav-section {\n    font-weight: 400;\n    font-size: 1.2em; }\n  .docs-nav ul {\n    list-style: none;\n    padding-left: 0;\n    font-size: 1em; }\n    .docs-nav ul li {\n      padding: 0; }\n      .docs-nav ul li:hover, .docs-nav ul li.active {\n        color: #2A5E92;\n        cursor: pointer; }\n      .docs-nav ul li a {\n        font-weight: 400; }\n", ""]);
+exports.push([module.i, ":host {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  min-height: 0; }\n\n.docs-container {\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  min-height: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: relative; }\n  @media (max-width: 767px) {\n    .docs-container {\n      padding: 0; } }\n\n.docs-content-container {\n  overflow: scroll; }\n  @media (min-width: 768px) {\n    .docs-content-container {\n      padding-left: calc(150px + 30px); } }\n\n@media (min-width: 768px) {\n  .docs-nav {\n    width: 150px;\n    position: absolute;\n    overflow: scroll;\n    border-right: 1px solid #e8e8e8;\n    padding-right: 30px;\n    text-align: right;\n    z-index: 1; } }\n\n@media (max-width: 767px) {\n  .docs-nav {\n    min-height: 3em;\n    margin-bottom: 1em;\n    border-bottom: 1px solid #e8e8e8; }\n    .docs-nav .selected-nav-item {\n      height: 3em;\n      position: relative;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      padding-left: 15px; }\n    .docs-nav nav {\n      padding: 0 15px; } }\n\n.docs-nav ul {\n  list-style: none;\n  padding-left: 0;\n  font-size: .9em; }\n  .docs-nav ul li {\n    padding: 0; }\n    .docs-nav ul li:hover, .docs-nav ul li.active {\n      color: #2A5E92;\n      cursor: pointer; }\n      .docs-nav ul li:hover a, .docs-nav ul li.active a {\n        font-weight: 400; }\n    .docs-nav ul li a {\n      font-weight: 300; }\n", ""]);
 
 // exports
 
@@ -345,6 +348,7 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DocumentationComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -355,22 +359,88 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var DocumentationComponent = (function () {
-    function DocumentationComponent() {
+    function DocumentationComponent(router) {
+        var _this = this;
+        this.router = router;
+        this.showDocsNav = window.innerWidth >= 768 ? true : false;
+        router.events.subscribe(function (newRoute) {
+            _this.currentNavLocation = router.url.split('/').pop();
+        });
     }
-    DocumentationComponent.prototype.ngOnInit = function () {
+    DocumentationComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.getMenuDistanceFromTop();
+            _this.setMenuDimensions();
+            _this.positionScrollMenu(_this.navDistanceFromTop, window.document.scrollingElement.scrollTop);
+        });
+    };
+    DocumentationComponent.prototype.onResize = function (event) {
+        this.setMenuDimensions();
+        this.positionScrollMenu(this.navDistanceFromTop, window.document.scrollingElement.scrollTop);
+    };
+    DocumentationComponent.prototype.onScroll = function (event) {
+        !this.navDistanceFromTop ? this.getMenuDistanceFromTop() :
+            this.positionScrollMenu(this.navDistanceFromTop, event.srcElement.scrollingElement.scrollTop);
+    };
+    DocumentationComponent.prototype.positionScrollMenu = function (menuDistanceFromTop, distanceScrolled) {
+        if (!this.showMobileNav && distanceScrolled > menuDistanceFromTop) {
+            this.docsNavMenu.nativeElement.style.position = 'fixed';
+            this.docsNavMenu.nativeElement.style.top = '0';
+        }
+        else {
+            this.docsNavMenu.nativeElement.style.position = '';
+            this.docsNavMenu.nativeElement.style.top = '';
+        }
+    };
+    DocumentationComponent.prototype.getMenuDistanceFromTop = function () {
+        if (!this.showDocsNav) {
+            return;
+        }
+        this.navDistanceFromTop = this.docsNavMenu.nativeElement.getBoundingClientRect().top +
+            window.document.scrollingElement.scrollTop;
+    };
+    DocumentationComponent.prototype.setMenuDimensions = function () {
+        if ((this.showDocsNav && window.innerWidth < 768) || (!this.showDocsNav && window.innerWidth >= 768)) {
+            this.toggleDocNav();
+        }
+        this.showMobileNav = window.innerWidth < 768 ? true : false;
+        this.docsNavMenuHeight = window.innerWidth >= 768 ? window.innerHeight - 10 + "px" : '';
+    };
+    DocumentationComponent.prototype.toggleDocNav = function () {
+        this.showDocsNav = window.innerWidth >= 768 ? true : !this.showDocsNav;
+        this.docsNavMenu.nativeElement.style.minHeight = this.showDocsNav === true ? 'initial' : '';
     };
     return DocumentationComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ViewChild */])('docNavMenu'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object)
+], DocumentationComponent.prototype, "docsNavMenu", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* HostListener */])('window:resize', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], DocumentationComponent.prototype, "onResize", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* HostListener */])('window:scroll', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], DocumentationComponent.prototype, "onScroll", null);
 DocumentationComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-documentation',
         template: __webpack_require__("./src/app/documentation/documentation.component.html"),
         styles: [__webpack_require__("./src/app/documentation/documentation.component.scss")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _b || Object])
 ], DocumentationComponent);
 
+var _a, _b;
 //# sourceMappingURL=documentation.component.js.map
 
 /***/ }),
@@ -494,6 +564,84 @@ ThemesDocsComponent = __decorate([
 ], ThemesDocsComponent);
 
 //# sourceMappingURL=themes-docs.component.js.map
+
+/***/ }),
+
+/***/ "./src/app/documentation/mw-binding-doc/mw-binding-doc.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"desktop-layout\">\n    <div class=\"input-definition\">\n        <span class=\"property\">{{ binding }}</span>\n    </div>\n    <div class=\"input-description\">\n        <span class=\"type\">{{ type }}</span>\n        <span class=\"definition\" #contentWrapper>\n            <ng-content></ng-content>\n        </span>\n    </div>\n</div>\n\n<div class=\"mobile-layout\">\n    <div class=\"def-container\">\n        <span class=\"property\">{{ binding }} </span>\n        <span class=\"type\">{{ type }}</span>\n    </div>\n    <div>\n        <span class=\"definition\">\n            {{ contentHtml }}\n        </span>\n    </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/documentation/mw-binding-doc/mw-binding-doc.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".desktop-layout {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n  .desktop-layout .input-definition {\n    width: 120px;\n    min-width: 120px; }\n    .desktop-layout .input-definition .property {\n      width: 100%;\n      text-align: right;\n      padding-right: .5em; }\n  .desktop-layout .type {\n    padding-right: .5em; }\n\n.mobile-layout {\n  display: none;\n  margin-bottom: 1.5em; }\n\n.type {\n  color: #2a5e92;\n  font-weight: 500; }\n\n.property {\n  display: inline-block;\n  font-weight: 500; }\n\n@media screen and (max-width: 576px) {\n  .desktop-layout {\n    display: none; }\n  .mobile-layout {\n    display: block; } }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "./src/app/documentation/mw-binding-doc/mw-binding-doc.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwBindingDocComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MwBindingDocComponent = (function () {
+    function MwBindingDocComponent() {
+    }
+    MwBindingDocComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.contentHtml = _this.projectedContent.nativeElement.innerHTML;
+        });
+    };
+    return MwBindingDocComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwBindingDocComponent.prototype, "binding", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwBindingDocComponent.prototype, "type", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ViewChild */])('contentWrapper'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object)
+], MwBindingDocComponent.prototype, "projectedContent", void 0);
+MwBindingDocComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'mw-binding-doc',
+        template: __webpack_require__("./src/app/documentation/mw-binding-doc/mw-binding-doc.component.html"),
+        styles: [__webpack_require__("./src/app/documentation/mw-binding-doc/mw-binding-doc.component.scss")]
+    }),
+    __metadata("design:paramtypes", [])
+], MwBindingDocComponent);
+
+var _a;
+//# sourceMappingURL=mw-binding-doc.component.js.map
 
 /***/ }),
 
@@ -770,7 +918,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".banner-container {\n  background: url(" + __webpack_require__("./src/assets/header-background.png") + ");\n  width: 100%;\n  color: #FFFFFF;\n  padding: 2.5em 0; }\n  .banner-container .primary-text {\n    font-size: 2.2em;\n    font-weight: 200;\n    padding-bottom: .3em; }\n  .banner-container .secondary-text {\n    font-size: 1.3em;\n    font-weight: 100; }\n", ""]);
+exports.push([module.i, ".banner-container {\n  background: url(" + __webpack_require__("./src/assets/header-background.png") + ");\n  width: 100%;\n  color: #FFFFFF;\n  padding: 2.5em 0;\n  font-family: 'Raleway'; }\n  .banner-container .primary-text {\n    font-size: 2.2em;\n    font-weight: 200;\n    padding-bottom: .3em; }\n  .banner-container .secondary-text {\n    font-size: 1.3em;\n    font-weight: 100; }\n", ""]);
 
 // exports
 
@@ -800,6 +948,12 @@ var MwBannerComponent = (function () {
     function MwBannerComponent() {
     }
     MwBannerComponent.prototype.ngOnInit = function () {
+        this.setBannerMargin();
+    };
+    MwBannerComponent.prototype.ngOnChanges = function () {
+        this.setBannerMargin();
+    };
+    MwBannerComponent.prototype.setBannerMargin = function () {
         this.bannerMargin = this.applyMargin === false ? '0' : '2.5em';
     };
     return MwBannerComponent;
@@ -1035,7 +1189,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".mw-logo span {\n  color: #2A5E92;\n  font-weight: 600;\n  font-size: 1.8em; }\n\n.mw-logo span:first-of-type {\n  color: #8C939B;\n  font-weight: 400;\n  font-size: 1.4em; }\n\n.navbar {\n  padding-top: 0;\n  padding-bottom: 0;\n  z-index: 2001; }\n  @media (min-width: 768px) {\n    .navbar .container .navbar-nav .nav-item {\n      padding: .6em;\n      color: #8C939B;\n      font-size: 1.2em; }\n      .navbar .container .navbar-nav .nav-item.active, .navbar .container .navbar-nav .nav-item:hover, .navbar .container .navbar-nav .nav-item:focus {\n        cursor: pointer;\n        border-bottom: 0.1em solid #2A5E92; }\n        .navbar .container .navbar-nav .nav-item.active a, .navbar .container .navbar-nav .nav-item:hover a, .navbar .container .navbar-nav .nav-item:focus a {\n          color: #2A5E92; } }\n\n@media (max-width: 767px) {\n  .navbar .mw-grid-menu {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    background: #FFFFFF;\n    left: -300px;\n    width: 300px;\n    z-index: 1; }\n    .navbar .mw-grid-menu .navbar-nav .nav-item {\n      padding-left: 1em;\n      height: 3em;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      .navbar .mw-grid-menu .navbar-nav .nav-item.active, .navbar .mw-grid-menu .navbar-nav .nav-item:hover {\n        cursor: pointer;\n        background: #E7E7E7;\n        border-left: 0.5em solid #2A5E92;\n        padding-left: .5em; }\n        .navbar .mw-grid-menu .navbar-nav .nav-item.active .nav-link, .navbar .mw-grid-menu .navbar-nav .nav-item:hover .nav-link {\n          color: #2A5E92; } }\n\n.navbar .mw-grid-menu.menu-shown {\n  left: 0px; }\n\n.menu-overlay {\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  background: #000;\n  opacity: .5;\n  display: none;\n  z-index: 2000; }\n  .menu-overlay.overlay-shown {\n    display: initial; }\n", ""]);
+exports.push([module.i, ".mw-logo span {\n  color: #2A5E92;\n  font-weight: 600;\n  font-size: 1.8em; }\n\n.mw-logo span:first-of-type {\n  color: #8C939B;\n  font-weight: 400;\n  font-size: 1.4em; }\n\n.navbar {\n  padding-top: 0;\n  padding-bottom: 0;\n  z-index: 2001;\n  font-family: 'Raleway'; }\n  @media (min-width: 768px) {\n    .navbar .container .navbar-nav .nav-item {\n      padding: .6em;\n      color: #8C939B;\n      font-size: 1.2em; }\n      .navbar .container .navbar-nav .nav-item.active, .navbar .container .navbar-nav .nav-item:hover, .navbar .container .navbar-nav .nav-item:focus {\n        cursor: pointer;\n        border-bottom: 0.1em solid #2A5E92; }\n        .navbar .container .navbar-nav .nav-item.active a, .navbar .container .navbar-nav .nav-item:hover a, .navbar .container .navbar-nav .nav-item:focus a {\n          color: #2A5E92; } }\n\n@media (max-width: 767px) {\n  .navbar .mw-grid-menu {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    background: #FFFFFF;\n    left: -300px;\n    width: 300px;\n    z-index: 1; }\n    .navbar .mw-grid-menu .navbar-nav .nav-item {\n      padding-left: 1em;\n      height: 3em;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n      .navbar .mw-grid-menu .navbar-nav .nav-item.active, .navbar .mw-grid-menu .navbar-nav .nav-item:hover {\n        cursor: pointer;\n        background: #E7E7E7;\n        border-left: 0.5em solid #2A5E92;\n        padding-left: .5em; }\n        .navbar .mw-grid-menu .navbar-nav .nav-item.active .nav-link, .navbar .mw-grid-menu .navbar-nav .nav-item:hover .nav-link {\n          color: #2A5E92; } }\n\n.navbar .mw-grid-menu.menu-shown {\n  left: 0px; }\n\n.menu-overlay {\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  background: #000;\n  opacity: .5;\n  display: none;\n  z-index: 2000; }\n  .menu-overlay.overlay-shown {\n    display: initial; }\n", ""]);
 
 // exports
 

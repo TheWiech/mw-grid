@@ -26,3 +26,24 @@ li {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
 }
+
+.hamburger-menu-button {
+    height: 100%;
+    width: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    .hamburger-menu {
+        height: 18px;
+        width: 22px;
+        background: url('./assets/Hamburger Button.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    &:hover {
+        background: #e8e8e8;
+        cursor: pointer;
+    }
+}

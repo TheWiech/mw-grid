@@ -15,6 +15,14 @@ export class MwBannerComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        this.setBannerMargin();
+    }
+
+    ngOnChanges() {
+        this.setBannerMargin();
+    }
+
+    setBannerMargin() {
         this.bannerMargin = this.applyMargin === false ? '0' : '2.5em';
     }
 }

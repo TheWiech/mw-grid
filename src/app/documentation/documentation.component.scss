@@ -1,4 +1,7 @@
-$docs-nav-width: 170px;
+$docs-nav-width: 150px;
+$docs-nav-padding: 30px;
+$mobile-nav-height: 3em;
+$nav-border: 1px solid #e8e8e8;
 
 :host {
     display: flex;
@@ -14,32 +17,56 @@ $docs-nav-width: 170px;
     flex-direction: column;
     // Position so doc nav height will be based off this container
     position: relative;
+
+    // Remove padding from double nested container on mobile devices
+    @media (max-width: 767px) {
+        padding: 0;
+    }
 }
 
 .docs-content-container {
     overflow: scroll;
 
     @media (min-width: 768px) {
-        padding-left: calc(#{$docs-nav-width} + 15px);
+        padding-left: calc(#{$docs-nav-width} + #{$docs-nav-padding});
     }
 }
 
 .docs-nav {
-    width: $docs-nav-width;
-    position: absolute;
-    overflow: scroll;
+    //
+    // Style docs nav menu when on desktop
+    //
+    @media (min-width: 768px) {
+        width: $docs-nav-width;
+        position: absolute;
+        overflow: scroll;
 
-    border-right: 1px solid #8C939B;
-    padding: 0 1em;
-    text-align: right;
-    z-index: 1;
+        border-right: $nav-border;
+        padding-right: $docs-nav-padding;
+        text-align: right;
+        z-index: 1;
+    }
 
     //
-    // Style main nav section buttons
+    // Style docs nav menu when on mobile device
     //
-    .nav-section {
-        font-weight: 400;
-        font-size: 1.2em;
+    @media (max-width: 767px) {
+        min-height: $mobile-nav-height;
+        margin-bottom: 1em;
+        border-bottom: $nav-border;
+
+        .selected-nav-item {
+            height: $mobile-nav-height;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 15px;
+        }
+
+        nav {
+            padding: 0 15px;
+        }
     }
 
     //
@@ -48,7 +75,7 @@ $docs-nav-width: 170px;
     ul {
         list-style: none;
         padding-left: 0;
-        font-size: 1em;
+        font-size: .9em;
 
         li {
             padding: 0;

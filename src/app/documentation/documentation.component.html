@@ -1,23 +1,29 @@
-<mw-banner [secondaryText]="'Docs / API'"></mw-banner>
+<mw-banner [secondaryText]="'Docs / API'" [applyMargin]="!showMobileNav"></mw-banner>
 <div class="container docs-container">
-    <div class="docs-nav d-none d-md-block" #docNavMenu [style.height.px]="docsNavMenuHeight">
-        <nav>
+    <div class="docs-nav" #docNavMenu [style.height]="docsNavMenuHeight">
+        <div *ngIf="showMobileNav" class="selected-nav-item">
+            {{ currentNavLocation }}
+            <div class="hamburger-menu-button" (click)="toggleDocNav()">
+                <div class="hamburger-menu"></div>
+            </div>
+        </div>
+        <nav *ngIf="showDocsNav">
             <div class="nav-section">Getting Started</div>
             <ul>
-                <li class="" routerLinkActive="active" routerLink="introduction">
-                    <a class="">Introduction</a>
+                <li routerLinkActive="active" routerLink="introduction" (click)="toggleDocNav()">
+                    <a>Introduction</a>
                 </li>
-                <li class="" routerLinkActive="active" routerLink="themes">
-                    <a class="">Themes</a>
+                <li routerLinkActive="active" routerLink="themes" (click)="toggleDocNav()">
+                    <a>Themes</a>
                 </li>
             </ul>
             <div class="nav-section">Components</div>
             <ul>
-                <li class="" routerLinkActive="active" routerLink="mw-grid">
-                    <a class="">mw-grid</a>
+                <li routerLinkActive="active" routerLink="mw-grid" (click)="toggleDocNav()">
+                    <a>mw-grid</a>
                 </li>
-                <li class="" routerLinkActive="active" routerLink="mw-column">
-                    <a class="">mw-column</a>
+                <li routerLinkActive="active" routerLink="mw-column" (click)="toggleDocNav()">
+                    <a>mw-column</a>
                 </li>
             </ul>
         </nav>
