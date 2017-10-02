@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, QueryList, ContentChildren, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, QueryList, ContentChildren, ViewEncapsulation } from '@angular/core';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
 import { MwGridHeader } from '../mw-grid-headers/mw-grid-headers.component';
 
@@ -12,7 +12,7 @@ import { MwGridHeader } from '../mw-grid-headers/mw-grid-headers.component';
     ],
     encapsulation: ViewEncapsulation.None
 })
-export class MwGridComponent implements OnInit {
+export class MwGridComponent implements OnInit, AfterViewInit {
     @Input() data: Array<any>;
     @Input() bindings: Array<string>;
     @Input() theme: MwGridTheme;
@@ -55,10 +55,10 @@ export class MwGridComponent implements OnInit {
 
     setColWidths() {
         let starSizeTotalWidth = 0;
-        let starSizedColumns = new Map<number, MwColumnDirective>();
-        let colDefintionArray = this.columnDefinitions.toArray();
+        const starSizedColumns = new Map<number, MwColumnDirective>();
+        const colDefintionArray = this.columnDefinitions.toArray();
 
-        for(let i = 0; i < colDefintionArray.length; i++) {
+        for (let i = 0; i < colDefintionArray.length; i++) {
 
             // If a column is star sized we must wait until we add up all star sizing properties before we know the width of the column
             if (colDefintionArray[i].isStarSizedWidth()) {
@@ -73,7 +73,8 @@ export class MwGridComponent implements OnInit {
         }
 
         starSizedColumns.forEach((value, key) => {
-            this.gridHeaders[key].width = colDefintionArray[key].calculatedWidth = `${colDefintionArray[key].getStarSizedWidth() / starSizeTotalWidth * 100}%`;
+            this.gridHeaders[key].width = colDefintionArray[key].calculatedWidth =
+                    `${colDefintionArray[key].getStarSizedWidth() / starSizeTotalWidth * 100}%`;
         });
     }
 

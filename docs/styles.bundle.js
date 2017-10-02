@@ -1,5 +1,39 @@
 webpackJsonp(["styles"],{
 
+/***/ "./docs-src/assets/Hamburger Button.svg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "Hamburger Button.1fb29d9bbd08d352fa5f.svg";
+
+/***/ }),
+
+/***/ "./docs-src/styles.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!./node_modules/postcss-loader/index.js?{\"ident\":\"postcss\"}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":false,\"precision\":8,\"includePaths\":[]}!./docs-src/styles.scss");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/style-loader/addStyles.js")(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../node_modules/css-loader/index.js??ref--9-1!../node_modules/postcss-loader/index.js??postcss!../node_modules/sass-loader/lib/loader.js??ref--9-3!./styles.scss", function() {
+			var newContent = require("!!../node_modules/css-loader/index.js??ref--9-1!../node_modules/postcss-loader/index.js??postcss!../node_modules/sass-loader/lib/loader.js??ref--9-3!./styles.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!./node_modules/postcss-loader/index.js?{\"ident\":\"postcss\"}!./node_modules/bootstrap/dist/css/bootstrap.min.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15,7 +49,7 @@ exports.push([module.i, "/*!\n * Bootstrap v4.0.0-beta (https://getbootstrap.com
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!./node_modules/postcss-loader/index.js?{\"ident\":\"postcss\"}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":false,\"precision\":8,\"includePaths\":[]}!./src/styles.scss":
+/***/ "./node_modules/css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!./node_modules/postcss-loader/index.js?{\"ident\":\"postcss\"}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":false,\"precision\":8,\"includePaths\":[]}!./docs-src/styles.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
@@ -23,7 +57,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 exports.i(__webpack_require__("./node_modules/css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!./node_modules/postcss-loader/index.js?{\"ident\":\"postcss\"}!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nhtml, body {\n  font-family: 'Roboto', sans-serif;\n  height: 100%;\n  width: 100%; }\n\nul li {\n  color: #8C939B;\n  padding: .1em 0;\n  font-size: 1.2em; }\n\n.mw-bootstrap-row {\n  padding-bottom: 2em; }\n\nli:focus {\n  outline: none; }\n\nh1, h2, h3, h4, h5, h6 {\n  font-weight: 300; }\n\n.hamburger-menu-button {\n  height: 100%;\n  width: 50px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center; }\n  .hamburger-menu-button .hamburger-menu {\n    height: 18px;\n    width: 22px;\n    background: url(\"" + __webpack_require__("./src/assets/Hamburger Button.svg") + "\");\n    background-size: contain;\n    background-repeat: no-repeat; }\n  .hamburger-menu-button:hover {\n    background: #e8e8e8;\n    cursor: pointer; }\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nhtml, body {\n  font-family: 'Roboto', sans-serif;\n  height: 100%;\n  width: 100%; }\n\nul li {\n  color: #8C939B;\n  padding: .1em 0;\n  font-size: 1.2em; }\n\n.mw-bootstrap-row {\n  padding-bottom: 2em; }\n\nli:focus {\n  outline: none; }\n\nh1, h2, h3, h4, h5, h6 {\n  font-weight: 300; }\n\n.hamburger-menu-button {\n  height: 100%;\n  width: 50px;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center; }\n  .hamburger-menu-button .hamburger-menu {\n    height: 18px;\n    width: 22px;\n    background: url(\"" + __webpack_require__("./docs-src/assets/Hamburger Button.svg") + "\");\n    background-size: contain;\n    background-repeat: no-repeat; }\n  .hamburger-menu-button:hover {\n    background: #e8e8e8;\n    cursor: pointer; }\n", ""]);
 
 // exports
 
@@ -366,44 +400,10 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ "./src/assets/Hamburger Button.svg":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "Hamburger Button.1fb29d9bbd08d352fa5f.svg";
-
-/***/ }),
-
-/***/ "./src/styles.scss":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("./node_modules/css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!./node_modules/postcss-loader/index.js?{\"ident\":\"postcss\"}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":false,\"precision\":8,\"includePaths\":[]}!./src/styles.scss");
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__("./node_modules/style-loader/addStyles.js")(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../node_modules/css-loader/index.js??ref--9-1!../node_modules/postcss-loader/index.js??postcss!../node_modules/sass-loader/lib/loader.js??ref--9-3!./styles.scss", function() {
-			var newContent = require("!!../node_modules/css-loader/index.js??ref--9-1!../node_modules/postcss-loader/index.js??postcss!../node_modules/sass-loader/lib/loader.js??ref--9-3!./styles.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
 /***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./src/styles.scss");
+module.exports = __webpack_require__("./docs-src/styles.scss");
 
 
 /***/ })

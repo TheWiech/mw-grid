@@ -15,7 +15,7 @@ const { AotPlugin } = require('@ngtools/webpack');
 
 const nodeModules = path.join(process.cwd(), 'node_modules');
 const realNodeModules = fs.realpathSync(nodeModules);
-const genDirNodeModules = path.join(process.cwd(), 'src', '$$_gendir', 'node_modules');
+const genDirNodeModules = path.join(process.cwd(), 'docs-src', '$$_gendir', 'node_modules');
 const entryPoints = ["inline","polyfills","sw-register","styles","vendor","main"];
 const minimizeCss = false;
 const baseHref = "";
@@ -79,13 +79,13 @@ module.exports = {
   },
   "entry": {
     "main": [
-      "./src/main.ts"
+      "./docs-src/main.ts"
     ],
     "polyfills": [
-      "./src/polyfills.ts"
+      "./docs-src/polyfills.ts"
     ],
     "styles": [
-      "./src/styles.scss"
+      "./docs-src/styles.scss"
     ]
   },
   "output": {
@@ -118,7 +118,7 @@ module.exports = {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "src/styles.scss")
+          path.join(process.cwd(), "docs-src/styles.scss")
         ],
         "test": /\.css$/,
         "use": [
@@ -141,7 +141,7 @@ module.exports = {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "src/styles.scss")
+          path.join(process.cwd(), "docs-src/styles.scss")
         ],
         "test": /\.scss$|\.sass$/,
         "use": [
@@ -172,7 +172,7 @@ module.exports = {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "src/styles.scss")
+          path.join(process.cwd(), "docs-src/styles.scss")
         ],
         "test": /\.less$/,
         "use": [
@@ -201,7 +201,7 @@ module.exports = {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "src/styles.scss")
+          path.join(process.cwd(), "docs-src/styles.scss")
         ],
         "test": /\.styl$/,
         "use": [
@@ -231,7 +231,7 @@ module.exports = {
       },
       {
         "include": [
-          path.join(process.cwd(), "src/styles.scss")
+          path.join(process.cwd(), "docs-src/styles.scss")
         ],
         "test": /\.css$/,
         "use": [
@@ -254,7 +254,7 @@ module.exports = {
       },
       {
         "include": [
-          path.join(process.cwd(), "src/styles.scss")
+          path.join(process.cwd(), "docs-src/styles.scss")
         ],
         "test": /\.scss$|\.sass$/,
         "use": [
@@ -285,7 +285,7 @@ module.exports = {
       },
       {
         "include": [
-          path.join(process.cwd(), "src/styles.scss")
+          path.join(process.cwd(), "docs-src/styles.scss")
         ],
         "test": /\.less$/,
         "use": [
@@ -314,7 +314,7 @@ module.exports = {
       },
       {
         "include": [
-          path.join(process.cwd(), "src/styles.scss")
+          path.join(process.cwd(), "docs-src/styles.scss")
         ],
         "test": /\.styl$/,
         "use": [
@@ -357,7 +357,7 @@ module.exports = {
         "404.html"
       ],
       "globOptions": {
-        "cwd": path.join(process.cwd(), "src"),
+        "cwd": path.join(process.cwd(), "docs-src"),
         "dot": true,
         "ignore": "**/.gitkeep"
       }
@@ -369,7 +369,7 @@ module.exports = {
     }),
     new NamedLazyChunksWebpackPlugin(),
     new HtmlWebpackPlugin({
-      "template": "./src/index.html",
+      "template": "./docs-src/index.html",
       "filename": "./index.html",
       "hash": true,
       "inject": true,
@@ -438,7 +438,7 @@ module.exports = {
         "environments/environment.ts": "environments/environment.ts"
       },
       "exclude": [],
-      "tsConfigPath": "src/tsconfig.app.json",
+      "tsConfigPath": "docs-src/tsconfig.app.json",
       "skipCodeGeneration": true
     }),
     new webpack.ProvidePlugin({
