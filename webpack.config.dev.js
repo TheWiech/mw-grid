@@ -82,7 +82,7 @@ module.exports = {
       "./docs-src/main.ts"
     ],
     "polyfills": [
-      "./docs-src/polyfills.ts"
+      "./polyfills.ts"
     ],
     "styles": [
       "./docs-src/styles.scss"
