@@ -2,18 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { MwGridModule } from '../../src/mw-grid.module';
+
 import { AppComponent } from './app.component';
-import { MwGridComponent } from '../../src/mw-grid/mw-grid.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DocumentationComponent } from './documentation/documentation.component';
 import { SupportComponent } from './support/support.component';
 import { DonateComponent } from './donate/donate.component';
 import { HomeComponent } from './home/home.component';
 import { DownloadComponent } from './download/download.component';
-import { MwColumnDirective } from '../../src/mw-column/mw-column.directive';
-import { MwCellComponent } from '../../src/mw-cell/mw-cell.component';
 import { GridExampleComponent } from './grid-example/grid-example.component';
-import { MwGridHeadersComponent } from '../../src/mw-grid-headers/mw-grid-headers.component';
 import { MwNavMenuComponent } from './mw-nav-menu/mw-nav-menu.component';
 import { MwDropdownNavItemComponent } from './mw-nav-menu/mw-dropdown-nav-item/mw-dropdown-nav-item.component';
 import { MwLiveExampleComponent } from './mw-live-example/mw-live-example.component';
@@ -47,17 +45,13 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
-        MwGridComponent,
         PageNotFoundComponent,
         DocumentationComponent,
         SupportComponent,
         DonateComponent,
         HomeComponent,
         DownloadComponent,
-        MwColumnDirective,
-        MwCellComponent,
         GridExampleComponent,
-        MwGridHeadersComponent,
         MwNavMenuComponent,
         MwDropdownNavItemComponent,
         MwLiveExampleComponent,
@@ -68,11 +62,12 @@ const appRoutes: Routes = [
         ThemesDocsComponent,
         MwButtonComponent,
         MwBindingDocComponent,
-        MwComponentHeaderDocsComponent
+        MwComponentHeaderDocsComponent,
     ],
     imports: [
         BrowserModule,
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes),
+        MwGridModule
     ],
     providers: [],
     bootstrap: [AppComponent]
