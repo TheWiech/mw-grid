@@ -1,28 +1,11 @@
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { Component, DebugElement, Input, QueryList } from '@angular/core';
+import { Component, DebugElement, Input, QueryList, NO_ERRORS_SCHEMA, ComponentFactoryResolver } from '@angular/core';
 
 import { MwGridComponent, MwGridTheme } from './mw-grid.component';
+import { MwGridHeader } from '../mw-grid-headers/mw-grid-headers.component';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
-
-@Component({selector: 'mw-cell', template: '<div class="mock-mw-cell"></div>'})
-export class MwCell { }
-
-@Component({selector: 'mw-grid-headers', template: '<div class="mock-grid-headers"></div>'})
-class MwGridHeader {
-    constructor (public title: string) { }
-
-    width: String;
-    minWidth: String;
-    maxWidth: String;
-}
-
-@Component({
-    selector: 'mw-grid-headers',
-    template: '<div class="mock-grid-headers"></div>',
-})
-export class MwGridHeaders {
-    @Input() headers: Array<MwGridHeader>;
-}
+import { RowFactoryService } from '../row-factory.service';
+import { MwGridContentHostDirective } from './mw-grid-content-host.directive';
 
 @Component({
     selector: 'mw-test-wrapper',
@@ -37,6 +20,10 @@ class MwTestWrapperComponent {
     theme: MwGridTheme;
 }
 
+class mockRowFactoryService {
+    createRow = () => { };
+}
+
 describe('MwGridComponent', () => {
     let component: MwGridComponent;
     let fixture:   ComponentFixture<MwTestWrapperComponent>;
@@ -44,15 +31,16 @@ describe('MwGridComponent', () => {
     let el:        HTMLElement;
 
     beforeEach(async(() => {
-
         TestBed.configureTestingModule({
         declarations: [
             MwGridComponent,
-            MwCell,
             MwTestWrapperComponent,
             MwColumnDirective,
-            MwGridHeaders
-        ]}).compileComponents();
+            MwGridContentHostDirective
+        ],
+        providers: [ { provide: RowFactoryService, useClass: mockRowFactoryService } ],
+        schemas: [NO_ERRORS_SCHEMA]
+        }).compileComponents();
     }));
 
     beforeEach(() => {
@@ -69,37 +57,6 @@ describe('MwGridComponent', () => {
     it('set theme class on grid container to modern as default', () => {
         fixture.detectChanges();
         expect(de.nativeElement.querySelector('.mw-grid-container').classList.contains('modern')).toEqual(true);
-    });
-
-    it('should create 3 mw-cells when there is a single row with three columns', () => {
-        fixture.detectChanges();
-        expect(de.nativeElement.querySelectorAll('.mock-mw-cell').length).toEqual(3);
-    });
-
-    it('should create 6 mw-cells when there are two rows with three columns', () => {
-        fixture.componentInstance.mockData = ['test1', 'test2'];
-        fixture.detectChanges();
-        expect(de.nativeElement.querySelectorAll('.mock-mw-cell').length).toEqual(6);
-    });
-
-    it('should create 1 row for each item in the grid data', () => {
-        fixture.componentInstance.mockData = ['test1', 'test2'];
-        fixture.detectChanges();
-        expect(de.nativeElement.querySelectorAll('.mw-row').length).toEqual(2);
-    });
-
-    it('should apply "mw-even" class to even rows', () => {
-        fixture.componentInstance.mockData = ['test1', 'test2', 'test3'];
-        fixture.detectChanges();
-        // Remember even/odd is determined on 0 based index
-        expect(de.nativeElement.querySelectorAll('.mw-row.mw-even').length).toEqual(2);
-    });
-
-    it('should apply "mw-odd" class to odd rows', () => {
-        fixture.componentInstance.mockData = ['test1', 'test2', 'test3'];
-        fixture.detectChanges();
-        // Remember even/odd is determined on 0 based index
-        expect(de.nativeElement.querySelectorAll('.mw-row.mw-odd').length).toEqual(1);
     });
 
     describe('setGridTheme method', () => {
@@ -134,10 +91,12 @@ describe('MwGridComponent', () => {
         it('should call setGridHeaders and setColWidths', <any>fakeAsync((): void => {
             spyOn(component, 'setGridHeaders');
             spyOn(component, 'setColWidths');
+            spyOn(component, 'createRows');
             component.ngAfterViewInit();
             tick();
             expect(component.setGridHeaders).toHaveBeenCalled();
             expect(component.setColWidths).toHaveBeenCalled();
+            expect(component.createRows).toHaveBeenCalled();
         }));
     });
 
@@ -145,6 +104,7 @@ describe('MwGridComponent', () => {
         it('should populate grid headers from column definitions', () => {
             // Setup
             fixture.detectChanges();
+
             component.gridHeaders = [];
 
             // Act
@@ -156,12 +116,34 @@ describe('MwGridComponent', () => {
             expect(component.gridHeaders[2].title).toEqual('col3Header');
         });
     });
+
+    describe('createRows method', () => {
+        it('should call rowFactory.createRow for each item in the data array', () => {
+            component.data = ['item1', 'item2', 'item3'];
+            const rowFactoryService = TestBed.get(RowFactoryService);
+            spyOn(rowFactoryService, 'createRow').and.returnValue({instance: {
+                item: '',
+                rowNumber: ''
+            }});
+            component.createRows();
+            expect(rowFactoryService.createRow.calls.count()).toEqual(3);
+        });
+    });
 });
 
 describe('MwGridComponent', () => {
     let colDefinition1: MwColumnDirective;
     let colDefinition2: MwColumnDirective;
     let colDefinition3: MwColumnDirective;
+    let rowFactoryService: RowFactoryService;
+
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            providers: [ { provide: RowFactoryService, useValue: mockRowFactoryService } ],
+            schemas: [NO_ERRORS_SCHEMA]
+        }).compileComponents();
+        rowFactoryService = TestBed.get(RowFactoryService);
+    }));
 
     beforeEach(() => {
         colDefinition1 = new MwColumnDirective();
@@ -192,7 +174,7 @@ describe('MwGridComponent', () => {
     describe('setColWidths method', () => {
         it('should set gridHeaders minWidth, maxWidth, and width for each column definition when not starSized', () => {
             // Setup
-            let component = new MwGridComponent();
+            let component = new MwGridComponent(rowFactoryService);
             component.gridHeaders = [new MwGridHeader('name'), new MwGridHeader('email')];
 
             colDefinition1.width = '140';
@@ -220,7 +202,7 @@ describe('MwGridComponent', () => {
 
         it('should properly set width for each column definition when starSized', () => {
             // Setup
-            let component = new MwGridComponent();
+            let component = new MwGridComponent(rowFactoryService);
             component.gridHeaders = [new MwGridHeader('name'), new MwGridHeader('email')];
 
             colDefinition1.width = '3';

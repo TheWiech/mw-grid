@@ -62,7 +62,7 @@ const appRoutes: Routes = [
         ThemesDocsComponent,
         MwButtonComponent,
         MwBindingDocComponent,
-        MwComponentHeaderDocsComponent,
+        MwComponentHeaderDocsComponent
     ],
     imports: [
         BrowserModule,

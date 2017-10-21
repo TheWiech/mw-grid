@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { MwGridTheme } from '../../../src/mw-grid/mw-grid.component';
 
 @Component({
   selector: 'mw-grid-example',
   templateUrl: './grid-example.component.html',
-  styleUrls: ['./grid-example.component.scss']
+  styleUrls: ['./grid-example.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class GridExampleComponent implements OnInit {
     users: Array<any>;

@@ -1,6 +1,20 @@
-import { Component, OnInit, AfterViewInit, Input, QueryList, ContentChildren, ViewEncapsulation } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    AfterViewInit,
+    Input,
+    QueryList,
+    ContentChildren,
+    ViewEncapsulation,
+    ViewContainerRef,
+    ViewChild,
+    ElementRef
+} from '@angular/core';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
 import { MwGridHeader } from '../mw-grid-headers/mw-grid-headers.component';
+import { RowFactoryService } from '../row-factory.service';
+import { MwRowComponent } from '../mw-row/mw-row.component';
+import { MwGridContentHostDirective } from './mw-grid-content-host.directive';
 
 @Component({
     selector: 'mw-grid',
@@ -17,11 +31,14 @@ export class MwGridComponent implements OnInit, AfterViewInit {
     @Input() bindings: Array<string>;
     @Input() theme: MwGridTheme;
     @ContentChildren(MwColumnDirective) columnDefinitions: QueryList<MwColumnDirective>;
+    @ViewChild(MwGridContentHostDirective) gridContentHost: MwGridContentHostDirective;
+    @ViewChild('gridContainer') gridContainer: ElementRef;
 
     gridTheme: String;
     gridHeaders: Array<MwGridHeader> = [];
 
-    constructor() { }
+    constructor(private rowFactory: RowFactoryService) {
+    }
 
     ngOnInit() {
         this.setGridTheme();
@@ -31,7 +48,16 @@ export class MwGridComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
             this.setGridHeaders();
             this.setColWidths();
+            this.createRows();
         });
+    }
+
+    createRows() {
+        for (let i = 0; i < this.data.length; i++) {
+            const currentRow = this.rowFactory.createRow(this.gridContentHost.viewContainerRef, this.columnDefinitions);
+            (<MwRowComponent>currentRow.instance).item = this.data[i];
+            (<MwRowComponent>currentRow.instance).rowNumber = i;
+        }
     }
 
     setGridTheme() {
