@@ -10,6 +10,7 @@ export class MwRowComponent {
     @Input() columnDefinitions: QueryList<MwColumnDirective>;
     @Input() item: any;
     @Input() rowNumber: Number;
+    @Input() height: Number;
 
     constructor() { }
 }

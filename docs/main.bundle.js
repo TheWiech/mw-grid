@@ -43,6 +43,7 @@ var MwGridComponent = (function () {
     function MwGridComponent(rowFactory) {
         this.rowFactory = rowFactory;
         this.gridHeaders = [];
+        this.rows = [];
     }
     MwGridComponent.prototype.ngOnInit = function () {
         this.setGridTheme();
@@ -60,6 +61,8 @@ var MwGridComponent = (function () {
             var currentRow = this.rowFactory.createRow(this.gridContentHost.viewContainerRef, this.columnDefinitions);
             currentRow.instance.item = this.data[i];
             currentRow.instance.rowNumber = i;
+            currentRow.instance.height = this.rowHeight;
+            this.rows.push(currentRow);
         }
     };
     MwGridComponent.prototype.setGridTheme = function () {
@@ -116,6 +119,10 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
     __metadata("design:type", Number)
 ], MwGridComponent.prototype, "theme", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwGridComponent.prototype, "rowHeight", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ContentChildren */])(__WEBPACK_IMPORTED_MODULE_1__mw_column_mw_column_directive__["a" /* MwColumnDirective */]),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* QueryList */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* QueryList */]) === "function" && _a || Object)
@@ -374,6 +381,10 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
     __metadata("design:type", Object)
 ], MwRowComponent.prototype, "rowNumber", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MwRowComponent.prototype, "height", void 0);
 MwRowComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-row',
@@ -700,7 +711,7 @@ module.exports = module.exports.toString();
 /* 125 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mw-row\" [ngClass]=\"{'mw-even': rowNumber % 2 === 0, 'mw-odd': rowNumber % 2 !== 0 }\">\n    <mw-cell *ngFor=\"let colDefinition of columnDefinitions\"\n        [cellText]=\"item[colDefinition.binding]\"\n        [style.width]=\"colDefinition.calculatedWidth\"\n        [style.minWidth]=\"colDefinition.getMinWidth()\"\n        [style.maxWidth]=\"colDefinition.getMaxWidth()\">\n    </mw-cell>\n</div>\n"
+module.exports = "<div class=\"mw-row\" [ngClass]=\"{'mw-even': rowNumber % 2 === 0, 'mw-odd': rowNumber % 2 !== 0 }\">\n    <mw-cell *ngFor=\"let colDefinition of columnDefinitions\"\n        [cellText]=\"item[colDefinition.binding]\"\n        [style.width]=\"colDefinition.calculatedWidth\"\n        [style.minWidth]=\"colDefinition.getMinWidth()\"\n        [style.maxWidth]=\"colDefinition.getMaxWidth()\"\n        [style.height.px]=\"height\">\n    </mw-cell>\n</div>\n"
 
 /***/ }),
 /* 126 */
@@ -768,7 +779,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "mw-grid>.mw-grid-container.spreadsheet mw-grid-headers .mw-header>div{border-top:1px solid #000;border-left:1px solid #000;border-bottom:1px solid #000;color:#313942;background:#f3f5f7;padding:0 1em;font-weight:500}mw-grid>.mw-grid-container.spreadsheet mw-grid-headers .mw-header:last-child{border-right:1px solid #000}mw-grid>.mw-grid-container.spreadsheet .mw-row mw-cell .mw-cell{border-left:1px solid #000;border-bottom:1px solid #000;color:#747c85;padding:0 1em}mw-grid>.mw-grid-container.spreadsheet .mw-row mw-cell:last-child .mw-cell{border-right:1px solid #000}", ""]);
+exports.push([module.i, "mw-grid>.mw-grid-container.spreadsheet mw-grid-headers .mw-header>div{border-top:1px solid #000;border-left:1px solid #000;border-bottom:1px solid #000;color:#313942;background:#f4f5f6;padding:0 1em;font-weight:500}mw-grid>.mw-grid-container.spreadsheet mw-grid-headers .mw-header:last-child{border-right:1px solid #000}mw-grid>.mw-grid-container.spreadsheet .mw-row mw-cell .mw-cell{border-left:1px solid #000;border-bottom:1px solid #000;color:#747c85;padding:0 1em}mw-grid>.mw-grid-container.spreadsheet .mw-row mw-cell:last-child .mw-cell{border-right:1px solid #000}", ""]);
 
 // exports
 
@@ -1368,7 +1379,7 @@ GridExampleComponent = __decorate([
 /* 157 */
 /***/ (function(module, exports) {
 
-module.exports = "<mw-grid [data]=\"users\" [theme]=\"theme\">\n    <mw-column [binding]=\"'name'\"></mw-column>\n    <mw-column [binding]=\"'username'\" [width]=\"'1*'\" [minWidth]=\"150\"></mw-column>\n    <mw-column [binding]=\"'email'\" [width]=\"'1*'\"></mw-column>\n    <mw-column [binding]=\"'phoneNumber'\" [maxWidth]=\"150\"></mw-column>\n</mw-grid>\n"
+module.exports = "<mw-grid [data]=\"users\" [theme]=\"theme\" [rowHeight]=\"55\">\n    <mw-column [binding]=\"'name'\"></mw-column>\n    <mw-column [binding]=\"'username'\" [width]=\"'1*'\" [minWidth]=\"150\"></mw-column>\n    <mw-column [binding]=\"'email'\" [width]=\"'1*'\"></mw-column>\n    <mw-column [binding]=\"'phoneNumber'\" [maxWidth]=\"150\"></mw-column>\n</mw-grid>\n"
 
 /***/ }),
 /* 158 */
@@ -1723,7 +1734,7 @@ MwGridDocsComponent = __decorate([
 /* 173 */
 /***/ (function(module, exports) {
 
-module.exports = "<mw-component-header-doc [componentName]=\"'MwGridComponent'\" [selector]=\"'mw-grid'\" [link]=\"'https://github.com/TheWiech/mw-grid/blob/master/src/mw-grid/mw-grid.component.ts'\"></mw-component-header-doc>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Overview</div>\n    <p>The MwGridComponent is a fully featured control that displays a set of data in a grid. MwGridComponent includes features such as dynamic column sizing, row virtualization, filtering, searching, sorting, pagination, etc.</p>\n    <p>The most basic configuration of the grid requires setting the data property and bindings for values to display. To utilize advanced features such as dynamic column sizing MwColumnDirectives must be nested in the grid.</p>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Bindings</div>\n    <div>\n        <mw-binding-doc binding=\"data\" type=\"Array&lt;any&gt;\">\n            (Required) Array of data to display in the grid.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"bindings\" type=\"Array&lt;String&gt;\">\n            Array of keys on the objects in the data array that contain values to display in a column. This property is ignored if MwColumnComponent is present.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"theme\" type=\"MwGridTheme\">\n            The style applied to the grid. Defaults to MwGridTheme.Modern.\n        </mw-binding-doc>\n    </div>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Examples</div>\n</div>\n"
+module.exports = "<mw-component-header-doc [componentName]=\"'MwGridComponent'\" [selector]=\"'mw-grid'\" [link]=\"'https://github.com/TheWiech/mw-grid/blob/master/src/mw-grid/mw-grid.component.ts'\"></mw-component-header-doc>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Overview</div>\n    <p>The MwGridComponent is a fully featured control that displays a set of data in a grid. MwGridComponent includes features such as dynamic column sizing, row virtualization, filtering, searching, sorting, pagination, etc.</p>\n    <p>The most basic configuration of the grid requires setting the data property and bindings for values to display. To utilize advanced features such as dynamic column sizing MwColumnDirectives must be nested in the grid.</p>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Bindings</div>\n    <div>\n        <mw-binding-doc binding=\"data\" type=\"Array&lt;any&gt;\">\n            (Required) Array of data to display in the grid.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"bindings\" type=\"Array&lt;String&gt;\">\n            Array of keys on the objects in the data array that contain values to display in a column. This property is ignored if MwColumnComponent is present.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"theme\" type=\"MwGridTheme\">\n            The style applied to the grid. Defaults to MwGridTheme.Modern.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"rowHeight\" type=\"Number\">\n            The height of rows in px\n        </mw-binding-doc>\n    </div>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Examples</div>\n</div>\n"
 
 /***/ }),
 /* 174 */

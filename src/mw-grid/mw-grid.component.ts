@@ -8,7 +8,8 @@ import {
     ViewEncapsulation,
     ViewContainerRef,
     ViewChild,
-    ElementRef
+    ElementRef,
+    ComponentRef
 } from '@angular/core';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
 import { MwGridHeader } from '../mw-grid-headers/mw-grid-headers.component';
@@ -30,12 +31,14 @@ export class MwGridComponent implements OnInit, AfterViewInit {
     @Input() data: Array<any>;
     @Input() bindings: Array<string>;
     @Input() theme: MwGridTheme;
+    @Input() rowHeight: Number;
     @ContentChildren(MwColumnDirective) columnDefinitions: QueryList<MwColumnDirective>;
     @ViewChild(MwGridContentHostDirective) gridContentHost: MwGridContentHostDirective;
     @ViewChild('gridContainer') gridContainer: ElementRef;
 
     gridTheme: String;
     gridHeaders: Array<MwGridHeader> = [];
+    rows: Array<ComponentRef<MwRowComponent>> = [];
 
     constructor(private rowFactory: RowFactoryService) {
     }
@@ -55,8 +58,11 @@ export class MwGridComponent implements OnInit, AfterViewInit {
     createRows() {
         for (let i = 0; i < this.data.length; i++) {
             const currentRow = this.rowFactory.createRow(this.gridContentHost.viewContainerRef, this.columnDefinitions);
-            (<MwRowComponent>currentRow.instance).item = this.data[i];
-            (<MwRowComponent>currentRow.instance).rowNumber = i;
+            currentRow.instance.item = this.data[i];
+            currentRow.instance.rowNumber = i;
+            currentRow.instance.height = this.rowHeight;
+
+            this.rows.push(currentRow);
         }
     }
 

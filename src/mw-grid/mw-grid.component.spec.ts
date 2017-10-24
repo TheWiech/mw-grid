@@ -4,6 +4,7 @@ import { Component, DebugElement, Input, QueryList, NO_ERRORS_SCHEMA, ComponentF
 import { MwGridComponent, MwGridTheme } from './mw-grid.component';
 import { MwGridHeader } from '../mw-grid-headers/mw-grid-headers.component';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
+import { MwRowComponent } from '../mw-row/mw-row.component';
 import { RowFactoryService } from '../row-factory.service';
 import { MwGridContentHostDirective } from './mw-grid-content-host.directive';
 
@@ -127,6 +128,34 @@ describe('MwGridComponent', () => {
             }});
             component.createRows();
             expect(rowFactoryService.createRow.calls.count()).toEqual(3);
+        });
+
+        it('should set height on the row', () => {
+            component.data = ['item1'];
+            component.rowHeight = 30;
+            const rowFactoryService = TestBed.get(RowFactoryService);
+            spyOn(rowFactoryService, 'createRow').and.returnValue({instance: {
+                item: '',
+                rowNumber: ''
+            }});
+            component.createRows();
+            expect(component.rows[0].instance.height).toEqual(30);
+        });
+
+        it('should set rowNumber on each row', () => {
+            component.data = ['item1', 'item2'];
+            const rowFactoryService = TestBed.get(RowFactoryService);
+            spyOn(rowFactoryService, 'createRow').and.callFake(() => {
+                return {
+                    instance: {
+                        item: '',
+                        rowNumber: ''
+                    }
+                };
+            });
+            component.createRows();
+            expect(component.rows[0].instance.rowNumber).toEqual(0);
+            expect(component.rows[1].instance.rowNumber).toEqual(1);
         });
     });
 });
