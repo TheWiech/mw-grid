@@ -1056,7 +1056,8 @@ DocumentationComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-documentation',
         template: __webpack_require__(141),
-        styles: [__webpack_require__(142)]
+        styles: [__webpack_require__(142)],
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ViewEncapsulation */].None,
     }),
     __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _b || Object])
 ], DocumentationComponent);
@@ -1079,7 +1080,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, ".docs-container,:host{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;min-height:0}.docs-container{position:relative}@media (max-width:767px){.docs-container{padding:0}}.docs-content-container{overflow:scroll}@media (min-width:768px){.docs-content-container{padding-left:180px}}@media (min-width:768px){.docs-nav{width:150px;position:absolute;overflow:scroll;border-right:1px solid #e8e8e8;padding-right:30px;text-align:right;z-index:1}}@media (max-width:767px){.docs-nav{min-height:3em;margin-bottom:1em;border-bottom:1px solid #e8e8e8}.docs-nav .selected-nav-item{height:3em;position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding-left:15px}.docs-nav nav{padding:0 15px}}.docs-nav ul{list-style:none;padding-left:0;font-size:.9em}.docs-nav ul li{padding:0}.docs-nav ul li.active,.docs-nav ul li:hover{color:#2a5e92;cursor:pointer}.docs-nav ul li.active a,.docs-nav ul li:hover a{font-weight:400}.docs-nav ul li a{font-weight:300}", ""]);
+exports.push([module.i, ".docs-container,:host{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;min-height:0}.docs-container{position:relative}@media (max-width:767px){.docs-container{padding:0}}.docs-content-container{overflow:scroll}@media (min-width:768px){.docs-content-container{padding-left:180px}}.docs-content-container .doc-section{margin-bottom:2em}.docs-content-container .doc-section .section-header{color:#000;font-weight:400;font-size:1.3em;margin-bottom:.7em}.docs-content-container .doc-section p{color:#333}@media (min-width:768px){.docs-nav{width:150px;position:absolute;overflow:scroll;border-right:1px solid #e8e8e8;padding-right:30px;text-align:right;z-index:1}}@media (max-width:767px){.docs-nav{min-height:3em;margin-bottom:1em;border-bottom:1px solid #e8e8e8}.docs-nav .selected-nav-item{height:3em;position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding-left:15px}.docs-nav nav{padding:0 15px}}.docs-nav ul{list-style:none;padding-left:0;font-size:.9em}.docs-nav ul li{padding:0}.docs-nav ul li.active,.docs-nav ul li:hover{color:#2a5e92;cursor:pointer}.docs-nav ul li.active a,.docs-nav ul li:hover a{font-weight:400}.docs-nav ul li a{font-weight:300}", ""]);
 
 // exports
 
@@ -1745,7 +1746,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, ".doc-section{margin-bottom:2em}.doc-section .section-header{color:#000;font-weight:400;font-size:1.3em;margin-bottom:.7em}.doc-section p{color:#333}", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -1792,7 +1793,7 @@ MwColumnDocsComponent = __decorate([
 /* 176 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>MwColumnComponent</h2>\n"
+module.exports = "<mw-component-header-doc [componentName]=\"'MwColumnDirective'\" [selector]=\"'mw-column'\" [link]=\"'https://github.com/TheWiech/mw-grid/blob/master/src/mw-column/mw-column.directive.ts'\"></mw-component-header-doc>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Overview</div>\n    <p>The MwColumnDirective is used to define and customize the behaivor of a columnn in the grid. The directive must be a direct child of mw-grid.</p>\n    <p>\n        If width, minWidth, and maxWidth are not set the column defaults to a fixed width of 150px. If the minWidth is set and no maxWidth or width is set\n        the minWidth is used as the width. If the maxWidth is set and no minWidth or width is set the maxWidth is used as the width.\n    </p>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Bindings</div>\n    <div>\n        <mw-binding-doc binding=\"binding\" type=\"String\">\n            (Required) The property on the item containing the text to display.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"width\" type=\"String\">\n            The width of the column. The value can be expressed in pixels or a star sized value. Star sized values allow\n            the column to dynimcally resize based on the remaining space available after non star sized columns widths have\n            been detirmined and compared to other star sized colums. E.g. If a grid has two columns and the fist column has\n            a width of 1* and the second column has a width of 2* the first column's width will be 33% of available space\n            and the second column's width will be 66% of available space.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"minWidth\" type=\"Number\">\n            The minimum width of the column in pixels. If width is set this value will have no affect.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"maxWidth\" type=\"Number\">\n            The maximum width of the column in pixels. If width is set this value will have no affect.\n        </mw-binding-doc>\n    </div>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Examples</div>\n</div>\n"
 
 /***/ }),
 /* 177 */
