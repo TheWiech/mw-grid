@@ -39,6 +39,7 @@ export class MwGridComponent implements OnInit, AfterViewInit {
     gridTheme: String;
     gridHeaders: Array<MwGridHeader> = [];
     rows: Array<ComponentRef<MwRowComponent>> = [];
+    starSizeTotalWidth: number;
 
     constructor(private rowFactory: RowFactoryService) {
     }
@@ -49,19 +50,25 @@ export class MwGridComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         setTimeout(() => {
+            this.configureColumnDefinitions();
+            this.getStartSizedColumnTotal();
+            this.configureRowFactory();
             this.setGridHeaders();
-            this.setColWidths();
             this.createRows();
         });
     }
 
+    configureRowFactory() {
+        this.rowFactory.rowHeight = this.rowHeight;
+    }
+
     createRows() {
         for (let i = 0; i < this.data.length; i++) {
-            const currentRow = this.rowFactory.createRow(this.gridContentHost.viewContainerRef, this.columnDefinitions);
-            currentRow.instance.item = this.data[i];
+            const currentRow = this.rowFactory.createRow(
+                this.gridContentHost.viewContainerRef,
+                this,
+                this.data[i]);
             currentRow.instance.rowNumber = i;
-            currentRow.instance.height = this.rowHeight;
-
             this.rows.push(currentRow);
         }
     }
@@ -79,37 +86,33 @@ export class MwGridComponent implements OnInit, AfterViewInit {
         }
     }
 
+    // TODO: Refactor grid headers to be created through row factory
     setGridHeaders() {
         this.columnDefinitions.forEach(element => {
-            this.gridHeaders.push(new MwGridHeader(element.binding));
+            const newGridHeader = new MwGridHeader(element.binding);
+            newGridHeader.width = element.getWidth();
+            newGridHeader.minWidth = element.getMinWidth();
+            newGridHeader.maxWidth = element.getMaxWidth();
+            this.gridHeaders.push(newGridHeader);
         });
     }
 
-    setColWidths() {
-        let starSizeTotalWidth = 0;
-        const starSizedColumns = new Map<number, MwColumnDirective>();
-        const colDefintionArray = this.columnDefinitions.toArray();
+    getStartSizedColumnTotal() {
+        this.starSizeTotalWidth = 0;
+        const colDefinitions = this.columnDefinitions.toArray();
 
-        for (let i = 0; i < colDefintionArray.length; i++) {
-
-            // If a column is star sized we must wait until we add up all star sizing properties before we know the width of the column
-            if (colDefintionArray[i].isStarSizedWidth()) {
-                starSizeTotalWidth += colDefintionArray[i].getStarSizedWidth();
-                starSizedColumns.set(i, colDefintionArray[i]);
-            } else {
-                this.gridHeaders[i].width = colDefintionArray[i].calculatedWidth = `${ colDefintionArray[i].width }px`;
+        for (let i = 0; i < colDefinitions.length; i++) {
+            if (colDefinitions[i].isStarSizedWidth()) {
+                this.starSizeTotalWidth += colDefinitions[i].getStarSizedWidth();
             }
-
-            this.gridHeaders[i].minWidth = colDefintionArray[i].getMinWidth();
-            this.gridHeaders[i].maxWidth = colDefintionArray[i].getMaxWidth();
         }
-
-        starSizedColumns.forEach((value, key) => {
-            this.gridHeaders[key].width = colDefintionArray[key].calculatedWidth =
-                    `${colDefintionArray[key].getStarSizedWidth() / starSizeTotalWidth * 100}%`;
-        });
     }
 
+    configureColumnDefinitions() {
+        this.columnDefinitions.forEach(colDefiniton => {
+            colDefiniton.grid = this;
+        });
+    }
 }
 
 export enum MwGridTheme {

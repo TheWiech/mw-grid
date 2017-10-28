@@ -1,7 +1,7 @@
 <div class="mw-row" [ngClass]="{'mw-even': rowNumber % 2 === 0, 'mw-odd': rowNumber % 2 !== 0 }">
-    <mw-cell *ngFor="let colDefinition of columnDefinitions"
+    <mw-cell *ngFor="let colDefinition of grid.columnDefinitions"
         [cellText]="item[colDefinition.binding]"
-        [style.width]="colDefinition.calculatedWidth"
+        [style.width]="colDefinition.getWidth()"
         [style.minWidth]="colDefinition.getMinWidth()"
         [style.maxWidth]="colDefinition.getMaxWidth()"
         [style.height.px]="height">

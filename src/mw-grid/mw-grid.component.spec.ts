@@ -11,8 +11,8 @@ import { MwGridContentHostDirective } from './mw-grid-content-host.directive';
 @Component({
     selector: 'mw-test-wrapper',
     template: `<mw-grid [data]=mockData [theme]=theme>
-        <mw-column binding="col1Header"></mw-column>
-        <mw-column binding="col2Header"></mw-column>
+        <mw-column width="1*" binding="col1Header"></mw-column>
+        <mw-column width="3*" binding="col2Header"></mw-column>
         <mw-column binding="col3Header"></mw-column>
     </mw-grid>`
 })
@@ -22,6 +22,7 @@ class MwTestWrapperComponent {
 }
 
 class mockRowFactoryService {
+    rowHeight: Number;
     createRow = () => { };
 }
 
@@ -89,33 +90,21 @@ describe('MwGridComponent', () => {
     });
 
     describe('ngAfterViewInit method', () => {
-        it('should call setGridHeaders and setColWidths', <any>fakeAsync((): void => {
+        it(`should call configureColumnDefinitions, getStartSizedColumnTotal,
+                configureRowFactory, setGridHeaders and createRows`, <any>fakeAsync((): void => {
+            spyOn(component, 'configureColumnDefinitions');
+            spyOn(component, 'getStartSizedColumnTotal');
+            spyOn(component, 'configureRowFactory');
             spyOn(component, 'setGridHeaders');
-            spyOn(component, 'setColWidths');
             spyOn(component, 'createRows');
             component.ngAfterViewInit();
             tick();
+            expect(component.configureColumnDefinitions).toHaveBeenCalled();
+            expect(component.getStartSizedColumnTotal).toHaveBeenCalled();
+            expect(component.configureRowFactory).toHaveBeenCalled();
             expect(component.setGridHeaders).toHaveBeenCalled();
-            expect(component.setColWidths).toHaveBeenCalled();
             expect(component.createRows).toHaveBeenCalled();
         }));
-    });
-
-    describe('setGridHeaders method', () => {
-        it('should populate grid headers from column definitions', () => {
-            // Setup
-            fixture.detectChanges();
-
-            component.gridHeaders = [];
-
-            // Act
-            component.setGridHeaders();
-
-            // Assert
-            expect(component.gridHeaders[0].title).toEqual('col1Header');
-            expect(component.gridHeaders[1].title).toEqual('col2Header');
-            expect(component.gridHeaders[2].title).toEqual('col3Header');
-        });
     });
 
     describe('createRows method', () => {
@@ -128,18 +117,6 @@ describe('MwGridComponent', () => {
             }});
             component.createRows();
             expect(rowFactoryService.createRow.calls.count()).toEqual(3);
-        });
-
-        it('should set height on the row', () => {
-            component.data = ['item1'];
-            component.rowHeight = 30;
-            const rowFactoryService = TestBed.get(RowFactoryService);
-            spyOn(rowFactoryService, 'createRow').and.returnValue({instance: {
-                item: '',
-                rowNumber: ''
-            }});
-            component.createRows();
-            expect(component.rows[0].instance.height).toEqual(30);
         });
 
         it('should set rowNumber on each row', () => {
@@ -158,101 +135,35 @@ describe('MwGridComponent', () => {
             expect(component.rows[1].instance.rowNumber).toEqual(1);
         });
     });
-});
 
-describe('MwGridComponent', () => {
-    let colDefinition1: MwColumnDirective;
-    let colDefinition2: MwColumnDirective;
-    let colDefinition3: MwColumnDirective;
-    let rowFactoryService: RowFactoryService;
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            providers: [ { provide: RowFactoryService, useValue: mockRowFactoryService } ],
-            schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-        rowFactoryService = TestBed.get(RowFactoryService);
-    }));
-
-    beforeEach(() => {
-        colDefinition1 = new MwColumnDirective();
-        mockColumnDefinitions(colDefinition1);
-        colDefinition2 = new MwColumnDirective();
-        mockColumnDefinitions(colDefinition2);
-        colDefinition3 = new MwColumnDirective();
-        mockColumnDefinitions(colDefinition3);
-
-        function mockColumnDefinitions(colDefinition) {
-            colDefinition.width = '120';
-            colDefinition.binding = 'name';
-            colDefinition.minWidth =  10;
-            colDefinition.maxWidth = 220;
-            spyOn(colDefinition, 'isStarSizedWidth').and.returnValue(false);
-            spyOn(colDefinition, 'getStarSizedWidth').and.callFake(() => {
-                return Number(colDefinition.width);
-            });
-            spyOn(colDefinition, 'getMinWidth').and.callFake(() => {
-                return `${ colDefinition.minWidth }px`;
-            });
-            spyOn(colDefinition, 'getMaxWidth').and.callFake(() => {
-                return `${ colDefinition.maxWidth }px`;
-            });
-        }
+    describe('configureRowFactory method', () =>{
+        it('should set rowHeight of rowFactory', () => {
+            const rowFactoryMock = TestBed.get(RowFactoryService);
+            rowFactoryMock.rowHeight = 10;
+            component.rowHeight = 20;
+            component.configureRowFactory();
+            expect(rowFactoryMock.rowHeight).toEqual(20);
+        });
     });
 
-    describe('setColWidths method', () => {
-        it('should set gridHeaders minWidth, maxWidth, and width for each column definition when not starSized', () => {
-            // Setup
-            let component = new MwGridComponent(rowFactoryService);
-            component.gridHeaders = [new MwGridHeader('name'), new MwGridHeader('email')];
-
-            colDefinition1.width = '140';
-            colDefinition1.minWidth = 40;
-            colDefinition1.maxWidth = 300;
-
-            let contentChildren = new QueryList<MwColumnDirective>();
-            contentChildren.reset([colDefinition1, colDefinition2]);
-            component.columnDefinitions = contentChildren;
-
-            // Act
-            component.setColWidths();
-
-            // Assert
-            expect(component.gridHeaders[0].width).toEqual('140px');
-            expect(component.gridHeaders[0].minWidth).toEqual('40px');
-            expect(component.gridHeaders[0].maxWidth).toEqual('300px');
-            expect(component.columnDefinitions.toArray()[0].calculatedWidth).toEqual('140px');
-
-            expect(component.gridHeaders[1].width).toEqual('120px');
-            expect(component.gridHeaders[1].minWidth).toEqual('10px');
-            expect(component.gridHeaders[1].maxWidth).toEqual('220px');
-            expect(component.columnDefinitions.toArray()[1].calculatedWidth).toEqual('120px');
+    describe('getStartSizedColumnTotal method', () => {
+        it('should calculate starSizeTotalWidth', () => {
+            fixture.detectChanges();
+            component.starSizeTotalWidth = 0;
+            component.getStartSizedColumnTotal();
+            expect(component.starSizeTotalWidth).toEqual(4);
         });
+    });
 
-        it('should properly set width for each column definition when starSized', () => {
-            // Setup
-            let component = new MwGridComponent(rowFactoryService);
-            component.gridHeaders = [new MwGridHeader('name'), new MwGridHeader('email')];
+    describe('configureColumnDefinitions method', () => {
+        it('should set grid on each column definition', () => {
+            fixture.detectChanges();
+            component.configureColumnDefinitions();
+            var colDefinitions = component.columnDefinitions.toArray();
 
-            colDefinition1.width = '3';
-            colDefinition2.width = '1';
-
-            colDefinition1.isStarSizedWidth = jasmine.createSpy('starSizedSpy1').and.returnValue(true);
-            colDefinition2.isStarSizedWidth = jasmine.createSpy('starSizedSpy2').and.returnValue(true);
-
-            let contentChildren = new QueryList<MwColumnDirective>();
-            contentChildren.reset([colDefinition1, colDefinition2]);
-            component.columnDefinitions = contentChildren;
-
-            // Act
-            component.setColWidths();
-
-            // Assert
-            expect(component.gridHeaders[0].width).toEqual('75%');
-            expect(component.columnDefinitions.toArray()[0].calculatedWidth).toEqual('75%');
-
-            expect(component.gridHeaders[1].width).toEqual('25%');
-            expect(component.columnDefinitions.toArray()[1].calculatedWidth).toEqual('25%');
+            expect(colDefinitions[0].grid).toEqual(component);
+            expect(colDefinitions[1].grid).toEqual(component);
+            expect(colDefinitions[2].grid).toEqual(component);
         });
     });
 });

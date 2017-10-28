@@ -51,17 +51,20 @@ var MwGridComponent = (function () {
     MwGridComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
         setTimeout(function () {
+            _this.configureColumnDefinitions();
+            _this.getStartSizedColumnTotal();
+            _this.configureRowFactory();
             _this.setGridHeaders();
-            _this.setColWidths();
             _this.createRows();
         });
     };
+    MwGridComponent.prototype.configureRowFactory = function () {
+        this.rowFactory.rowHeight = this.rowHeight;
+    };
     MwGridComponent.prototype.createRows = function () {
         for (var i = 0; i < this.data.length; i++) {
-            var currentRow = this.rowFactory.createRow(this.gridContentHost.viewContainerRef, this.columnDefinitions);
-            currentRow.instance.item = this.data[i];
+            var currentRow = this.rowFactory.createRow(this.gridContentHost.viewContainerRef, this, this.data[i]);
             currentRow.instance.rowNumber = i;
-            currentRow.instance.height = this.rowHeight;
             this.rows.push(currentRow);
         }
     };
@@ -77,32 +80,30 @@ var MwGridComponent = (function () {
                 this.gridTheme = 'modern';
         }
     };
+    // TODO: Refactor grid headers to be created through row factory
     MwGridComponent.prototype.setGridHeaders = function () {
         var _this = this;
         this.columnDefinitions.forEach(function (element) {
-            _this.gridHeaders.push(new __WEBPACK_IMPORTED_MODULE_2__mw_grid_headers_mw_grid_headers_component__["a" /* MwGridHeader */](element.binding));
+            var newGridHeader = new __WEBPACK_IMPORTED_MODULE_2__mw_grid_headers_mw_grid_headers_component__["a" /* MwGridHeader */](element.binding);
+            newGridHeader.width = element.getWidth();
+            newGridHeader.minWidth = element.getMinWidth();
+            newGridHeader.maxWidth = element.getMaxWidth();
+            _this.gridHeaders.push(newGridHeader);
         });
     };
-    MwGridComponent.prototype.setColWidths = function () {
-        var _this = this;
-        var starSizeTotalWidth = 0;
-        var starSizedColumns = new Map();
-        var colDefintionArray = this.columnDefinitions.toArray();
-        for (var i = 0; i < colDefintionArray.length; i++) {
-            // If a column is star sized we must wait until we add up all star sizing properties before we know the width of the column
-            if (colDefintionArray[i].isStarSizedWidth()) {
-                starSizeTotalWidth += colDefintionArray[i].getStarSizedWidth();
-                starSizedColumns.set(i, colDefintionArray[i]);
+    MwGridComponent.prototype.getStartSizedColumnTotal = function () {
+        this.starSizeTotalWidth = 0;
+        var colDefinitions = this.columnDefinitions.toArray();
+        for (var i = 0; i < colDefinitions.length; i++) {
+            if (colDefinitions[i].isStarSizedWidth()) {
+                this.starSizeTotalWidth += colDefinitions[i].getStarSizedWidth();
             }
-            else {
-                this.gridHeaders[i].width = colDefintionArray[i].calculatedWidth = colDefintionArray[i].width + "px";
-            }
-            this.gridHeaders[i].minWidth = colDefintionArray[i].getMinWidth();
-            this.gridHeaders[i].maxWidth = colDefintionArray[i].getMaxWidth();
         }
-        starSizedColumns.forEach(function (value, key) {
-            _this.gridHeaders[key].width = colDefintionArray[key].calculatedWidth =
-                colDefintionArray[key].getStarSizedWidth() / starSizeTotalWidth * 100 + "%";
+    };
+    MwGridComponent.prototype.configureColumnDefinitions = function () {
+        var _this = this;
+        this.columnDefinitions.forEach(function (colDefiniton) {
+            colDefiniton.grid = _this;
         });
     };
     return MwGridComponent;
@@ -215,6 +216,12 @@ var MwColumnDirective = (function () {
     };
     MwColumnDirective.prototype.getStarSizedWidth = function () {
         return Number(this.width.split('*')[0]);
+    };
+    MwColumnDirective.prototype.getWidth = function () {
+        if (this.width === undefined) {
+            return '';
+        }
+        return this.isStarSizedWidth() === true ? this.getStarSizedWidth() / this.grid.starSizeTotalWidth * 100 + "%" : "" + this.width;
     };
     MwColumnDirective.prototype.getMinWidth = function () {
         // When minWidth and width are not set use the maxWidth if it is set otherwise default to
@@ -330,11 +337,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var RowFactoryService = (function () {
     function RowFactoryService(resolver) {
         this.resolver = resolver;
+        this.rowHeight = 55;
     }
-    RowFactoryService.prototype.createRow = function (viewRef, columnDefinitions) {
+    RowFactoryService.prototype.createRow = function (viewRef, grid, item) {
         var componentFactory = this.resolver.resolveComponentFactory(__WEBPACK_IMPORTED_MODULE_1__mw_row_mw_row_component__["a" /* MwRowComponent */]);
         var row = viewRef.createComponent(componentFactory);
-        row.instance.columnDefinitions = columnDefinitions;
+        row.instance.height = this.rowHeight;
+        row.instance.item = item;
+        row.instance.grid = grid;
         return row;
     };
     return RowFactoryService;
@@ -371,10 +381,6 @@ var MwRowComponent = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* QueryList */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* QueryList */]) === "function" && _a || Object)
-], MwRowComponent.prototype, "columnDefinitions", void 0);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
     __metadata("design:type", Object)
 ], MwRowComponent.prototype, "item", void 0);
 __decorate([
@@ -394,7 +400,6 @@ MwRowComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], MwRowComponent);
 
-var _a;
 //# sourceMappingURL=mw-row.component.js.map
 
 /***/ }),
@@ -711,7 +716,7 @@ module.exports = module.exports.toString();
 /* 125 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mw-row\" [ngClass]=\"{'mw-even': rowNumber % 2 === 0, 'mw-odd': rowNumber % 2 !== 0 }\">\n    <mw-cell *ngFor=\"let colDefinition of columnDefinitions\"\n        [cellText]=\"item[colDefinition.binding]\"\n        [style.width]=\"colDefinition.calculatedWidth\"\n        [style.minWidth]=\"colDefinition.getMinWidth()\"\n        [style.maxWidth]=\"colDefinition.getMaxWidth()\"\n        [style.height.px]=\"height\">\n    </mw-cell>\n</div>\n"
+module.exports = "<div class=\"mw-row\" [ngClass]=\"{'mw-even': rowNumber % 2 === 0, 'mw-odd': rowNumber % 2 !== 0 }\">\n    <mw-cell *ngFor=\"let colDefinition of grid.columnDefinitions\"\n        [cellText]=\"item[colDefinition.binding]\"\n        [style.width]=\"colDefinition.getWidth()\"\n        [style.minWidth]=\"colDefinition.getMinWidth()\"\n        [style.maxWidth]=\"colDefinition.getMaxWidth()\"\n        [style.height.px]=\"height\">\n    </mw-cell>\n</div>\n"
 
 /***/ }),
 /* 126 */

@@ -1,5 +1,5 @@
 import { Component, Input, QueryList } from '@angular/core';
-import { MwColumnDirective } from '../mw-column/mw-column.directive';
+import { MwGridComponent } from '../mw-grid/mw-grid.component';
 
 @Component({
     selector: 'mw-row',
@@ -7,10 +7,11 @@ import { MwColumnDirective } from '../mw-column/mw-column.directive';
     styleUrls: ['./mw-row.component.scss']
 })
 export class MwRowComponent {
-    @Input() columnDefinitions: QueryList<MwColumnDirective>;
-    @Input() item: any;
-    @Input() rowNumber: Number;
-    @Input() height: Number;
+    @Input() item: any;             // The data to display in the row
+    @Input() rowNumber: Number;     // Index of the row in the grid
+    @Input() height: Number;        // Height of the row
+
+    grid: MwGridComponent;          // Reference to the instance of the grid this row is in
 
     constructor() { }
 }

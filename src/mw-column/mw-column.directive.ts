@@ -1,6 +1,8 @@
 import { Directive, OnInit, Input } from '@angular/core';
 import { isNumeric } from 'rxjs/util/isNumeric';
 
+import { MwGridComponent } from '../mw-grid/mw-grid.component';
+
 @Directive({
     selector: 'mw-column'
 })
@@ -11,9 +13,8 @@ export class MwColumnDirective implements OnInit {
     @Input() minWidth: Number;
     @Input() maxWidth: Number;
 
-    calculatedWidth: String;
-
     private standardWidth: String = '150px';
+    public grid: MwGridComponent;
 
     constructor() {
     }
@@ -63,6 +64,14 @@ export class MwColumnDirective implements OnInit {
 
     getStarSizedWidth() {
         return Number(this.width.split('*')[0]);
+    }
+
+    getWidth() {
+        if (this.width === undefined) {
+            return '';
+        }
+
+        return this.isStarSizedWidth() === true ? `${this.getStarSizedWidth() / this.grid.starSizeTotalWidth * 100}%` : `${ this.width }`;
     }
 
     getMinWidth() {
