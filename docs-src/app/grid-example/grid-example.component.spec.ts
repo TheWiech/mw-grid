@@ -1,22 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input } from '@angular/core';
+import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { GridExampleComponent } from './grid-example.component';
 import { MwGridTheme } from '../../../src/mw-grid/mw-grid.component';
-
-@Component({selector: 'mw-grid', template: ''})
-export class MwGridComponent {
-    @Input() data: Array<any>;
-    @Input() theme: MwGridTheme;
-}
-
-@Component({selector: 'mw-column', template: ''})
-export class MwColumnComponent {
-    @Input() binding: String;
-    @Input() width: String;
-    @Input() minWidth: Number;
-    @Input() maxWidth: Number;
-}
 
 describe('GridExampleComponent', () => {
     let component: GridExampleComponent;
@@ -24,12 +10,11 @@ describe('GridExampleComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-        declarations: [
-            GridExampleComponent,
-            MwGridComponent,
-            MwColumnComponent
-        ]})
-        .compileComponents();
+            declarations: [
+                GridExampleComponent
+            ],
+            schemas: [NO_ERRORS_SCHEMA]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

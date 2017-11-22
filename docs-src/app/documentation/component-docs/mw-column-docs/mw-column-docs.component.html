@@ -1,1 +1,33 @@
-<h2>MwColumnComponent</h2>
+<mw-component-header-doc [componentName]="'MwColumnDirective'" [selector]="'mw-column'" [link]="'https://github.com/TheWiech/mw-grid/blob/master/src/mw-column/mw-column.directive.ts'"></mw-component-header-doc>
+<div class="doc-section">
+    <div class="section-header">Overview</div>
+    <p>The MwColumnDirective is used to define and customize the behaivor of a columnn in the grid. The directive must be a direct child of mw-grid.</p>
+    <p>
+        If width, minWidth, and maxWidth are not set the column defaults to a fixed width of 150px. If the minWidth is set and no maxWidth or width is set
+        the minWidth is used as the width. If the maxWidth is set and no minWidth or width is set the maxWidth is used as the width.
+    </p>
+</div>
+<div class="doc-section">
+    <div class="section-header">Bindings</div>
+    <div>
+        <mw-binding-doc binding="binding" type="String">
+            (Required) The property on the item containing the text to display.
+        </mw-binding-doc>
+        <mw-binding-doc binding="width" type="String">
+            The width of the column. The value can be expressed in pixels or a star sized value. Star sized values allow
+            the column to dynimcally resize based on the remaining space available after non star sized columns widths have
+            been detirmined and compared to other star sized colums. E.g. If a grid has two columns and the fist column has
+            a width of 1* and the second column has a width of 2* the first column's width will be 33% of available space
+            and the second column's width will be 66% of available space.
+        </mw-binding-doc>
+        <mw-binding-doc binding="minWidth" type="Number">
+            The minimum width of the column in pixels. If width is set this value will have no affect.
+        </mw-binding-doc>
+        <mw-binding-doc binding="maxWidth" type="Number">
+            The maximum width of the column in pixels. If width is set this value will have no affect.
+        </mw-binding-doc>
+    </div>
+</div>
+<div class="doc-section">
+    <div class="section-header">Examples</div>
+</div>

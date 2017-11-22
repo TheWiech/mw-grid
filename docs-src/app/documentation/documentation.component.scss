@@ -30,6 +30,24 @@ $nav-border: 1px solid #e8e8e8;
     @media (min-width: 768px) {
         padding-left: calc(#{$docs-nav-width} + #{$docs-nav-padding});
     }
+
+    //
+    // Styling for doc section headers used across docs pages.
+    //
+    .doc-section {
+        margin-bottom: 2em;
+
+        .section-header {
+            color: #000000;
+            font-weight: 400;
+            font-size: 1.3em;
+            margin-bottom: .7em;
+        }
+
+        p {
+            color: #333333;
+        }
+    }
 }
 
 .docs-nav {

@@ -1,10 +1,11 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, HostListener, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'mw-documentation',
   templateUrl: './documentation.component.html',
-  styleUrls: ['./documentation.component.scss']
+  styleUrls: ['./documentation.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DocumentationComponent implements AfterViewInit {
     @ViewChild('docNavMenu') docsNavMenu: ElementRef;

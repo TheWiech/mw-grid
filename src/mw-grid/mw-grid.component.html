@@ -1,14 +1,6 @@
-<div class="mw-grid-container {{gridTheme}}">
-    <mw-grid-headers [headers]="gridHeaders"></mw-grid-headers>
-    <div class="mw-row" *ngFor="let item of data; let i = index;"
-            [ngClass]="{'mw-even': i % 2 === 0, 'mw-odd': i % 2 !== 0 }">
-        <span *ngIf="columnDefinitions.length !== 0">
-            <mw-cell *ngFor="let colDefinition of columnDefinitions" [style.width]="colDefinition.calculatedWidth" [style.minWidth]="colDefinition.getMinWidth()" [style.maxWidth]="colDefinition.getMaxWidth()">
-                {{ item[colDefinition.binding] }}
-            </mw-cell>
-        </span>
-        <span *ngIf="columnDefinitions.length === 0">
-            {{ item }}
-        </span>
+<div #gridContainer class="mw-grid-container {{gridTheme}}">
+    <div #gridContent class="grid-content">
+        <mw-grid-headers [headers]="gridHeaders"></mw-grid-headers>
+        <ng-template mw-grid-content-host></ng-template>
     </div>
 </div>

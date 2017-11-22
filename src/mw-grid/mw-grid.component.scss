@@ -6,16 +6,21 @@ mw-grid > .mw-grid-container {
     width: 100%;
 
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 
-    //
-    // All headers and cells should hide overflow and prevent it from wrapping to the next line
-    //
-    mw-grid-headers .mw-header, mw-cell {
-        overflow: hidden;
-        white-space: nowrap;
-    }
+    .grid-content {
+        position: relative;
 
-    mw-grid-headers, .mw-row > span {
-        display: flex;
+        //
+        // All headers and cells should hide overflow and prevent it from wrapping to the next line
+        //
+        mw-grid-headers .mw-header, mw-cell {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        mw-grid-headers, .mw-row {
+            display: flex;
+        }
     }
 }
