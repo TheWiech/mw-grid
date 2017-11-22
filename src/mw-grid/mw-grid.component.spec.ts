@@ -1,40 +1,40 @@
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { Component, DebugElement, Input, QueryList } from '@angular/core';
+import { Component, DebugElement, Input, QueryList, NO_ERRORS_SCHEMA, ComponentFactoryResolver } from '@angular/core';
 
 import { MwGridComponent, MwGridTheme } from './mw-grid.component';
+import { MwGridHeader } from '../mw-grid-headers/mw-grid-headers.component';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
-
-@Component({selector: 'mw-cell', template: '<div class="mock-mw-cell"></div>'})
-export class MwCell { }
-
-@Component({selector: 'mw-grid-headers', template: '<div class="mock-grid-headers"></div>'})
-class MwGridHeader {
-    constructor (public title: string) { }
-
-    width: String;
-    minWidth: String;
-    maxWidth: String;
-}
-
-@Component({
-    selector: 'mw-grid-headers',
-    template: '<div class="mock-grid-headers"></div>',
-})
-export class MwGridHeaders {
-    @Input() headers: Array<MwGridHeader>;
-}
+import { MwRowComponent } from '../mw-row/mw-row.component';
+import { RowFactoryService } from '../row-factory.service';
+import { MwGridContentHostDirective } from './mw-grid-content-host.directive';
 
 @Component({
     selector: 'mw-test-wrapper',
     template: `<mw-grid [data]=mockData [theme]=theme>
-        <mw-column binding="col1Header"></mw-column>
-        <mw-column binding="col2Header"></mw-column>
+        <mw-column width="1*" binding="col1Header"></mw-column>
+        <mw-column width="3*" binding="col2Header"></mw-column>
         <mw-column binding="col3Header"></mw-column>
     </mw-grid>`
 })
 class MwTestWrapperComponent {
-    mockData = ['test1'];
+    mockData = ['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7', 'item8', 'item9', 'item10', 'item11', 'item12'];
     theme: MwGridTheme;
+}
+
+const destroySpy = jasmine.createSpy('destroy');
+class mockRowFactoryService {
+    rowHeight: Number;
+    createRow = () => {
+        return {
+            instance: {},
+            location: {
+                nativeElement: {
+                    style: {}
+                }
+            },
+            destroy: destroySpy
+        };
+    };
 }
 
 describe('MwGridComponent', () => {
@@ -44,15 +44,16 @@ describe('MwGridComponent', () => {
     let el:        HTMLElement;
 
     beforeEach(async(() => {
-
         TestBed.configureTestingModule({
         declarations: [
             MwGridComponent,
-            MwCell,
             MwTestWrapperComponent,
             MwColumnDirective,
-            MwGridHeaders
-        ]}).compileComponents();
+            MwGridContentHostDirective
+        ],
+        providers: [ { provide: RowFactoryService, useClass: mockRowFactoryService } ],
+        schemas: [NO_ERRORS_SCHEMA]
+        }).compileComponents();
     }));
 
     beforeEach(() => {
@@ -64,42 +65,6 @@ describe('MwGridComponent', () => {
 
     it('should be created', () => {
         expect(component).toBeTruthy();
-    });
-
-    it('set theme class on grid container to modern as default', () => {
-        fixture.detectChanges();
-        expect(de.nativeElement.querySelector('.mw-grid-container').classList.contains('modern')).toEqual(true);
-    });
-
-    it('should create 3 mw-cells when there is a single row with three columns', () => {
-        fixture.detectChanges();
-        expect(de.nativeElement.querySelectorAll('.mock-mw-cell').length).toEqual(3);
-    });
-
-    it('should create 6 mw-cells when there are two rows with three columns', () => {
-        fixture.componentInstance.mockData = ['test1', 'test2'];
-        fixture.detectChanges();
-        expect(de.nativeElement.querySelectorAll('.mock-mw-cell').length).toEqual(6);
-    });
-
-    it('should create 1 row for each item in the grid data', () => {
-        fixture.componentInstance.mockData = ['test1', 'test2'];
-        fixture.detectChanges();
-        expect(de.nativeElement.querySelectorAll('.mw-row').length).toEqual(2);
-    });
-
-    it('should apply "mw-even" class to even rows', () => {
-        fixture.componentInstance.mockData = ['test1', 'test2', 'test3'];
-        fixture.detectChanges();
-        // Remember even/odd is determined on 0 based index
-        expect(de.nativeElement.querySelectorAll('.mw-row.mw-even').length).toEqual(2);
-    });
-
-    it('should apply "mw-odd" class to odd rows', () => {
-        fixture.componentInstance.mockData = ['test1', 'test2', 'test3'];
-        fixture.detectChanges();
-        // Remember even/odd is determined on 0 based index
-        expect(de.nativeElement.querySelectorAll('.mw-row.mw-odd').length).toEqual(1);
     });
 
     describe('setGridTheme method', () => {
@@ -130,118 +95,225 @@ describe('MwGridComponent', () => {
         });
     });
 
-    describe('ngAfterViewInit method', () => {
-        it('should call setGridHeaders and setColWidths', <any>fakeAsync((): void => {
-            spyOn(component, 'setGridHeaders');
-            spyOn(component, 'setColWidths');
-            component.ngAfterViewInit();
+    describe('ngAfterViewInit', () => {
+        it('should set grid on each column definition', <any>fakeAsync((): void => {
+            fixture.detectChanges();
             tick();
-            expect(component.setGridHeaders).toHaveBeenCalled();
-            expect(component.setColWidths).toHaveBeenCalled();
+            var colDefinitions = component.columnDefinitions.toArray();
+
+            expect(colDefinitions[0].grid).toEqual(component);
+            expect(colDefinitions[1].grid).toEqual(component);
+            expect(colDefinitions[2].grid).toEqual(component);
+        }));
+
+        it('should calculate starSizeTotalWidth', <any>fakeAsync((): void => {
+            component.starSizeTotalWidth = 0;
+            fixture.detectChanges();
+            tick();
+            expect(component.starSizeTotalWidth).toEqual(4);
+        }));
+
+        it('should set rowHeight of rowFactory', <any>fakeAsync((): void => {
+            const rowFactoryMock = TestBed.get(RowFactoryService);
+            rowFactoryMock.rowHeight = 10;
+            component.rowHeight = 20;
+            fixture.detectChanges();
+            tick();
+            expect(rowFactoryMock.rowHeight).toEqual(20);
+        }));
+
+        it('should set the height of the grid to the height of rows', <any>fakeAsync((): void => {
+            const gridHeaderHeight = 25;
+            component.rowHeight = 60;
+            fixture.detectChanges();
+            tick();
+            expect(component.gridContent.nativeElement.style.height).toEqual(`${ component.rowHeight * 12 + gridHeaderHeight }px`); // 12 = mockData.length
+        }));
+
+        it('should load 2.5 pages of rows', <any>fakeAsync((): void => {
+            component.rowHeight = 60;
+            component.gridContainer.nativeElement.style.height = '180px';
+
+            const rowFactoryMock = TestBed.get(RowFactoryService);
+            spyOn(rowFactoryMock, 'createRow').and.callThrough();
+
+            fixture.detectChanges();
+            tick();
+            expect(rowFactoryMock.createRow).toHaveBeenCalledTimes(8);
         }));
     });
 
-    describe('setGridHeaders method', () => {
-        it('should populate grid headers from column definitions', () => {
-            // Setup
-            fixture.detectChanges();
-            component.gridHeaders = [];
+    describe('when grid scrolled', () => {
+        let mockEvent = {
+            target: {
+                scrollTop: 0,
+                offsetHeight: 180
+            }
+        };
 
-            // Act
-            component.setGridHeaders();
-
-            // Assert
-            expect(component.gridHeaders[0].title).toEqual('col1Header');
-            expect(component.gridHeaders[1].title).toEqual('col2Header');
-            expect(component.gridHeaders[2].title).toEqual('col3Header');
-        });
-    });
-});
-
-describe('MwGridComponent', () => {
-    let colDefinition1: MwColumnDirective;
-    let colDefinition2: MwColumnDirective;
-    let colDefinition3: MwColumnDirective;
-
-    beforeEach(() => {
-        colDefinition1 = new MwColumnDirective();
-        mockColumnDefinitions(colDefinition1);
-        colDefinition2 = new MwColumnDirective();
-        mockColumnDefinitions(colDefinition2);
-        colDefinition3 = new MwColumnDirective();
-        mockColumnDefinitions(colDefinition3);
-
-        function mockColumnDefinitions(colDefinition) {
-            colDefinition.width = '120';
-            colDefinition.binding = 'name';
-            colDefinition.minWidth =  10;
-            colDefinition.maxWidth = 220;
-            spyOn(colDefinition, 'isStarSizedWidth').and.returnValue(false);
-            spyOn(colDefinition, 'getStarSizedWidth').and.callFake(() => {
-                return Number(colDefinition.width);
-            });
-            spyOn(colDefinition, 'getMinWidth').and.callFake(() => {
-                return `${ colDefinition.minWidth }px`;
-            });
-            spyOn(colDefinition, 'getMaxWidth').and.callFake(() => {
-                return `${ colDefinition.maxWidth }px`;
-            });
-        }
-    });
-
-    describe('setColWidths method', () => {
-        it('should set gridHeaders minWidth, maxWidth, and width for each column definition when not starSized', () => {
-            // Setup
-            let component = new MwGridComponent();
-            component.gridHeaders = [new MwGridHeader('name'), new MwGridHeader('email')];
-
-            colDefinition1.width = '140';
-            colDefinition1.minWidth = 40;
-            colDefinition1.maxWidth = 300;
-
-            let contentChildren = new QueryList<MwColumnDirective>();
-            contentChildren.reset([colDefinition1, colDefinition2]);
-            component.columnDefinitions = contentChildren;
-
-            // Act
-            component.setColWidths();
-
-            // Assert
-            expect(component.gridHeaders[0].width).toEqual('140px');
-            expect(component.gridHeaders[0].minWidth).toEqual('40px');
-            expect(component.gridHeaders[0].maxWidth).toEqual('300px');
-            expect(component.columnDefinitions.toArray()[0].calculatedWidth).toEqual('140px');
-
-            expect(component.gridHeaders[1].width).toEqual('120px');
-            expect(component.gridHeaders[1].minWidth).toEqual('10px');
-            expect(component.gridHeaders[1].maxWidth).toEqual('220px');
-            expect(component.columnDefinitions.toArray()[1].calculatedWidth).toEqual('120px');
+        beforeEach(() => {
+            mockEvent = {
+                target: {
+                    scrollTop: 0,
+                    offsetHeight: 180
+                }
+            };
+            component.rowHeight = 60;
+            component.gridContainer.nativeElement.style.height = '180px';
+            destroySpy.calls.reset();
         });
 
-        it('should properly set width for each column definition when starSized', () => {
-            // Setup
-            let component = new MwGridComponent();
-            component.gridHeaders = [new MwGridHeader('name'), new MwGridHeader('email')];
+        describe('down', () => {
+            it('should not add row if 1 page of rows below have already been prefetched', <any>fakeAsync((): void => {
+                // Setup
+                fixture.detectChanges();
+                tick();
 
-            colDefinition1.width = '3';
-            colDefinition2.width = '1';
+                const rowFactoryMock = TestBed.get(RowFactoryService);
+                spyOn(rowFactoryMock, 'createRow').and.callThrough();
 
-            colDefinition1.isStarSizedWidth = jasmine.createSpy('starSizedSpy1').and.returnValue(true);
-            colDefinition2.isStarSizedWidth = jasmine.createSpy('starSizedSpy2').and.returnValue(true);
+                mockEvent.target.scrollTop = 60;
+                // Action
+                component.onGridScroll(mockEvent);
 
-            let contentChildren = new QueryList<MwColumnDirective>();
-            contentChildren.reset([colDefinition1, colDefinition2]);
-            component.columnDefinitions = contentChildren;
+                // Assert
+                expect(rowFactoryMock.createRow).not.toHaveBeenCalled();
+            }));
 
-            // Act
-            component.setColWidths();
+            it('should add row when less than 1 page of rows below have been prefetched and should delete a row on top', <any>fakeAsync((): void => {
+                // Setup
+                fixture.detectChanges();
+                tick();
 
-            // Assert
-            expect(component.gridHeaders[0].width).toEqual('75%');
-            expect(component.columnDefinitions.toArray()[0].calculatedWidth).toEqual('75%');
+                const rowFactoryMock = TestBed.get(RowFactoryService);
+                spyOn(rowFactoryMock, 'createRow').and.callThrough();
 
-            expect(component.gridHeaders[1].width).toEqual('25%');
-            expect(component.columnDefinitions.toArray()[1].calculatedWidth).toEqual('25%');
+                mockEvent.target.scrollTop = 180;
+                // Action
+                component.onGridScroll(mockEvent);
+
+                // Assert
+                expect(rowFactoryMock.createRow).toHaveBeenCalledTimes(1);
+            }));
+
+            it('should add 3 rows when scrolled far enough that 3 rows are needed for 1 page to be prefetched', <any>fakeAsync((): void => {
+                // Setup
+                fixture.detectChanges();
+                tick();
+
+                const rowFactoryMock = TestBed.get(RowFactoryService);
+                spyOn(rowFactoryMock, 'createRow').and.callThrough();
+
+                mockEvent.target.scrollTop = 300;
+                // Action
+                component.onGridScroll(mockEvent);
+
+                // Assert
+                expect(rowFactoryMock.createRow).toHaveBeenCalledTimes(3);
+            }));
+
+            it('should not add rows when the last row is already loaded', <any>fakeAsync((): void => {
+                // Setup
+                fixture.detectChanges();
+                tick();
+
+                mockEvent.target.scrollTop = 660; // Scroll so last row is not visible
+                component.onGridScroll(mockEvent);
+
+                const rowFactoryMock = TestBed.get(RowFactoryService);
+                spyOn(rowFactoryMock, 'createRow').and.callThrough();
+
+                mockEvent.target.scrollTop = 720; // Scroll to bottom
+                // Action
+                component.onGridScroll(mockEvent);
+
+                // Assert
+                expect(rowFactoryMock.createRow).not.toHaveBeenCalled();
+            }));
+
+            it('should not delete rows on top if 1 page of rows are not prefetched', <any>fakeAsync((): void => {
+                // Setup
+                fixture.detectChanges();
+                tick();
+
+                mockEvent.target.scrollTop = 180; // Scroll so 1 page of rows are above grid
+                component.onGridScroll(mockEvent);
+
+                // Assert
+                expect(destroySpy).not.toHaveBeenCalled();
+            }));
+
+            it('should delete rows on top if 1 page of rows are prefetched', <any>fakeAsync((): void => {
+                // Setup
+                fixture.detectChanges();
+                tick();
+
+                mockEvent.target.scrollTop = 240; // Scroll so more than 1 page of rows are above grid
+                component.onGridScroll(mockEvent);
+
+                // Assert
+                expect(destroySpy).toHaveBeenCalledTimes(1);
+            }));
+        });
+
+        describe('up', () => {
+            it('should add rows so 1 page of rows are prefetched on the top', <any>fakeAsync((): void => {
+                // Setup
+                fixture.detectChanges();
+                tick();
+
+                mockEvent.target.scrollTop = 360;
+                // Scroll down to trigger bottom rows being loaded and top rows being deleted.
+                component.onGridScroll(mockEvent);
+
+
+                const rowFactoryMock = TestBed.get(RowFactoryService);
+                spyOn(rowFactoryMock, 'createRow').and.callThrough();
+
+                // Scroll up 2 rows to trigger 1 page of rows to be prefetched
+                mockEvent.target.scrollTop = 265;
+                // Action
+                component.onGridScroll(mockEvent);
+
+                // Assert
+                expect(rowFactoryMock.createRow).toHaveBeenCalledTimes(2);
+            }));
+
+            it('should not add rows when the first row is already loaded', <any>fakeAsync((): void => {
+                // Setup
+                fixture.detectChanges();
+                tick();
+
+                mockEvent.target.scrollTop = 120;
+                // Scroll down to trigger bottom rows being loaded and top rows being deleted.
+                component.onGridScroll(mockEvent);
+
+                const rowFactoryMock = TestBed.get(RowFactoryService);
+                spyOn(rowFactoryMock, 'createRow').and.callThrough();
+
+                mockEvent.target.scrollTop = 60; // Scroll up 1 row
+                // Action
+                component.onGridScroll(mockEvent);
+
+                // Assert
+                expect(rowFactoryMock.createRow).not.toHaveBeenCalled();
+            }));
+
+            it('should delete rows on bottom if 1 page of rows are prefetched', <any>fakeAsync((): void => {
+                // Setup
+                fixture.detectChanges();
+                tick();
+
+                mockEvent.target.scrollTop = 240; // Scroll so more than 1 page of rows are above grid
+                component.onGridScroll(mockEvent);
+                destroySpy.calls.reset();
+
+                mockEvent.target.scrollTop = 180;
+                component.onGridScroll(mockEvent);
+
+                // Assert
+                expect(destroySpy).toHaveBeenCalledTimes(1);
+            }));
         });
     });
 });
