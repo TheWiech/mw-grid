@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement, NO_ERRORS_SCHEMA, Component, Directive, Input, QueryList } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA, Component, Directive, Input, QueryList, ChangeDetectorRef } from '@angular/core';
 
 import { MwRowComponent } from './mw-row.component';
 import { MwGridComponent } from '../mw-grid/mw-grid.component';
@@ -38,7 +38,10 @@ describe('MwRowComponent', () => {
         declarations: [
             MwRowComponent
         ],
-        providers: [ { provide: RowFactoryService, useClass: mockRowFactoryService } ],
+        providers: [
+            { provide: RowFactoryService, useClass: mockRowFactoryService },
+            { provide: ChangeDetectorRef, useClass: ChangeDetectorRef }
+        ],
         schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
     }));
@@ -48,7 +51,8 @@ describe('MwRowComponent', () => {
         component = fixture.componentInstance;
 
         let rowFactoryService = TestBed.get(RowFactoryService);
-        component.grid = new MwGridComponentMock(rowFactoryService);
+        let changeDetectorRef = TestBed.get(ChangeDetectorRef);
+        component.grid = new MwGridComponentMock(rowFactoryService, changeDetectorRef);
         de = fixture.debugElement;
         el = de.nativeElement;
     });
@@ -109,7 +113,10 @@ describe('MwRowComponent', () => {
             MockMwCell,
             MwRowComponent
         ],
-        providers: [ { provide: RowFactoryService, useClass: mockRowFactoryService } ],
+        providers: [
+            { provide: RowFactoryService, useClass: mockRowFactoryService },
+            { provide: ChangeDetectorRef, useClass: ChangeDetectorRef }
+        ],
         schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
     }));
@@ -121,7 +128,8 @@ describe('MwRowComponent', () => {
         el = de.nativeElement;
 
         let rowFactoryService = TestBed.get(RowFactoryService);
-        component.grid = new MwGridComponentMock(rowFactoryService);
+        let changeDetectorRef = TestBed.get(ChangeDetectorRef);
+        component.grid = new MwGridComponentMock(rowFactoryService, changeDetectorRef);
 
         colDefinition1 = new MwColumnDirectiveStub();
         colDefinition1.minWidth = 1;

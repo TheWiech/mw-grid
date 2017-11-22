@@ -14,7 +14,7 @@ import { MwColumnDirective } from './mw-column/mw-column.directive';
 @Injectable()
 export class RowFactoryService {
 
-    rowHeight: Number = 55;
+    rowHeight = 55;
 
     constructor(private resolver: ComponentFactoryResolver) {
     }
@@ -25,6 +25,10 @@ export class RowFactoryService {
         row.instance.height = this.rowHeight;
         row.instance.item = item;
         row.instance.grid = grid;
+
+        row.location.nativeElement.style.position = 'absolute';
+        row.location.nativeElement.style.width = '100%';
+
         return row;
     }
 }

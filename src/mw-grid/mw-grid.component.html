@@ -1,4 +1,6 @@
 <div #gridContainer class="mw-grid-container {{gridTheme}}">
-    <mw-grid-headers [headers]="gridHeaders"></mw-grid-headers>
-    <ng-template mw-grid-content-host></ng-template>
+    <div #gridContent class="grid-content">
+        <mw-grid-headers [headers]="gridHeaders"></mw-grid-headers>
+        <ng-template mw-grid-content-host></ng-template>
+    </div>
 </div>
