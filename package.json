@@ -12,9 +12,11 @@
     "remove-docs": "node_modules/.bin/rimraf ./docs",
     "make-docs": "mkdir docs",
     "clean-deploy-folders": "npm-run-all remove-docs make-docs",
-    "prebuild": "npm-run-all clean-deploy-folders lint test",
-    "build": "ng-packagr -p ng-package.json",
-    "postbuild": "webpack --env.production --config webpack.config.js"
+    "build": "npm-run-all lint test",
+    "postbuild": "webpack --env.production --config webpack.dev.config.js",
+    "prerelease": "npm-run-all clean-deploy-folders lint test",
+    "release": "ng-packagr -p ng-package.json",
+    "postrelease": "webpack --env.production --config webpack.config.js"
   },
   "private": true,
   "dependencies": {

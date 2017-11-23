@@ -5,7 +5,7 @@ mw-grid > .mw-grid-container {
     display: inline-block;
     width: 100%;
 
-    overflow: scroll;
+    overflow: auto;
     -webkit-overflow-scrolling: touch;
 
     .grid-content {
