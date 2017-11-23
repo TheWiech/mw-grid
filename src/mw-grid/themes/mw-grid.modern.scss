@@ -12,13 +12,11 @@ mw-grid > .mw-grid-container.modern {
     //
     // Draw bottom border only on grid headers
     //
-    mw-grid-headers .mw-header {
+    .mw-column-header mw-cell .mw-cell {
         border-bottom: $border-thickness $border-style $top-border-color;
         color: $header-font-color;
-        > div {
-            padding: 0 1em;
-            font-weight: 500;
-        }
+        padding: 0 1em;
+        font-weight: 500;
     }
 
     .mw-row {

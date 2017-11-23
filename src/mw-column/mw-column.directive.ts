@@ -8,12 +8,12 @@ import { MwGridComponent } from '../mw-grid/mw-grid.component';
 })
 export class MwColumnDirective implements OnInit {
     // Key on object that holds the value to be displayed in the grid
-    @Input() binding: String;
-    @Input() width: String;
-    @Input() minWidth: Number;
-    @Input() maxWidth: Number;
+    @Input() binding: string;
+    @Input() width: string;
+    @Input() minWidth: number;
+    @Input() maxWidth: number;
 
-    private standardWidth: String = '150px';
+    private standardWidth = '150px';
     public grid: MwGridComponent;
 
     constructor() {

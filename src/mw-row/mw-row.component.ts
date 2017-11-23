@@ -10,8 +10,14 @@ export class MwRowComponent {
     @Input() item: any;             // The data to display in the row
     @Input() rowNumber: number;     // Index of the row in the grid
     @Input() height: number;        // Height of the row
+    @Input() rowType: RowType;
 
     grid: MwGridComponent;          // Reference to the instance of the grid this row is in
 
     constructor() { }
+}
+
+export enum RowType {
+    Content,
+    ColumnHeader
 }
