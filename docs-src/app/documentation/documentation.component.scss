@@ -25,7 +25,7 @@ $nav-border: 1px solid #e8e8e8;
 }
 
 .docs-content-container {
-    overflow: scroll;
+    overflow: auto;
 
     @media (min-width: 768px) {
         padding-left: calc(#{$docs-nav-width} + #{$docs-nav-padding});
@@ -57,7 +57,7 @@ $nav-border: 1px solid #e8e8e8;
     @media (min-width: 768px) {
         width: $docs-nav-width;
         position: absolute;
-        overflow: scroll;
+        overflow: auto;
 
         border-right: $nav-border;
         padding-right: $docs-nav-padding;
