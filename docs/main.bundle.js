@@ -22,9 +22,9 @@ webpackEmptyAsyncContext.id = 96;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MwGridTheme; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mw_column_mw_column_directive__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mw_grid_headers_mw_grid_headers_component__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__row_factory_service__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mw_grid_content_host_directive__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__row_factory_service__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mw_grid_content_host_directive__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mw_grid_column_header_host_directive__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -43,7 +43,6 @@ var MwGridComponent = (function () {
     function MwGridComponent(rowFactory, ref) {
         this.rowFactory = rowFactory;
         this.ref = ref;
-        this.gridHeaders = [];
         this.rows = [];
         this.lastScrollPosition = 0;
     }
@@ -75,16 +74,8 @@ var MwGridComponent = (function () {
                 this.gridTheme = 'modern';
         }
     };
-    // TODO: Refactor grid headers to be created through row factory
     MwGridComponent.prototype.setGridHeaders = function () {
-        var _this = this;
-        this.columnDefinitions.forEach(function (element) {
-            var newGridHeader = new __WEBPACK_IMPORTED_MODULE_2__mw_grid_headers_mw_grid_headers_component__["a" /* MwGridHeader */](element.binding);
-            newGridHeader.width = element.getWidth();
-            newGridHeader.minWidth = element.getMinWidth();
-            newGridHeader.maxWidth = element.getMaxWidth();
-            _this.gridHeaders.push(newGridHeader);
-        });
+        this.rowFactory.createColumnHeaders(this.gridColumnHeadersHost.viewContainerRef, this);
     };
     MwGridComponent.prototype.getStarSizedColumnTotal = function () {
         this.starSizeTotalWidth = 0;
@@ -134,6 +125,7 @@ var MwGridComponent = (function () {
     };
     MwGridComponent.prototype.configureRowFactory = function () {
         this.rowFactory.rowHeight = this.rowHeight;
+        this.rowFactory.columnHeaderHeight = this.columnHeaderHeight;
     };
     MwGridComponent.prototype.initializeRows = function () {
         var gridHeight = this.gridContainer.nativeElement.offsetHeight;
@@ -249,6 +241,10 @@ __decorate([
     __metadata("design:type", Number)
 ], MwGridComponent.prototype, "rowHeight", void 0);
 __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Number)
+], MwGridComponent.prototype, "columnHeaderHeight", void 0);
+__decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ContentChildren */])(__WEBPACK_IMPORTED_MODULE_1__mw_column_mw_column_directive__["a" /* MwColumnDirective */]),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* QueryList */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* QueryList */]) === "function" && _a || Object)
 ], MwGridComponent.prototype, "columnDefinitions", void 0);
@@ -261,17 +257,21 @@ __decorate([
     __metadata("design:type", typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _c || Object)
 ], MwGridComponent.prototype, "gridContent", void 0);
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_4__mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */]),
-    __metadata("design:type", typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */]) === "function" && _d || Object)
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_4__mw_grid_column_header_host_directive__["a" /* MwGridColumnHeaderHostDirective */]),
+    __metadata("design:type", typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__mw_grid_column_header_host_directive__["a" /* MwGridColumnHeaderHostDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__mw_grid_column_header_host_directive__["a" /* MwGridColumnHeaderHostDirective */]) === "function" && _d || Object)
+], MwGridComponent.prototype, "gridColumnHeadersHost", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_3__mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */]),
+    __metadata("design:type", typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */]) === "function" && _e || Object)
 ], MwGridComponent.prototype, "gridContentHost", void 0);
 MwGridComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-grid',
-        template: __webpack_require__(182),
-        styles: [__webpack_require__(183), __webpack_require__(184), __webpack_require__(185)],
+        template: __webpack_require__(180),
+        styles: [__webpack_require__(181), __webpack_require__(182), __webpack_require__(183)],
         encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ViewEncapsulation */].None
     }),
-    __metadata("design:paramtypes", [typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__row_factory_service__["a" /* RowFactoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__row_factory_service__["a" /* RowFactoryService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__row_factory_service__["a" /* RowFactoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__row_factory_service__["a" /* RowFactoryService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */]) === "function" && _g || Object])
 ], MwGridComponent);
 
 var MwGridTheme;
@@ -279,7 +279,7 @@ var MwGridTheme;
     MwGridTheme[MwGridTheme["Modern"] = 0] = "Modern";
     MwGridTheme[MwGridTheme["Spreadsheet"] = 1] = "Spreadsheet";
 })(MwGridTheme || (MwGridTheme = {}));
-var _a, _b, _c, _d, _e, _f;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=mw-grid.component.js.map
 
 /***/ }),
@@ -373,19 +373,19 @@ var MwColumnDirective = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], MwColumnDirective.prototype, "binding", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], MwColumnDirective.prototype, "width", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Number)
 ], MwColumnDirective.prototype, "minWidth", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Number)
 ], MwColumnDirective.prototype, "maxWidth", void 0);
 MwColumnDirective = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* Directive */])({
@@ -401,56 +401,9 @@ MwColumnDirective = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MwGridHeadersComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwGridHeader; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var MwGridHeadersComponent = (function () {
-    function MwGridHeadersComponent() {
-    }
-    MwGridHeadersComponent.prototype.ngOnInit = function () {
-    };
-    return MwGridHeadersComponent;
-}());
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
-    __metadata("design:type", Object)
-], MwGridHeadersComponent.prototype, "headers", void 0);
-MwGridHeadersComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-        selector: 'mw-grid-headers',
-        template: __webpack_require__(178),
-        styles: [__webpack_require__(179)]
-    }),
-    __metadata("design:paramtypes", [])
-], MwGridHeadersComponent);
-
-var MwGridHeader = (function () {
-    function MwGridHeader(title) {
-        this.title = title;
-    }
-    return MwGridHeader;
-}());
-
-//# sourceMappingURL=mw-grid-headers.component.js.map
-
-/***/ }),
-/* 103 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RowFactoryService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mw_row_mw_row_component__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mw_row_mw_row_component__ = __webpack_require__(103);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -465,16 +418,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var RowFactoryService = (function () {
     function RowFactoryService(resolver) {
         this.resolver = resolver;
+        this.columnHeaderHeight = 25;
         this.rowHeight = 55;
     }
     RowFactoryService.prototype.createRow = function (viewRef, grid, item) {
-        var componentFactory = this.resolver.resolveComponentFactory(__WEBPACK_IMPORTED_MODULE_1__mw_row_mw_row_component__["a" /* MwRowComponent */]);
-        var row = viewRef.createComponent(componentFactory);
+        var row = this.initRow(viewRef, grid);
         row.instance.height = this.rowHeight;
         row.instance.item = item;
-        row.instance.grid = grid;
+        row.instance.rowType = __WEBPACK_IMPORTED_MODULE_1__mw_row_mw_row_component__["b" /* RowType */].Content;
         row.location.nativeElement.style.position = 'absolute';
         row.location.nativeElement.style.width = '100%';
+        return row;
+    };
+    RowFactoryService.prototype.createColumnHeaders = function (viewRef, grid) {
+        var row = this.initRow(viewRef, grid);
+        var item = {};
+        grid.columnDefinitions.forEach(function (element) {
+            item[element.binding] = element.binding;
+        });
+        row.instance.item = item;
+        row.instance.height = this.columnHeaderHeight;
+        row.instance.rowType = __WEBPACK_IMPORTED_MODULE_1__mw_row_mw_row_component__["b" /* RowType */].ColumnHeader;
+        row.location.nativeElement.style.width = '100%';
+        return row;
+    };
+    RowFactoryService.prototype.initRow = function (viewRef, grid) {
+        var componentFactory = this.resolver.resolveComponentFactory(__WEBPACK_IMPORTED_MODULE_1__mw_row_mw_row_component__["a" /* MwRowComponent */]);
+        var row = viewRef.createComponent(componentFactory);
+        row.instance.grid = grid;
         return row;
     };
     return RowFactoryService;
@@ -488,11 +459,12 @@ var _a;
 //# sourceMappingURL=row-factory.service.js.map
 
 /***/ }),
-/* 104 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwRowComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RowType; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -521,19 +493,28 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
     __metadata("design:type", Number)
 ], MwRowComponent.prototype, "height", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Number)
+], MwRowComponent.prototype, "rowType", void 0);
 MwRowComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-row',
-        template: __webpack_require__(180),
-        styles: [__webpack_require__(181)]
+        template: __webpack_require__(178),
+        styles: [__webpack_require__(179)]
     }),
     __metadata("design:paramtypes", [])
 ], MwRowComponent);
 
+var RowType;
+(function (RowType) {
+    RowType[RowType["Content"] = 0] = "Content";
+    RowType[RowType["ColumnHeader"] = 1] = "ColumnHeader";
+})(RowType || (RowType = {}));
 //# sourceMappingURL=mw-row.component.js.map
 
 /***/ }),
-/* 105 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -567,6 +548,42 @@ MwGridContentHostDirective = __decorate([
 
 var _a;
 //# sourceMappingURL=mw-grid-content-host.directive.js.map
+
+/***/ }),
+/* 105 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwGridColumnHeaderHostDirective; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MwGridColumnHeaderHostDirective = (function () {
+    /**
+     * This directive exposes viewContainerRef so it can act as an anchor directive.
+     */
+    function MwGridColumnHeaderHostDirective(viewContainerRef) {
+        this.viewContainerRef = viewContainerRef;
+    }
+    return MwGridColumnHeaderHostDirective;
+}());
+MwGridColumnHeaderHostDirective = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* Directive */])({
+        selector: '[mw-grid-column-headers-host]'
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* ViewContainerRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* ViewContainerRef */]) === "function" && _a || Object])
+], MwGridColumnHeaderHostDirective);
+
+var _a;
+//# sourceMappingURL=mw-grid-column-header-host.directive.js.map
 
 /***/ }),
 /* 106 */,
@@ -610,7 +627,7 @@ var _a;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(144);
-module.exports = __webpack_require__(251);
+module.exports = __webpack_require__(249);
 
 
 /***/ }),
@@ -622,8 +639,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(247);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap__ = __webpack_require__(246);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_bootstrap__);
 
 
@@ -658,25 +675,25 @@ Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_mw_grid_module__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(189);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__page_not_found_page_not_found_component__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__documentation_documentation_component__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__support_support_component__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__donate_donate_component__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__home_home_component__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__download_download_component__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__grid_example_grid_example_component__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__mw_nav_menu_mw_nav_menu_component__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__mw_nav_menu_mw_dropdown_nav_item_mw_dropdown_nav_item_component__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__mw_live_example_mw_live_example_component__ = __webpack_require__(220);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__mw_banner_mw_banner_component__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__documentation_component_docs_mw_grid_docs_mw_grid_docs_component__ = __webpack_require__(226);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__documentation_component_docs_mw_column_docs_mw_column_docs_component__ = __webpack_require__(229);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__documentation_getting_started_docs_introduction_docs_introduction_docs_component__ = __webpack_require__(232);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__documentation_getting_started_docs_themes_docs_themes_docs_component__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__mw_button_mw_button_component__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__documentation_mw_binding_doc_mw_binding_doc_component__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__documentation_mw_component_header_doc_mw_component_header_doc_component__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__page_not_found_page_not_found_component__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__documentation_documentation_component__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__support_support_component__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__donate_donate_component__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__home_home_component__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__download_download_component__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__grid_example_grid_example_component__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__mw_nav_menu_mw_nav_menu_component__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__mw_nav_menu_mw_dropdown_nav_item_mw_dropdown_nav_item_component__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__mw_live_example_mw_live_example_component__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__mw_banner_mw_banner_component__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__documentation_component_docs_mw_grid_docs_mw_grid_docs_component__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__documentation_component_docs_mw_column_docs_mw_column_docs_component__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__documentation_getting_started_docs_introduction_docs_introduction_docs_component__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__documentation_getting_started_docs_themes_docs_themes_docs_component__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__mw_button_mw_button_component__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__documentation_mw_binding_doc_mw_binding_doc_component__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__documentation_mw_component_header_doc_mw_component_header_doc_component__ = __webpack_require__(242);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -791,11 +808,11 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mw_grid_mw_grid_component__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mw_column_mw_column_directive__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mw_cell_mw_cell_component__ = __webpack_require__(186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mw_grid_headers_mw_grid_headers_component__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mw_grid_mw_grid_content_host_directive__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mw_row_mw_row_component__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__row_factory_service__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mw_cell_mw_cell_component__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mw_grid_mw_grid_content_host_directive__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mw_grid_mw_grid_column_header_host_directive__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mw_row_mw_row_component__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__row_factory_service__ = __webpack_require__(102);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -822,8 +839,8 @@ MwGridModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__mw_grid_mw_grid_component__["a" /* MwGridComponent */],
             __WEBPACK_IMPORTED_MODULE_3__mw_column_mw_column_directive__["a" /* MwColumnDirective */],
             __WEBPACK_IMPORTED_MODULE_4__mw_cell_mw_cell_component__["a" /* MwCellComponent */],
-            __WEBPACK_IMPORTED_MODULE_5__mw_grid_headers_mw_grid_headers_component__["b" /* MwGridHeadersComponent */],
-            __WEBPACK_IMPORTED_MODULE_6__mw_grid_mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */],
+            __WEBPACK_IMPORTED_MODULE_5__mw_grid_mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */],
+            __WEBPACK_IMPORTED_MODULE_6__mw_grid_mw_grid_column_header_host_directive__["a" /* MwGridColumnHeaderHostDirective */],
             __WEBPACK_IMPORTED_MODULE_7__mw_row_mw_row_component__["a" /* MwRowComponent */]
         ],
         imports: [
@@ -849,7 +866,7 @@ MwGridModule = __decorate([
 /* 178 */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngFor=\"let header of headers\" class=\"mw-header\" [style.width]=\"header.width\" [style.minWidth]=\"header.minWidth\" [style.maxWidth]=\"header.maxWidth\">\n    <div>{{ header.title }}</div>\n</div>\n"
+module.exports = "<div [ngClass]=\"{'mw-even': rowNumber % 2 === 0 && rowType === 0,\n        'mw-odd': rowNumber % 2 !== 0  && rowType === 0,\n        'mw-row': rowType === 0,\n        'mw-column-header': rowType === 1 }\">\n    <mw-cell *ngFor=\"let colDefinition of grid.columnDefinitions\"\n        [cellText]=\"item[colDefinition.binding]\"\n        [style.width]=\"colDefinition.getWidth()\"\n        [style.minWidth]=\"colDefinition.getMinWidth()\"\n        [style.maxWidth]=\"colDefinition.getMaxWidth()\"\n        [style.height.px]=\"height\">\n    </mw-cell>\n</div>\n"
 
 /***/ }),
 /* 179 */
@@ -872,7 +889,7 @@ module.exports = module.exports.toString();
 /* 180 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mw-row\" [ngClass]=\"{'mw-even': rowNumber % 2 === 0, 'mw-odd': rowNumber % 2 !== 0 }\">\n    <mw-cell *ngFor=\"let colDefinition of grid.columnDefinitions\"\n        [cellText]=\"item[colDefinition.binding]\"\n        [style.width]=\"colDefinition.getWidth()\"\n        [style.minWidth]=\"colDefinition.getMinWidth()\"\n        [style.maxWidth]=\"colDefinition.getMaxWidth()\"\n        [style.height.px]=\"height\">\n    </mw-cell>\n</div>\n"
+module.exports = "<div #gridContainer class=\"mw-grid-container {{gridTheme}}\">\n    <div #gridContent class=\"grid-content\">\n        <ng-template mw-grid-column-headers-host></ng-template>\n        <ng-template mw-grid-content-host></ng-template>\n    </div>\n</div>\n"
 
 /***/ }),
 /* 181 */
@@ -883,7 +900,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "mw-grid>.mw-grid-container{display:inline-block;width:100%;overflow:auto;-webkit-overflow-scrolling:touch}mw-grid>.mw-grid-container .grid-content{position:relative}mw-grid>.mw-grid-container .grid-content mw-cell{overflow:hidden;white-space:nowrap}mw-grid>.mw-grid-container .grid-content .mw-column-header,mw-grid>.mw-grid-container .grid-content .mw-row{display:-webkit-box;display:-ms-flexbox;display:flex}", ""]);
 
 // exports
 
@@ -893,9 +910,20 @@ module.exports = module.exports.toString();
 
 /***/ }),
 /* 182 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div #gridContainer class=\"mw-grid-container {{gridTheme}}\">\n    <div #gridContent class=\"grid-content\">\n        <mw-grid-headers [headers]=\"gridHeaders\"></mw-grid-headers>\n        <ng-template mw-grid-content-host></ng-template>\n    </div>\n</div>\n"
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "mw-grid>.mw-grid-container.modern .mw-column-header mw-cell .mw-cell{border-bottom:1px solid #bfc3c7;color:#313942;padding:0 1em;font-weight:500}mw-grid>.mw-grid-container.modern .mw-row.mw-even mw-cell .mw-cell{background:#fff}mw-grid>.mw-grid-container.modern .mw-row.mw-odd mw-cell .mw-cell{background:#f3f5f7}mw-grid>.mw-grid-container.modern .mw-row mw-cell .mw-cell{border-bottom:1px solid #c0c3c8;color:#747c85;padding:1em 1em}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
 
 /***/ }),
 /* 183 */
@@ -906,7 +934,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "mw-grid>.mw-grid-container{display:inline-block;width:100%;overflow:auto;-webkit-overflow-scrolling:touch}mw-grid>.mw-grid-container .grid-content{position:relative}mw-grid>.mw-grid-container .grid-content mw-cell,mw-grid>.mw-grid-container .grid-content mw-grid-headers .mw-header{overflow:hidden;white-space:nowrap}mw-grid>.mw-grid-container .grid-content .mw-row,mw-grid>.mw-grid-container .grid-content mw-grid-headers{display:-webkit-box;display:-ms-flexbox;display:flex}", ""]);
+exports.push([module.i, "mw-grid>.mw-grid-container.spreadsheet .mw-column-header .mw-cell{border-top:1px solid #000;border-left:1px solid #000;border-bottom:1px solid #000;color:#313942;background:#f4f5f6;padding:0 1em;font-weight:500}mw-grid>.mw-grid-container.spreadsheet .mw-column-header:last-child{border-right:1px solid #000}mw-grid>.mw-grid-container.spreadsheet .mw-row mw-cell .mw-cell{border-left:1px solid #000;border-bottom:1px solid #000;color:#747c85;padding:0 1em}mw-grid>.mw-grid-container.spreadsheet .mw-row mw-cell:last-child .mw-cell{border-right:1px solid #000}", ""]);
 
 // exports
 
@@ -916,40 +944,6 @@ module.exports = module.exports.toString();
 
 /***/ }),
 /* 184 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(false);
-// imports
-
-
-// module
-exports.push([module.i, "mw-grid>.mw-grid-container.modern mw-grid-headers .mw-header{border-bottom:1px solid #bfc3c7;color:#313942}mw-grid>.mw-grid-container.modern mw-grid-headers .mw-header>div{padding:0 1em;font-weight:500}mw-grid>.mw-grid-container.modern .mw-row.mw-even mw-cell .mw-cell{background:#fff}mw-grid>.mw-grid-container.modern .mw-row.mw-odd mw-cell .mw-cell{background:#f3f5f7}mw-grid>.mw-grid-container.modern .mw-row mw-cell .mw-cell{border-bottom:1px solid #c0c3c8;color:#747c85;padding:1em 1em}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(false);
-// imports
-
-
-// module
-exports.push([module.i, "mw-grid>.mw-grid-container.spreadsheet mw-grid-headers .mw-header>div{border-top:1px solid #000;border-left:1px solid #000;border-bottom:1px solid #000;color:#313942;background:#f4f5f6;padding:0 1em;font-weight:500}mw-grid>.mw-grid-container.spreadsheet mw-grid-headers .mw-header:last-child{border-right:1px solid #000}mw-grid>.mw-grid-container.spreadsheet .mw-row mw-cell .mw-cell{border-left:1px solid #000;border-bottom:1px solid #000;color:#747c85;padding:0 1em}mw-grid>.mw-grid-container.spreadsheet .mw-row mw-cell:last-child .mw-cell{border-right:1px solid #000}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-/* 186 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -977,8 +971,8 @@ __decorate([
 MwCellComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-cell',
-        template: __webpack_require__(187),
-        styles: [__webpack_require__(188)]
+        template: __webpack_require__(185),
+        styles: [__webpack_require__(186)]
     }),
     __metadata("design:paramtypes", [])
 ], MwCellComponent);
@@ -986,13 +980,13 @@ MwCellComponent = __decorate([
 //# sourceMappingURL=mw-cell.component.js.map
 
 /***/ }),
-/* 187 */
+/* 185 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mw-cell\">\n    {{ cellText }}\n</div>\n"
 
 /***/ }),
-/* 188 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -1009,7 +1003,7 @@ exports.push([module.i, ".mw-cell{height:100%;white-space:nowrap;overflow:hidden
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 189 */
+/* 187 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1034,8 +1028,8 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-root',
-        template: __webpack_require__(190),
-        styles: [__webpack_require__(191)]
+        template: __webpack_require__(188),
+        styles: [__webpack_require__(189)]
     }),
     __metadata("design:paramtypes", [])
 ], AppComponent);
@@ -1043,13 +1037,13 @@ AppComponent = __decorate([
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
-/* 190 */
+/* 188 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"page-container\">\n    <div *ngIf=\"shouldShowConstructionBanner\" class=\"under-construction-banner\">\n        <span>mw-grid is in early development and the api is subject to change.</span>\n        <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"shouldShowConstructionBanner = false\">\n            <span aria-hidden=\"true\">&times;</span>\n        </button>\n    </div>\n    <mw-nav-menu></mw-nav-menu>\n    <div class=\"page-content\">\n        <router-outlet></router-outlet>\n    </div>\n</div>\n"
 
 /***/ }),
-/* 191 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -1066,7 +1060,7 @@ exports.push([module.i, ".under-construction-banner{background:#2a5e92;color:#ff
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 192 */
+/* 190 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1092,8 +1086,8 @@ var PageNotFoundComponent = (function () {
 PageNotFoundComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-page-not-found',
-        template: __webpack_require__(193),
-        styles: [__webpack_require__(194)]
+        template: __webpack_require__(191),
+        styles: [__webpack_require__(192)]
     }),
     __metadata("design:paramtypes", [])
 ], PageNotFoundComponent);
@@ -1101,13 +1095,13 @@ PageNotFoundComponent = __decorate([
 //# sourceMappingURL=page-not-found.component.js.map
 
 /***/ }),
-/* 193 */
+/* 191 */
 /***/ (function(module, exports) {
 
 module.exports = "<p>\n  page-not-found!\n</p>\n"
 
 /***/ }),
-/* 194 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -1124,7 +1118,7 @@ exports.push([module.i, "", ""]);
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 195 */
+/* 193 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1216,8 +1210,8 @@ __decorate([
 DocumentationComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-documentation',
-        template: __webpack_require__(196),
-        styles: [__webpack_require__(197)],
+        template: __webpack_require__(194),
+        styles: [__webpack_require__(195)],
         encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ViewEncapsulation */].None,
     }),
     __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _b || Object])
@@ -1227,13 +1221,13 @@ var _a, _b;
 //# sourceMappingURL=documentation.component.js.map
 
 /***/ }),
-/* 196 */
+/* 194 */
 /***/ (function(module, exports) {
 
 module.exports = "<mw-banner [secondaryText]=\"'Docs / API'\" [applyMargin]=\"!showMobileNav\"></mw-banner>\n<div class=\"container docs-container\">\n    <div class=\"docs-nav\" #docNavMenu [style.height]=\"docsNavMenuHeight\">\n        <div *ngIf=\"showMobileNav\" class=\"selected-nav-item\">\n            {{ currentNavLocation }}\n            <div class=\"hamburger-menu-button\" (click)=\"toggleDocNav()\">\n                <div class=\"hamburger-menu\"></div>\n            </div>\n        </div>\n        <nav *ngIf=\"showDocsNav\">\n            <div class=\"nav-section\">Getting Started</div>\n            <ul>\n                <li routerLinkActive=\"active\" routerLink=\"introduction\" (click)=\"toggleDocNav()\">\n                    <a>Introduction</a>\n                </li>\n                <li routerLinkActive=\"active\" routerLink=\"themes\" (click)=\"toggleDocNav()\">\n                    <a>Themes</a>\n                </li>\n            </ul>\n            <div class=\"nav-section\">Components</div>\n            <ul>\n                <li routerLinkActive=\"active\" routerLink=\"mw-grid\" (click)=\"toggleDocNav()\">\n                    <a>mw-grid</a>\n                </li>\n                <li routerLinkActive=\"active\" routerLink=\"mw-column\" (click)=\"toggleDocNav()\">\n                    <a>mw-column</a>\n                </li>\n            </ul>\n        </nav>\n    </div>\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-12 docs-content-container\">\n                <router-outlet></router-outlet>\n            </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
-/* 197 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -1250,7 +1244,7 @@ exports.push([module.i, ".docs-container,:host{display:-webkit-box;display:-ms-f
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 198 */
+/* 196 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1276,8 +1270,8 @@ var SupportComponent = (function () {
 SupportComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-support',
-        template: __webpack_require__(199),
-        styles: [__webpack_require__(200)]
+        template: __webpack_require__(197),
+        styles: [__webpack_require__(198)]
     }),
     __metadata("design:paramtypes", [])
 ], SupportComponent);
@@ -1285,13 +1279,13 @@ SupportComponent = __decorate([
 //# sourceMappingURL=support.component.js.map
 
 /***/ }),
-/* 199 */
+/* 197 */
 /***/ (function(module, exports) {
 
 module.exports = "<p>\n  Support\n</p>\n"
 
 /***/ }),
-/* 200 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -1308,7 +1302,7 @@ exports.push([module.i, "", ""]);
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 201 */
+/* 199 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1334,8 +1328,8 @@ var DonateComponent = (function () {
 DonateComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-donate',
-        template: __webpack_require__(202),
-        styles: [__webpack_require__(203)]
+        template: __webpack_require__(200),
+        styles: [__webpack_require__(201)]
     }),
     __metadata("design:paramtypes", [])
 ], DonateComponent);
@@ -1343,13 +1337,13 @@ DonateComponent = __decorate([
 //# sourceMappingURL=donate.component.js.map
 
 /***/ }),
-/* 202 */
+/* 200 */
 /***/ (function(module, exports) {
 
 module.exports = "<p>\n  donate works!\n</p>\n"
 
 /***/ }),
-/* 203 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -1366,7 +1360,7 @@ exports.push([module.i, "", ""]);
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 204 */
+/* 202 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1392,8 +1386,8 @@ var HomeComponent = (function () {
 HomeComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-home',
-        template: __webpack_require__(205),
-        styles: [__webpack_require__(206)]
+        template: __webpack_require__(203),
+        styles: [__webpack_require__(204)]
     }),
     __metadata("design:paramtypes", [])
 ], HomeComponent);
@@ -1401,13 +1395,13 @@ HomeComponent = __decorate([
 //# sourceMappingURL=home.component.js.map
 
 /***/ }),
-/* 205 */
+/* 203 */
 /***/ (function(module, exports) {
 
 module.exports = "<mw-banner [primaryText]=\"'An open source Angular 4 grid'\"\n    [secondaryText]=\"'Easily display a modern, fully customizable grid with enterprise quality features in your applications'\">\n</mw-banner>\n<div class=\"container\">\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-xs-12 col-md-6\">\n            <h4>Basic Features</h4>\n            <ul>\n                <li>Dom Virtualization</li>\n                <li>Pagination and infinite scroll (Under development)</li>\n                <li>Custom cell templates (Under development)</li>\n                <li>Dynamic column sizing</li>\n                <li>Sorting (Under development)</li>\n                <li>Searching (Under development)</li>\n            </ul>\n        </div>\n        <div class=\"col-xs-12 col-md-6\">\n            <div class=\"grid-image\"></div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
-/* 206 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -1415,7 +1409,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, ".grid-image{min-height:240px;background:url(" + __webpack_require__(207) + ");background-size:contain;background-repeat:no-repeat}", ""]);
+exports.push([module.i, ".grid-image{min-height:240px;background:url(" + __webpack_require__(205) + ");background-size:contain;background-repeat:no-repeat}", ""]);
 
 // exports
 
@@ -1424,13 +1418,13 @@ exports.push([module.i, ".grid-image{min-height:240px;background:url(" + __webpa
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 207 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "mw-grid.1022152970a3644419db.png";
 
 /***/ }),
-/* 208 */
+/* 206 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1456,8 +1450,8 @@ var DownloadComponent = (function () {
 DownloadComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-download',
-        template: __webpack_require__(209),
-        styles: [__webpack_require__(210)]
+        template: __webpack_require__(207),
+        styles: [__webpack_require__(208)]
     }),
     __metadata("design:paramtypes", [])
 ], DownloadComponent);
@@ -1465,13 +1459,13 @@ DownloadComponent = __decorate([
 //# sourceMappingURL=download.component.js.map
 
 /***/ }),
-/* 209 */
+/* 207 */
 /***/ (function(module, exports) {
 
 module.exports = "<p>\n  download works!\n</p>\n"
 
 /***/ }),
-/* 210 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -1488,7 +1482,7 @@ exports.push([module.i, "", ""]);
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 211 */
+/* 209 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2419,8 +2413,8 @@ var GridExampleComponent = (function () {
 GridExampleComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-grid-example',
-        template: __webpack_require__(212),
-        styles: [__webpack_require__(213)],
+        template: __webpack_require__(210),
+        styles: [__webpack_require__(211)],
         encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ViewEncapsulation */].None
     }),
     __metadata("design:paramtypes", [])
@@ -2429,13 +2423,13 @@ GridExampleComponent = __decorate([
 //# sourceMappingURL=grid-example.component.js.map
 
 /***/ }),
-/* 212 */
+/* 210 */
 /***/ (function(module, exports) {
 
 module.exports = "<mw-grid [data]=\"users\" [theme]=\"theme\" [rowHeight]=\"55\">\n    <mw-column [binding]=\"'name'\"></mw-column>\n    <mw-column [binding]=\"'username'\" [width]=\"'1*'\" [minWidth]=\"150\"></mw-column>\n    <mw-column [binding]=\"'email'\" [width]=\"'1*'\"></mw-column>\n    <mw-column [binding]=\"'phoneNumber'\" [maxWidth]=\"150\"></mw-column>\n</mw-grid>\n"
 
 /***/ }),
-/* 213 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -2452,7 +2446,7 @@ exports.push([module.i, ".mw-grid-container{height:350px}", ""]);
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 214 */
+/* 212 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2511,8 +2505,8 @@ __decorate([
 MwNavMenuComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-nav-menu',
-        template: __webpack_require__(215),
-        styles: [__webpack_require__(216)],
+        template: __webpack_require__(213),
+        styles: [__webpack_require__(214)],
         encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ViewEncapsulation */].None
     }),
     __metadata("design:paramtypes", [])
@@ -2521,13 +2515,13 @@ MwNavMenuComponent = __decorate([
 //# sourceMappingURL=mw-nav-menu.component.js.map
 
 /***/ }),
-/* 215 */
+/* 213 */
 /***/ (function(module, exports) {
 
 module.exports = "<nav class=\"navbar navbar-expand-md navbar-light\">\n    <div class=\"container\">\n        <span class=\"h1\" class=\"navbar-brand\">\n            <span class=\"mw-logo\">\n                <span>MW</span><span>Grid</span>\n            </span>\n        </span>\n        <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleMenu($event)\">\n            <span class=\"navbar-toggler-icon\"></span>\n        </button>\n\n        <div class=\"mw-grid-menu\" id=\"navbarSupportedContent\" [ngClass]=\"{'menu-shown': isMenuShown }\">\n            <ul class=\"navbar-nav ml-auto\">\n                <li class=\"nav-item\" routerLinkActive=\"active\" routerLink=\"/home\" (click)=\"toggleMenu($event)\">\n                    <a class=\"nav-link\">Home</a>\n                </li>\n                <mw-dropdown-nav-item (menuItemClick)=\"toggleMenu()\"></mw-dropdown-nav-item>\n                <li class=\"nav-item\" routerLink=\"/download\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">\n                    <a class=\"nav-link\">Download</a>\n                </li>\n                <li class=\"nav-item\" routerLink=\"/support\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">\n                    <a class=\"nav-link\">Support</a>\n                </li>\n                <li class=\"nav-item\" routerLink=\"/donate\" routerLinkActive=\"active\" (click)=\"toggleMenu($event)\">\n                    <a class=\"nav-link\">Donate</a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<div class=\"menu-overlay\" (click)=\"toggleMenu($event)\" [ngClass]=\"{'overlay-shown': isMenuShown }\"></div>\n"
 
 /***/ }),
-/* 216 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -2544,7 +2538,7 @@ exports.push([module.i, ".mw-logo span{color:#2a5e92;font-weight:600;font-size:1
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 217 */
+/* 215 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2577,8 +2571,8 @@ __decorate([
 MwDropdownNavItemComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-dropdown-nav-item',
-        template: __webpack_require__(218),
-        styles: [__webpack_require__(219)],
+        template: __webpack_require__(216),
+        styles: [__webpack_require__(217)],
         encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ViewEncapsulation */].None
     }),
     __metadata("design:paramtypes", [])
@@ -2587,13 +2581,13 @@ MwDropdownNavItemComponent = __decorate([
 //# sourceMappingURL=mw-dropdown-nav-item.component.js.map
 
 /***/ }),
-/* 218 */
+/* 216 */
 /***/ (function(module, exports) {
 
 module.exports = "<li class=\"nav-item dropdown\" routerLinkActive=\"active\">\n    <a class=\"nav-link dropdown-toggle\">Docs</a>\n    <div class=\"dropdown-menu\">\n        <a class=\"dropdown-item\" routerLink=\"/documentation/api\" routerLinkActive=\"active\" (click)=\"onMenuItemClick($event)\">API Docs</a>\n        <a class=\"dropdown-item\" routerLink=\"/documentation/examples\" routerLinkActive=\"active\" (click)=\"onMenuItemClick($event)\">Live Examples</a>\n    </div>\n</li>\n"
 
 /***/ }),
-/* 219 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -2610,7 +2604,7 @@ exports.push([module.i, "@media (min-width:768px){.navbar .mw-grid-menu .navbar-
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 220 */
+/* 218 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2634,8 +2628,8 @@ var MwLiveExampleComponent = (function () {
 MwLiveExampleComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-live-example',
-        template: __webpack_require__(221),
-        styles: [__webpack_require__(222)]
+        template: __webpack_require__(219),
+        styles: [__webpack_require__(220)]
     }),
     __metadata("design:paramtypes", [])
 ], MwLiveExampleComponent);
@@ -2643,13 +2637,13 @@ MwLiveExampleComponent = __decorate([
 //# sourceMappingURL=mw-live-example.component.js.map
 
 /***/ }),
-/* 221 */
+/* 219 */
 /***/ (function(module, exports) {
 
 module.exports = "<mw-banner [secondaryText]=\"'Docs / Live Example'\"></mw-banner>\n<div class=\"container\">\n    <div class=\"row mw-bootstrap-row\">\n        <div class=\"col-12\">\n            <mw-grid-example></mw-grid-example>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
-/* 222 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -2666,7 +2660,7 @@ exports.push([module.i, "", ""]);
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 223 */
+/* 221 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2711,8 +2705,8 @@ __decorate([
 MwBannerComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-banner',
-        template: __webpack_require__(224),
-        styles: [__webpack_require__(225)]
+        template: __webpack_require__(222),
+        styles: [__webpack_require__(223)]
     }),
     __metadata("design:paramtypes", [])
 ], MwBannerComponent);
@@ -2720,13 +2714,13 @@ MwBannerComponent = __decorate([
 //# sourceMappingURL=mw-banner.component.js.map
 
 /***/ }),
-/* 224 */
+/* 222 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"banner-container\" [style.marginBottom]=\"bannerMargin\">\n    <div class=\"container\">\n        <div *ngIf=\"primaryText\" class=\"row\">\n            <div class=\"col-12 primary-text\">\n                {{ primaryText }}\n            </div>\n        </div>\n        <div *ngIf=\"secondaryText\" class=\"row\">\n            <div class=\"col-12 secondary-text\">\n                {{ secondaryText }}\n            </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
-/* 225 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -2743,7 +2737,7 @@ exports.push([module.i, ".banner-container{background:linear-gradient(45deg,#036
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 226 */
+/* 224 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2769,8 +2763,8 @@ var MwGridDocsComponent = (function () {
 MwGridDocsComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-grid-docs',
-        template: __webpack_require__(227),
-        styles: [__webpack_require__(228)]
+        template: __webpack_require__(225),
+        styles: [__webpack_require__(226)]
     }),
     __metadata("design:paramtypes", [])
 ], MwGridDocsComponent);
@@ -2778,13 +2772,13 @@ MwGridDocsComponent = __decorate([
 //# sourceMappingURL=mw-grid-docs.component.js.map
 
 /***/ }),
-/* 227 */
+/* 225 */
 /***/ (function(module, exports) {
 
-module.exports = "<mw-component-header-doc [componentName]=\"'MwGridComponent'\" [selector]=\"'mw-grid'\" [link]=\"'https://github.com/TheWiech/mw-grid/blob/master/src/mw-grid/mw-grid.component.ts'\"></mw-component-header-doc>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Overview</div>\n    <p>The MwGridComponent is a fully featured control that displays a set of data in a grid. MwGridComponent includes features such as dynamic column sizing, row virtualization, filtering, searching, sorting, pagination, etc.</p>\n    <p>The most basic configuration of the grid requires setting the data property and bindings for values to display. To utilize advanced features such as dynamic column sizing MwColumnDirectives must be nested in the grid.</p>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Bindings</div>\n    <div>\n        <mw-binding-doc binding=\"data\" type=\"Array&lt;any&gt;\">\n            (Required) Array of data to display in the grid.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"bindings\" type=\"Array&lt;String&gt;\">\n            Array of keys on the objects in the data array that contain values to display in a column. This property is ignored if MwColumnComponent is present.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"theme\" type=\"MwGridTheme\">\n            The style applied to the grid. Defaults to MwGridTheme.Modern.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"rowHeight\" type=\"Number\">\n            The height of rows in px\n        </mw-binding-doc>\n    </div>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Examples</div>\n</div>\n"
+module.exports = "<mw-component-header-doc [componentName]=\"'MwGridComponent'\" [selector]=\"'mw-grid'\" [link]=\"'https://github.com/TheWiech/mw-grid/blob/master/src/mw-grid/mw-grid.component.ts'\"></mw-component-header-doc>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Overview</div>\n    <p>The MwGridComponent is a fully featured control that displays a set of data in a grid. MwGridComponent includes features such as dynamic column sizing, row virtualization, filtering, searching, sorting, pagination, etc.</p>\n    <p>The most basic configuration of the grid requires setting the data property and bindings for values to display. To utilize advanced features such as dynamic column sizing MwColumnDirectives must be nested in the grid.</p>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Bindings</div>\n    <div>\n        <mw-binding-doc binding=\"data\" type=\"Array&lt;any&gt;\">\n            (Required) Array of data to display in the grid.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"bindings\" type=\"Array&lt;String&gt;\">\n            Array of keys on the objects in the data array that contain values to display in a column. This property is ignored if MwColumnComponent is present.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"theme\" type=\"MwGridTheme\">\n            The style applied to the grid. Defaults to MwGridTheme.Modern.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"rowHeight\" type=\"number\">\n            The height of rows in px\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"columnHeaderHeight\" type=\"number\">\n            The height of column headers in px\n        </mw-binding-doc>\n    </div>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Examples</div>\n</div>\n"
 
 /***/ }),
-/* 228 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -2801,7 +2795,7 @@ exports.push([module.i, "", ""]);
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 229 */
+/* 227 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2827,8 +2821,8 @@ var MwColumnDocsComponent = (function () {
 MwColumnDocsComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-column-docs',
-        template: __webpack_require__(230),
-        styles: [__webpack_require__(231)]
+        template: __webpack_require__(228),
+        styles: [__webpack_require__(229)]
     }),
     __metadata("design:paramtypes", [])
 ], MwColumnDocsComponent);
@@ -2836,13 +2830,13 @@ MwColumnDocsComponent = __decorate([
 //# sourceMappingURL=mw-column-docs.component.js.map
 
 /***/ }),
-/* 230 */
+/* 228 */
 /***/ (function(module, exports) {
 
-module.exports = "<mw-component-header-doc [componentName]=\"'MwColumnDirective'\" [selector]=\"'mw-column'\" [link]=\"'https://github.com/TheWiech/mw-grid/blob/master/src/mw-column/mw-column.directive.ts'\"></mw-component-header-doc>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Overview</div>\n    <p>The MwColumnDirective is used to define and customize the behaivor of a columnn in the grid. The directive must be a direct child of mw-grid.</p>\n    <p>\n        If width, minWidth, and maxWidth are not set the column defaults to a fixed width of 150px. If the minWidth is set and no maxWidth or width is set\n        the minWidth is used as the width. If the maxWidth is set and no minWidth or width is set the maxWidth is used as the width.\n    </p>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Bindings</div>\n    <div>\n        <mw-binding-doc binding=\"binding\" type=\"String\">\n            (Required) The property on the item containing the text to display.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"width\" type=\"String\">\n            The width of the column. The value can be expressed in pixels or a star sized value. Star sized values allow\n            the column to dynimcally resize based on the remaining space available after non star sized columns widths have\n            been detirmined and compared to other star sized colums. E.g. If a grid has two columns and the fist column has\n            a width of 1* and the second column has a width of 2* the first column's width will be 33% of available space\n            and the second column's width will be 66% of available space.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"minWidth\" type=\"Number\">\n            The minimum width of the column in pixels. If width is set this value will have no affect.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"maxWidth\" type=\"Number\">\n            The maximum width of the column in pixels. If width is set this value will have no affect.\n        </mw-binding-doc>\n    </div>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Examples</div>\n</div>\n"
+module.exports = "<mw-component-header-doc [componentName]=\"'MwColumnDirective'\" [selector]=\"'mw-column'\" [link]=\"'https://github.com/TheWiech/mw-grid/blob/master/src/mw-column/mw-column.directive.ts'\"></mw-component-header-doc>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Overview</div>\n    <p>The MwColumnDirective is used to define and customize the behaivor of a columnn in the grid. The directive must be a direct child of mw-grid.</p>\n    <p>\n        If width, minWidth, and maxWidth are not set the column defaults to a fixed width of 150px. If the minWidth is set and no maxWidth or width is set\n        the minWidth is used as the width. If the maxWidth is set and no minWidth or width is set the maxWidth is used as the width.\n    </p>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Bindings</div>\n    <div>\n        <mw-binding-doc binding=\"binding\" type=\"string\">\n            (Required) The property on the item containing the text to display.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"width\" type=\"string\">\n            The width of the column. The value can be expressed in pixels or a star sized value. Star sized values allow\n            the column to dynimcally resize based on the remaining space available after non star sized columns widths have\n            been detirmined and compared to other star sized colums. E.g. If a grid has two columns and the fist column has\n            a width of 1* and the second column has a width of 2* the first column's width will be 33% of available space\n            and the second column's width will be 66% of available space.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"minWidth\" type=\"number\">\n            The minimum width of the column in pixels. If width is set this value will have no affect.\n        </mw-binding-doc>\n        <mw-binding-doc binding=\"maxWidth\" type=\"number\">\n            The maximum width of the column in pixels. If width is set this value will have no affect.\n        </mw-binding-doc>\n    </div>\n</div>\n<div class=\"doc-section\">\n    <div class=\"section-header\">Examples</div>\n</div>\n"
 
 /***/ }),
-/* 231 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -2859,7 +2853,7 @@ exports.push([module.i, "", ""]);
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 232 */
+/* 230 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2885,8 +2879,8 @@ var IntroductionDocsComponent = (function () {
 IntroductionDocsComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-introduction-docs',
-        template: __webpack_require__(233),
-        styles: [__webpack_require__(234)]
+        template: __webpack_require__(231),
+        styles: [__webpack_require__(232)]
     }),
     __metadata("design:paramtypes", [])
 ], IntroductionDocsComponent);
@@ -2894,13 +2888,13 @@ IntroductionDocsComponent = __decorate([
 //# sourceMappingURL=introduction-docs.component.js.map
 
 /***/ }),
-/* 233 */
+/* 231 */
 /***/ (function(module, exports) {
 
 module.exports = "<h2>Introduction</h2>\n\n"
 
 /***/ }),
-/* 234 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -2917,7 +2911,7 @@ exports.push([module.i, "", ""]);
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 235 */
+/* 233 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2943,8 +2937,8 @@ var ThemesDocsComponent = (function () {
 ThemesDocsComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-themes-docs',
-        template: __webpack_require__(236),
-        styles: [__webpack_require__(237)]
+        template: __webpack_require__(234),
+        styles: [__webpack_require__(235)]
     }),
     __metadata("design:paramtypes", [])
 ], ThemesDocsComponent);
@@ -2952,13 +2946,13 @@ ThemesDocsComponent = __decorate([
 //# sourceMappingURL=themes-docs.component.js.map
 
 /***/ }),
-/* 236 */
+/* 234 */
 /***/ (function(module, exports) {
 
 module.exports = "<h2>Themes</h2>\n"
 
 /***/ }),
-/* 237 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -2975,7 +2969,7 @@ exports.push([module.i, "", ""]);
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 238 */
+/* 236 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3003,8 +2997,8 @@ __decorate([
 MwButtonComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-button',
-        template: __webpack_require__(239),
-        styles: [__webpack_require__(240)]
+        template: __webpack_require__(237),
+        styles: [__webpack_require__(238)]
     }),
     __metadata("design:paramtypes", [])
 ], MwButtonComponent);
@@ -3012,13 +3006,13 @@ MwButtonComponent = __decorate([
 //# sourceMappingURL=mw-button.component.js.map
 
 /***/ }),
-/* 239 */
+/* 237 */
 /***/ (function(module, exports) {
 
 module.exports = "<button class=\"mw-button\">\n    <a href=\"{{ link }}\" target=\"_blank\">View Source</a>\n</button>\n"
 
 /***/ }),
-/* 240 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -3035,7 +3029,7 @@ exports.push([module.i, ".mw-button{background:#fff;border:1px solid #2a5e92;bor
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 241 */
+/* 239 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3077,8 +3071,8 @@ __decorate([
 MwBindingDocComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-binding-doc',
-        template: __webpack_require__(242),
-        styles: [__webpack_require__(243)]
+        template: __webpack_require__(240),
+        styles: [__webpack_require__(241)]
     }),
     __metadata("design:paramtypes", [])
 ], MwBindingDocComponent);
@@ -3087,13 +3081,13 @@ var _a;
 //# sourceMappingURL=mw-binding-doc.component.js.map
 
 /***/ }),
-/* 242 */
+/* 240 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"desktop-layout\">\n    <div class=\"input-definition\">\n        <span class=\"property\">{{ binding }}</span>\n    </div>\n    <div class=\"input-description\">\n        <span class=\"type\">{{ type }}</span>\n        <span class=\"definition\" #contentWrapper>\n            <ng-content></ng-content>\n        </span>\n    </div>\n</div>\n\n<div class=\"mobile-layout\">\n    <div class=\"def-container\">\n        <span class=\"property\">{{ binding }} </span>\n        <span class=\"type\">{{ type }}</span>\n    </div>\n    <div>\n        <span class=\"definition\">\n            {{ contentHtml }}\n        </span>\n    </div>\n</div>\n"
 
 /***/ }),
-/* 243 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -3101,7 +3095,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, ".desktop-layout{display:-webkit-box;display:-ms-flexbox;display:flex}.desktop-layout .input-definition{width:120px;min-width:120px}.desktop-layout .input-definition .property{width:100%;text-align:right;padding-right:.5em}.desktop-layout .type{padding-right:.5em}.mobile-layout{display:none;margin-bottom:1.5em}.type{color:#2a5e92;font-weight:500}.property{display:inline-block;font-weight:500}@media screen and (max-width:576px){.desktop-layout{display:none}.mobile-layout{display:block}}", ""]);
+exports.push([module.i, ".desktop-layout{display:-webkit-box;display:-ms-flexbox;display:flex}.desktop-layout .input-definition{width:170px;min-width:170px}.desktop-layout .input-definition .property{width:100%;text-align:right;padding-right:.5em}.desktop-layout .type{padding-right:.5em}.mobile-layout{display:none;margin-bottom:1.5em}.type{color:#2a5e92;font-weight:500}.property{display:inline-block;font-weight:500}@media screen and (max-width:576px){.desktop-layout{display:none}.mobile-layout{display:block}}", ""]);
 
 // exports
 
@@ -3110,7 +3104,7 @@ exports.push([module.i, ".desktop-layout{display:-webkit-box;display:-ms-flexbox
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 244 */
+/* 242 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3146,21 +3140,21 @@ __decorate([
 MwComponentHeaderDocsComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-component-header-doc',
-        template: __webpack_require__(245),
-        styles: [__webpack_require__(246)]
+        template: __webpack_require__(243),
+        styles: [__webpack_require__(244)]
     })
 ], MwComponentHeaderDocsComponent);
 
 //# sourceMappingURL=mw-component-header-doc.component.js.map
 
 /***/ }),
-/* 245 */
+/* 243 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"component-doc-header\">\n    <div class=\"component-info\">\n        <span class=\"component-name\">{{ componentName }}</span>\n        <p class=\"selector\"><span>Selector:</span> {{ selector }}</p>\n    </div>\n    <mw-button [link]=\"link\"></mw-button>\n</div>\n"
 
 /***/ }),
-/* 246 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(false);
@@ -3177,7 +3171,7 @@ exports.push([module.i, ".component-doc-header{margin-bottom:1.6em}.component-do
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 247 */
+/* 245 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3193,10 +3187,10 @@ var environment = {
 //# sourceMappingURL=environment.js.map
 
 /***/ }),
+/* 246 */,
+/* 247 */,
 /* 248 */,
-/* 249 */,
-/* 250 */,
-/* 251 */
+/* 249 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
