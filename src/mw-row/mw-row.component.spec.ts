@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement, NO_ERRORS_SCHEMA, Component, Directive, Input, QueryList, ChangeDetectorRef } from '@angular/core';
 
-import { MwRowComponent } from './mw-row.component';
+import { MwRowComponent, RowType } from './mw-row.component';
 import { MwGridComponent } from '../mw-grid/mw-grid.component';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
 import { RowFactoryService } from '../row-factory.service';
@@ -9,9 +9,9 @@ import { RowFactoryService } from '../row-factory.service';
 class MwGridComponentMock extends MwGridComponent { }
 class mockRowFactoryService extends RowFactoryService { }
 class MwColumnDirectiveStub extends MwColumnDirective {
-    binding: String;
-    minWidth: Number;
-    maxWidth: Number;
+    binding: string;
+    minWidth: number;
+    maxWidth: number;
     item: any;
 
     getMinWidth() {
@@ -63,12 +63,14 @@ describe('MwRowComponent', () => {
 
     it('should apply "mw-even" class to even rows', () => {
         component.rowNumber = 2;
+        component.rowType = RowType.Content;
         fixture.detectChanges();
         expect(el.children[0].classList.contains('mw-even')).toEqual(true);
     });
 
     it('should apply "mw-odd" class to odd rows', () => {
         component.rowNumber = 1;
+        component.rowType = RowType.Content;
         fixture.detectChanges();
         expect(el.children[0].classList.contains('mw-odd')).toEqual(true);
     });

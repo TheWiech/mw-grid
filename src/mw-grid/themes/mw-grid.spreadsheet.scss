@@ -7,8 +7,8 @@ $header-backround-color: #F4F5F6;
 
 mw-grid > .mw-grid-container.spreadsheet {
 
-    mw-grid-headers .mw-header {
-        > div {
+    .mw-column-header {
+        .mw-cell {
             border-top: $border-thickness $border-style $border-color;
             border-left: $border-thickness $border-style $border-color;
             border-bottom: $border-thickness $border-style $border-color;

@@ -14,12 +14,12 @@ mw-grid > .mw-grid-container {
         //
         // All headers and cells should hide overflow and prevent it from wrapping to the next line
         //
-        mw-grid-headers .mw-header, mw-cell {
+        mw-cell {
             overflow: hidden;
             white-space: nowrap;
         }
 
-        mw-grid-headers, .mw-row {
+        .mw-column-header, .mw-row {
             display: flex;
         }
     }
