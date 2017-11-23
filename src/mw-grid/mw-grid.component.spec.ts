@@ -2,11 +2,11 @@ import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core
 import { Component, DebugElement, Input, QueryList, NO_ERRORS_SCHEMA, ComponentFactoryResolver } from '@angular/core';
 
 import { MwGridComponent, MwGridTheme } from './mw-grid.component';
-import { MwGridHeader } from '../mw-grid-headers/mw-grid-headers.component';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
 import { MwRowComponent } from '../mw-row/mw-row.component';
 import { RowFactoryService } from '../row-factory.service';
 import { MwGridContentHostDirective } from './mw-grid-content-host.directive';
+import { MwGridColumnHeaderHostDirective } from './mw-grid-column-header-host.directive';
 
 @Component({
     selector: 'mw-test-wrapper',
@@ -23,7 +23,9 @@ class MwTestWrapperComponent {
 
 const destroySpy = jasmine.createSpy('destroy');
 class mockRowFactoryService {
-    rowHeight: Number;
+    rowHeight: number;
+    columnHeaderHeight: number;
+
     createRow = () => {
         return {
             instance: {},
@@ -34,7 +36,19 @@ class mockRowFactoryService {
             },
             destroy: destroySpy
         };
-    };
+    }
+
+    createColumnHeaders = () => {
+        return {
+            instance: {},
+            location: {
+                nativeElement: {
+                    style: {}
+                }
+            },
+            destroy: destroySpy
+        };
+    }
 }
 
 describe('MwGridComponent', () => {
@@ -49,7 +63,8 @@ describe('MwGridComponent', () => {
             MwGridComponent,
             MwTestWrapperComponent,
             MwColumnDirective,
-            MwGridContentHostDirective
+            MwGridContentHostDirective,
+            MwGridColumnHeaderHostDirective
         ],
         providers: [ { provide: RowFactoryService, useClass: mockRowFactoryService } ],
         schemas: [NO_ERRORS_SCHEMA]

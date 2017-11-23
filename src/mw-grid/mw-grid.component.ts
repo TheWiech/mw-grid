@@ -13,10 +13,10 @@ import {
     ChangeDetectorRef
 } from '@angular/core';
 import { MwColumnDirective } from '../mw-column/mw-column.directive';
-import { MwGridHeader } from '../mw-grid-headers/mw-grid-headers.component';
 import { RowFactoryService } from '../row-factory.service';
 import { MwRowComponent } from '../mw-row/mw-row.component';
 import { MwGridContentHostDirective } from './mw-grid-content-host.directive';
+import { MwGridColumnHeaderHostDirective } from './mw-grid-column-header-host.directive';
 
 // https://github.com/Microsoft/TypeScript/issues/9548
 interface WhatWGEventListenerArgs {
@@ -49,14 +49,15 @@ export class MwGridComponent implements OnInit, AfterViewInit {
     @Input() bindings: Array<string>;
     @Input() theme: MwGridTheme;
     @Input() rowHeight: number;
+    @Input() columnHeaderHeight: number;
 
     @ContentChildren(MwColumnDirective) columnDefinitions: QueryList<MwColumnDirective>;
     @ViewChild('gridContainer') gridContainer: ElementRef;
     @ViewChild('gridContent') gridContent: ElementRef;
+    @ViewChild(MwGridColumnHeaderHostDirective) gridColumnHeadersHost: MwGridColumnHeaderHostDirective;  // Anchor element for row container
     @ViewChild(MwGridContentHostDirective) gridContentHost: MwGridContentHostDirective;  // Anchor element for row container
 
     gridTheme: String;
-    gridHeaders: Array<MwGridHeader> = [];
     starSizeTotalWidth: number;
 
     private rows: Array<ComponentRef<MwRowComponent>> = [];
@@ -95,15 +96,8 @@ export class MwGridComponent implements OnInit, AfterViewInit {
         }
     }
 
-    // TODO: Refactor grid headers to be created through row factory
     private setGridHeaders() {
-        this.columnDefinitions.forEach(element => {
-            const newGridHeader = new MwGridHeader(element.binding);
-            newGridHeader.width = element.getWidth();
-            newGridHeader.minWidth = element.getMinWidth();
-            newGridHeader.maxWidth = element.getMaxWidth();
-            this.gridHeaders.push(newGridHeader);
-        });
+        this.rowFactory.createColumnHeaders(this.gridColumnHeadersHost.viewContainerRef, this);
     }
 
     private getStarSizedColumnTotal() {
@@ -162,6 +156,7 @@ export class MwGridComponent implements OnInit, AfterViewInit {
 
     private configureRowFactory() {
         this.rowFactory.rowHeight = this.rowHeight;
+        this.rowFactory.columnHeaderHeight = this.columnHeaderHeight;
     }
 
     private initializeRows() {
