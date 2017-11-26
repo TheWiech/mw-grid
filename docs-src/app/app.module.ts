@@ -23,6 +23,7 @@ import { ThemesDocsComponent } from './documentation/getting-started-docs/themes
 import { MwButtonComponent } from './mw-button/mw-button.component';
 import { MwBindingDocComponent } from './documentation/mw-binding-doc/mw-binding-doc.component';
 import { MwComponentHeaderDocsComponent } from './documentation/mw-component-header-doc/mw-component-header-doc.component';
+import { MwUserIconComponent } from './mw-user-icon/mw-user-icon.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -62,7 +63,8 @@ const appRoutes: Routes = [
         ThemesDocsComponent,
         MwButtonComponent,
         MwBindingDocComponent,
-        MwComponentHeaderDocsComponent
+        MwComponentHeaderDocsComponent,
+        MwUserIconComponent
     ],
     imports: [
         BrowserModule,

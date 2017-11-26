@@ -1,3 +1,11 @@
-<div class="mw-cell">
-    {{ cellText }}
+<div class="mw-cell {{ cellClass }}">
+    <!-- Header Cell -->
+    <ng-container *ngIf="row.rowType === 1">
+        <div>{{ item[binding] }}</div>
+    </ng-container>
+    <!-- Content Cell -->
+    <ng-container *ngIf="row.rowType === 0">
+        <div *ngIf="!template; else templateCell">{{ item[binding] }}</div>
+        <ng-container #templateCell *ngTemplateOutlet="template; context: cellContext"></ng-container>
+    </ng-container>
 </div>

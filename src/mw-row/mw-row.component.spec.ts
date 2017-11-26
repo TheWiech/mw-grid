@@ -13,6 +13,7 @@ class MwColumnDirectiveStub extends MwColumnDirective {
     minWidth: number;
     maxWidth: number;
     item: any;
+    cellClass: string;
 
     getMinWidth() {
         return `${ this.minWidth }px`;
@@ -138,11 +139,13 @@ describe('MwRowComponent', () => {
         colDefinition1.width = '20';
         colDefinition1.maxWidth = 2;
         colDefinition1.binding = 'firstName';
+        colDefinition1.cellClass = 'col-1-class';
         colDefinition2 = new MwColumnDirectiveStub();
         colDefinition2.minWidth = 10;
         colDefinition2.width = '21';
         colDefinition2.maxWidth = 20;
         colDefinition2.binding = 'lastName';
+        colDefinition2.cellClass = 'col-2-class';
 
         let contentChildren = new QueryList<MwColumnDirective>();
         contentChildren.reset([colDefinition1, colDefinition2]);
@@ -154,19 +157,31 @@ describe('MwRowComponent', () => {
         expect(de.nativeElement.querySelectorAll('.mock-mw-cell').length).toEqual(2);
     });
 
-    it('should assign cellText, width, minWidth, maxWidth attribute to each cell', () => {
+    it('should assign row, item, binding, row, width, minWidth, maxWidth, and cellClass attribute to each cell', () => {
         fixture.detectChanges();
         const firstCell = de.nativeElement.querySelectorAll('mw-cell')[0];
         expect(firstCell.style.width).toEqual('20px');
         expect(firstCell.style.minWidth).toEqual('1px');
         expect(firstCell.style.maxWidth).toEqual('2px');
-        expect(firstCell.cellText).toEqual('Matthew');
+        expect(firstCell.item).toEqual({
+            firstName: 'Matthew',
+            lastName: 'Wiechec'
+        });
+        expect(firstCell.binding).toEqual('firstName');
+        expect(firstCell.cellClass).toEqual('col-1-class');
+        expect(firstCell.row).toEqual(component);
 
         const secondCell = de.nativeElement.querySelectorAll('mw-cell')[1];
         expect(secondCell.style.width).toEqual('21px');
         expect(secondCell.style.minWidth).toEqual('10px');
         expect(secondCell.style.maxWidth).toEqual('20px');
-        expect(secondCell.cellText).toEqual('Wiechec');
+        expect(secondCell.item).toEqual({
+            firstName: 'Matthew',
+            lastName: 'Wiechec'
+        });
+        expect(secondCell.cellClass).toEqual('col-2-class');
+        expect(secondCell.binding).toEqual('lastName');
+        expect(secondCell.row).toEqual(component);
     });
 
     it('should set height of each row', () => {
