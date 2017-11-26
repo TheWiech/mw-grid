@@ -1,5 +1,19 @@
 <mw-grid [data]="users" [theme]="theme" [rowHeight]="55">
-    <mw-column [binding]="'name'"></mw-column>
+    <mw-column [binding]="'selected'" [width]="'35'" [cellClass]="'checkbox-cell'">
+        <ng-template let-item let-index="rowNumber">
+            <input id="grid-checkbox-{{index}}" name="grid-checkbox-{{index}}" type="checkbox" class="mw-checkbox" (click)="onCheckboxClicked(item)" [checked]="item.selected">
+            <label for="grid-checkbox-{{index}}"></label>
+        </ng-template>
+    </mw-column>
+    <mw-column [binding]="'name'" [minWidth]="200" [cellClass]="'name-cell'">
+        <ng-template let-item>
+            <mw-user-icon [letter]="item.name.charAt(0).toUpperCase()"></mw-user-icon>
+            <div class="users-info">
+                <div class="user-name">{{ item.name }}</div>
+                <div class="user-title">{{ item.title }}</div>
+            </div>
+        </ng-template>
+    </mw-column>
     <mw-column [binding]="'username'" [width]="'1*'" [minWidth]="150"></mw-column>
     <mw-column [binding]="'email'" [width]="'1*'"></mw-column>
     <mw-column [binding]="'phoneNumber'" [maxWidth]="150"></mw-column>

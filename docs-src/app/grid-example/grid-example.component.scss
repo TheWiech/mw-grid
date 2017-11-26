@@ -1,3 +1,73 @@
 .mw-grid-container {
     height: 350px;
 }
+
+mw-grid > .mw-grid-container.modern .mw-row mw-cell .mw-cell {
+    &.name-cell {
+        display: flex;
+        align-items: center;
+
+        padding: 0 15px;
+        line-height: 1;
+
+        .users-info {
+            margin-left: .5em;
+
+            .user-name {
+                font-size: .9em;
+            }
+
+            .user-title {
+                padding-top: 3px;
+                font-size: .8em;
+                font-weight: 200;
+            }
+        }
+    }
+
+    &.checkbox-cell {
+        padding: 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+
+//
+// Checkbox styling
+//
+.mw-checkbox {
+    // Hide the checkbox so we can draw our own
+    display: none;
+
+    + label {
+        height: 40px;
+        line-height: 44px;
+        display: flex;
+        align-content: center;
+        user-select: none;
+
+        &:before {
+            // This is itself a flex item, we are dislaying itself in the center of its parent container
+            align-self: center;
+
+            background-image: url('../../assets/CheckboxNotChecked.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            content: '';
+            width: 21px;
+            height: 18px;
+            margin-left: 6px;  // Account for part of checkmark that goes outside of checkbox
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &:checked {
+        + label:before {
+            background-image: url('../../assets/CheckboxChecked.svg');
+        }
+    }
+}
