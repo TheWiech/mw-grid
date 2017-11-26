@@ -122,15 +122,15 @@ describe('MwColumnDirective', () => {
             expect(directive.getMinWidth()).toEqual('120px');
         });
 
-        it('should return 0 when minWidth is not set and width is set', () => {
+        it('should return width when minWidth is not set and width is set', () => {
             directive.width = '120';
-            expect(directive.getMinWidth()).toEqual('0');
+            expect(directive.getMinWidth()).toEqual('120px');
         });
 
-        it('should return 0 when minWidth is not set and width and maxWidth are set', () => {
+        it('should return 120 when minWidth is not set and width and maxWidth are set', () => {
             directive.width = '120';
             directive.maxWidth = 130;
-            expect(directive.getMinWidth()).toEqual('0');
+            expect(directive.getMinWidth()).toEqual('120px');
         });
     });
 

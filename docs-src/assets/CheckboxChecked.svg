@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="18px" viewBox="0 0 21 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Checkbox</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="3" width="16" height="16" rx="2"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="16" height="16" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Form-/-Checkbox-/-Checked" transform="translate(0.000000, -1.000000)">
+            <g id="Checkbox-/-Checked">
+                <g id="Checkbox">
+                    <use id="Check-Background" stroke="#8C939B" mask="url(#mask-2)" stroke-width="2" fill="#FFFFFF" xlink:href="#path-1"></use>
+                    <polygon id="Rectangle-34" fill="#4990E2" points="8.26418275 16 2 9.73581725 4.5056731 7.23014415 8.26418275 10.9886538 18.2868752 0.965961395 20.7925483 3.4716345"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

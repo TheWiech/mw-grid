@@ -3,10 +3,14 @@
         'mw-row': rowType === 0,
         'mw-column-header': rowType === 1 }">
     <mw-cell *ngFor="let colDefinition of grid.columnDefinitions"
-        [cellText]="item[colDefinition.binding]"
+        [row]="this"
+        [item]="item"
+        [binding]="colDefinition.binding"
         [style.width]="colDefinition.getWidth()"
         [style.minWidth]="colDefinition.getMinWidth()"
         [style.maxWidth]="colDefinition.getMaxWidth()"
-        [style.height.px]="height">
+        [style.height.px]="height"
+        [template]="colDefinition.template"
+        [cellClass]="colDefinition.cellClass">
     </mw-cell>
 </div>

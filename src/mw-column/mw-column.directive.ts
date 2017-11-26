@@ -1,4 +1,4 @@
-import { Directive, OnInit, Input } from '@angular/core';
+import { Directive, OnInit, Input, TemplateRef, ContentChild } from '@angular/core';
 import { isNumeric } from 'rxjs/util/isNumeric';
 
 import { MwGridComponent } from '../mw-grid/mw-grid.component';
@@ -12,12 +12,14 @@ export class MwColumnDirective implements OnInit {
     @Input() width: string;
     @Input() minWidth: number;
     @Input() maxWidth: number;
+    @Input() cellClass: string;
+
+    @ContentChild(TemplateRef) template: TemplateRef<any>;
 
     private standardWidth = '150px';
     public grid: MwGridComponent;
 
-    constructor() {
-    }
+    constructor() { }
 
     ngOnInit() {
         this.validateWidths();
@@ -71,7 +73,7 @@ export class MwColumnDirective implements OnInit {
             return '';
         }
 
-        return this.isStarSizedWidth() === true ? `${this.getStarSizedWidth() / this.grid.starSizeTotalWidth * 100}%` : `${ this.width }`;
+        return this.isStarSizedWidth() === true ? `${this.getStarSizedWidth() / this.grid.starSizeTotalWidth * 100}%` : `${ this.width }px`;
     }
 
     getMinWidth() {
@@ -81,9 +83,13 @@ export class MwColumnDirective implements OnInit {
             return this.maxWidth !== undefined ? `${ this.maxWidth }px` : this.standardWidth;
         }
 
+        if (this.minWidth !== undefined) {
+            return `${ this.minWidth }px`;
+        }
+
         // Returning 0 when minWidth is undefined tells flexbox to allow the content shrink to 0px
         // Without this flexbox will try as hard as it can to keep the entire content in the column visible
-        return this.minWidth !== undefined ? `${ this.minWidth }px` : '0';
+        return this.width !== undefined ? this.getWidth() : '0';
     }
 
     getMaxWidth() {
