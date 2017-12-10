@@ -1,0 +1,63 @@
+.pagination-container {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+
+    //
+    // Styling number of items shown
+    //
+    .items-overview {
+        display: inline-flex;
+        flex-grow: 1; // Forces the text be left aligned on the grid
+        align-items: center;
+        justify-content: flex-start;
+        color: #8C939B;
+    }
+
+    //
+    // Styling for page buttons
+    //
+    .stepper {
+        display: inline-flex;
+        align-items: flex-end;
+
+        button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 15px;
+            min-width: 50px;
+            background: #FFF;
+            color: #2A5E92;
+
+            border: 1px solid #DDD;
+            border-right: none;
+
+            &:focus, &:active {
+                outline: none;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:disabled {
+                color: #8C939B;
+            }
+
+            &.next-page-btn {
+                border-right: 1px solid #DDD;
+            }
+
+            &.selected-page {
+                background: #2A5E92;
+                color: #FFF;
+                border: none;
+            }
+        }
+    }
+}

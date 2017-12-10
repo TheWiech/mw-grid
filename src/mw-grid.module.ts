@@ -8,6 +8,7 @@ import { MwGridContentHostDirective } from './mw-grid/mw-grid-content-host.direc
 import { MwGridColumnHeaderHostDirective } from './mw-grid/mw-grid-column-header-host.directive';
 import { MwRowComponent } from './mw-row/mw-row.component';
 import { RowFactoryService } from './row-factory.service';
+import { MwPaginationControlComponent } from './mw-pagination-control/mw-pagination-control.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { RowFactoryService } from './row-factory.service';
         MwCellComponent,
         MwGridContentHostDirective,
         MwGridColumnHeaderHostDirective,
-        MwRowComponent
+        MwRowComponent,
+        MwPaginationControlComponent
     ],
     imports: [
         CommonModule

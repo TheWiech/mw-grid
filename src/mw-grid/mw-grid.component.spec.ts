@@ -10,7 +10,7 @@ import { MwGridColumnHeaderHostDirective } from './mw-grid-column-header-host.di
 
 @Component({
     selector: 'mw-test-wrapper',
-    template: `<mw-grid [data]=mockData [theme]=theme>
+    template: `<mw-grid [data]=mockData [theme]=theme [useInfiniteScroll]="useInfiniteScroll" [rowsPerPage]="5">
         <mw-column width="1*" binding="col1Header"></mw-column>
         <mw-column width="3*" binding="col2Header"></mw-column>
         <mw-column binding="col3Header"></mw-column>
@@ -19,6 +19,7 @@ import { MwGridColumnHeaderHostDirective } from './mw-grid-column-header-host.di
 class MwTestWrapperComponent {
     mockData = ['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7', 'item8', 'item9', 'item10', 'item11', 'item12'];
     theme: MwGridTheme;
+    useInfiniteScroll = true;
 }
 
 const destroySpy = jasmine.createSpy('destroy');
@@ -103,10 +104,38 @@ describe('MwGridComponent', () => {
     });
 
     describe('ngOnInit method', () => {
-        it('should call setGridTheme', () => {
+        it('should call setGridTheme and set totalPages', () => {
+            fixture.detectChanges();
             spyOn(component, 'setGridTheme');
             component.ngOnInit();
             expect(component.setGridTheme).toHaveBeenCalled();
+            expect(component.totalPages).toEqual(3);
+        });
+
+        it('should set usePagination = false when useInfiniteScroll = true', () => {
+            fixture.detectChanges();
+            spyOn(component, 'setGridTheme');
+            component.ngOnInit();
+            expect(component.usePagination).toEqual(false);
+        });
+
+        it('should set useInifiniteScroll = false when usePagination = true', () => {
+            fixture.detectChanges();
+            component.useInfiniteScroll = false;
+            component.usePagination = true;
+            spyOn(component, 'setGridTheme');
+            component.ngOnInit();
+            expect(component.usePagination).toEqual(true);
+        });
+
+        it('should set useInifiniteScroll = true and usePagination = false when both are true', () => {
+            fixture.detectChanges();
+            component.useInfiniteScroll = true;
+            component.usePagination = true;
+            spyOn(component, 'setGridTheme');
+            component.ngOnInit();
+            expect(component.usePagination).toEqual(false);
+            expect(component.useInfiniteScroll).toEqual(true);
         });
     });
 
@@ -137,15 +166,24 @@ describe('MwGridComponent', () => {
             expect(rowFactoryMock.rowHeight).toEqual(20);
         }));
 
-        it('should set the height of the grid to the height of rows', <any>fakeAsync((): void => {
+        it('should set the height of the grid to the height of rows when using infinite scroll', <any>fakeAsync((): void => {
             const gridHeaderHeight = 25;
             component.rowHeight = 60;
             fixture.detectChanges();
             tick();
-            expect(component.gridContent.nativeElement.style.height).toEqual(`${ component.rowHeight * 12 + gridHeaderHeight }px`); // 12 = mockData.length
+            expect(component.gridContent.nativeElement.style.height).toEqual(`${ component.rowHeight * component.data.length + gridHeaderHeight }px`);
         }));
 
-        it('should load 2.5 pages of rows', <any>fakeAsync((): void => {
+        it('should set the height of the grid to the height of 1 page of rows when using pagination', <any>fakeAsync((): void => {
+            const gridHeaderHeight = 25;
+            component.rowHeight = 60;
+            fixture.componentInstance.useInfiniteScroll = false;
+            fixture.detectChanges();
+            tick();
+            expect(component.gridContent.nativeElement.style.height).toEqual(`${ component.rowHeight * component.rowsPerPage + gridHeaderHeight }px`);
+        }));
+
+        it('should load 2.5 pages of rows when using infiniteScroll', <any>fakeAsync((): void => {
             component.rowHeight = 60;
             component.gridContainer.nativeElement.style.height = '180px';
 
@@ -155,6 +193,19 @@ describe('MwGridComponent', () => {
             fixture.detectChanges();
             tick();
             expect(rowFactoryMock.createRow).toHaveBeenCalledTimes(8);
+        }));
+
+        it('should load 1 page of rows when usePagination = true', <any>fakeAsync((): void => {
+            component.rowHeight = 60;
+            fixture.componentInstance.useInfiniteScroll = false;
+            component.gridContainer.nativeElement.style.height = '180px';
+
+            const rowFactoryMock = TestBed.get(RowFactoryService);
+            spyOn(rowFactoryMock, 'createRow').and.callThrough();
+
+            fixture.detectChanges();
+            tick();
+            expect(rowFactoryMock.createRow).toHaveBeenCalledTimes(5);
         }));
     });
 
@@ -329,6 +380,49 @@ describe('MwGridComponent', () => {
                 // Assert
                 expect(destroySpy).toHaveBeenCalledTimes(1);
             }));
+        });
+    });
+
+    describe('loadPage', () => {
+        it('should load new page and remove old rows', () => {
+            fixture.detectChanges();
+
+            const rowFactoryMock = TestBed.get(RowFactoryService);
+            spyOn(rowFactoryMock, 'createRow').and.callThrough();
+
+            component.loadPage(1);
+            destroySpy.calls.reset();
+            rowFactoryMock.createRow.calls.reset();
+            component.loadPage(2);
+
+            expect(destroySpy).toHaveBeenCalledTimes(5);
+            expect(rowFactoryMock.createRow).toHaveBeenCalledTimes(5);
+        });
+
+        it('should not load new page if page is greater than total pages', () => {
+            fixture.detectChanges();
+            destroySpy.calls.reset();
+
+            const rowFactoryMock = TestBed.get(RowFactoryService);
+            spyOn(rowFactoryMock, 'createRow').and.callThrough();
+
+            component.loadPage(4);
+
+            expect(destroySpy).not.toHaveBeenCalled();
+            expect(rowFactoryMock.createRow).not.toHaveBeenCalled();
+        });
+
+        it('should not load new page if page is 0', () => {
+            fixture.detectChanges();
+            destroySpy.calls.reset();
+
+            const rowFactoryMock = TestBed.get(RowFactoryService);
+            spyOn(rowFactoryMock, 'createRow').and.callThrough();
+
+            component.loadPage(0);
+
+            expect(destroySpy).not.toHaveBeenCalled();
+            expect(rowFactoryMock.createRow).not.toHaveBeenCalled();
         });
     });
 });
