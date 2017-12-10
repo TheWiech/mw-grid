@@ -42,6 +42,8 @@ type WhatWGAddEventListener = (
         './themes/mw-grid.modern.scss',
         './themes/mw-grid.spreadsheet.scss'
     ],
+    providers: [ RowFactoryService ],
+    entryComponents: [ MwRowComponent ],
     encapsulation: ViewEncapsulation.None
 })
 export class MwGridComponent implements OnInit, AfterViewInit {
@@ -66,12 +68,15 @@ export class MwGridComponent implements OnInit, AfterViewInit {
     starSizeTotalWidth: number;
     totalPages: number;
     currentPage = 1;
+    _rowFactory: RowFactoryService; // Public member to access the mock injected service during unit tests
 
     private rows: Array<ComponentRef<MwRowComponent>> = [];
     private numberOfVisibleRows: number;
     private lastScrollPosition = 0;
 
-    constructor(private rowFactory: RowFactoryService, private ref: ChangeDetectorRef) { }
+    constructor(private rowFactory: RowFactoryService, private ref: ChangeDetectorRef) {
+        this._rowFactory = rowFactory;
+    }
 
     ngOnInit() {
         this.totalPages = Math.ceil(this.data.length / this.rowsPerPage);
@@ -160,9 +165,9 @@ export class MwGridComponent implements OnInit, AfterViewInit {
      * because angular binding does not support the passive parameter.
      */
     private addScrollListener() {
-        const nativeGridElement = window.document.querySelector('.mw-grid-container');
         // https://github.com/Microsoft/TypeScript/issues/9548
-        (nativeGridElement.addEventListener as WhatWGAddEventListener)('scroll', this.onGridScroll.bind(this), { passive: true, });
+        (this.gridContainer.nativeElement.addEventListener as WhatWGAddEventListener)
+            ('scroll', this.onGridScroll.bind(this), { passive: true, });
     }
 
     onGridScroll($event) {

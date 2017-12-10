@@ -1,4 +1,4 @@
-<h3 style="padding-top: 30px;">Pagination</h3>
+<h3>Pagination</h3>
 <mw-grid [data]="users" [theme]="theme" [rowHeight]="55">
     <mw-column [binding]="'selected'" [width]="'35'" [cellClass]="'checkbox-cell'">
         <ng-template let-item let-index="rowNumber">
@@ -20,7 +20,7 @@
     <mw-column [binding]="'phoneNumber'" [maxWidth]="150"></mw-column>
 </mw-grid>
 
-<h3>Infinite Scroll</h3>
+<h3 style="padding-top: 30px;">Infinite Scroll</h3>
 <mw-grid [data]="users" [theme]="theme" [rowHeight]="55" [useInfiniteScroll]="true">
     <mw-column [binding]="'selected'" [width]="'35'" [cellClass]="'checkbox-cell'">
         <ng-template let-item let-index="rowNumber">
