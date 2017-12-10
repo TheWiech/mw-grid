@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { Component, DebugElement, Input, QueryList, NO_ERRORS_SCHEMA, ComponentFactoryResolver } from '@angular/core';
 
 import { MwGridComponent, MwGridTheme } from './mw-grid.component';
@@ -23,7 +24,7 @@ class MwTestWrapperComponent {
 }
 
 const destroySpy = jasmine.createSpy('destroy');
-class mockRowFactoryService {
+class MockRowFactoryService {
     rowHeight: number;
     columnHeaderHeight: number;
 
@@ -65,10 +66,18 @@ describe('MwGridComponent', () => {
             MwTestWrapperComponent,
             MwColumnDirective,
             MwGridContentHostDirective,
-            MwGridColumnHeaderHostDirective
+            MwGridColumnHeaderHostDirective,
+            MwRowComponent
         ],
-        providers: [ { provide: RowFactoryService, useClass: mockRowFactoryService } ],
         schemas: [NO_ERRORS_SCHEMA]
+        }).overrideModule(BrowserDynamicTestingModule, {
+            set: {
+              entryComponents: [MwRowComponent]
+            }
+        }).overrideComponent(MwGridComponent, {
+            set: {
+                providers: [ { provide: RowFactoryService, useClass: MockRowFactoryService } ]
+            }
         }).compileComponents();
     }));
 
@@ -158,7 +167,7 @@ describe('MwGridComponent', () => {
         }));
 
         it('should set rowHeight of rowFactory', <any>fakeAsync((): void => {
-            const rowFactoryMock = TestBed.get(RowFactoryService);
+            const rowFactoryMock = component._rowFactory;
             rowFactoryMock.rowHeight = 10;
             component.rowHeight = 20;
             fixture.detectChanges();
@@ -187,7 +196,7 @@ describe('MwGridComponent', () => {
             component.rowHeight = 60;
             component.gridContainer.nativeElement.style.height = '180px';
 
-            const rowFactoryMock = TestBed.get(RowFactoryService);
+            const rowFactoryMock = component._rowFactory;
             spyOn(rowFactoryMock, 'createRow').and.callThrough();
 
             fixture.detectChanges();
@@ -200,7 +209,7 @@ describe('MwGridComponent', () => {
             fixture.componentInstance.useInfiniteScroll = false;
             component.gridContainer.nativeElement.style.height = '180px';
 
-            const rowFactoryMock = TestBed.get(RowFactoryService);
+            const rowFactoryMock = component._rowFactory;
             spyOn(rowFactoryMock, 'createRow').and.callThrough();
 
             fixture.detectChanges();
@@ -235,7 +244,7 @@ describe('MwGridComponent', () => {
                 fixture.detectChanges();
                 tick();
 
-                const rowFactoryMock = TestBed.get(RowFactoryService);
+                const rowFactoryMock = component._rowFactory;
                 spyOn(rowFactoryMock, 'createRow').and.callThrough();
 
                 mockEvent.target.scrollTop = 60;
@@ -251,7 +260,7 @@ describe('MwGridComponent', () => {
                 fixture.detectChanges();
                 tick();
 
-                const rowFactoryMock = TestBed.get(RowFactoryService);
+                const rowFactoryMock = component._rowFactory
                 spyOn(rowFactoryMock, 'createRow').and.callThrough();
 
                 mockEvent.target.scrollTop = 180;
@@ -267,7 +276,7 @@ describe('MwGridComponent', () => {
                 fixture.detectChanges();
                 tick();
 
-                const rowFactoryMock = TestBed.get(RowFactoryService);
+                const rowFactoryMock = component._rowFactory;
                 spyOn(rowFactoryMock, 'createRow').and.callThrough();
 
                 mockEvent.target.scrollTop = 300;
@@ -286,7 +295,7 @@ describe('MwGridComponent', () => {
                 mockEvent.target.scrollTop = 660; // Scroll so last row is not visible
                 component.onGridScroll(mockEvent);
 
-                const rowFactoryMock = TestBed.get(RowFactoryService);
+                const rowFactoryMock = component._rowFactory;
                 spyOn(rowFactoryMock, 'createRow').and.callThrough();
 
                 mockEvent.target.scrollTop = 720; // Scroll to bottom
@@ -333,7 +342,7 @@ describe('MwGridComponent', () => {
                 component.onGridScroll(mockEvent);
 
 
-                const rowFactoryMock = TestBed.get(RowFactoryService);
+                const rowFactoryMock = component._rowFactory;
                 spyOn(rowFactoryMock, 'createRow').and.callThrough();
 
                 // Scroll up 2 rows to trigger 1 page of rows to be prefetched
@@ -354,7 +363,7 @@ describe('MwGridComponent', () => {
                 // Scroll down to trigger bottom rows being loaded and top rows being deleted.
                 component.onGridScroll(mockEvent);
 
-                const rowFactoryMock = TestBed.get(RowFactoryService);
+                const rowFactoryMock = component._rowFactory;
                 spyOn(rowFactoryMock, 'createRow').and.callThrough();
 
                 mockEvent.target.scrollTop = 60; // Scroll up 1 row
@@ -387,23 +396,23 @@ describe('MwGridComponent', () => {
         it('should load new page and remove old rows', () => {
             fixture.detectChanges();
 
-            const rowFactoryMock = TestBed.get(RowFactoryService);
-            spyOn(rowFactoryMock, 'createRow').and.callThrough();
+            const rowFactoryMock = component._rowFactory;
+            const createRowSpy = spyOn(rowFactoryMock, 'createRow').and.callThrough();
 
             component.loadPage(1);
             destroySpy.calls.reset();
-            rowFactoryMock.createRow.calls.reset();
+            createRowSpy.calls.reset();
             component.loadPage(2);
 
             expect(destroySpy).toHaveBeenCalledTimes(5);
-            expect(rowFactoryMock.createRow).toHaveBeenCalledTimes(5);
+            expect(createRowSpy).toHaveBeenCalledTimes(5);
         });
 
         it('should not load new page if page is greater than total pages', () => {
             fixture.detectChanges();
             destroySpy.calls.reset();
 
-            const rowFactoryMock = TestBed.get(RowFactoryService);
+            const rowFactoryMock = component._rowFactory;
             spyOn(rowFactoryMock, 'createRow').and.callThrough();
 
             component.loadPage(4);
@@ -416,7 +425,7 @@ describe('MwGridComponent', () => {
             fixture.detectChanges();
             destroySpy.calls.reset();
 
-            const rowFactoryMock = TestBed.get(RowFactoryService);
+            const rowFactoryMock = component._rowFactory;
             spyOn(rowFactoryMock, 'createRow').and.callThrough();
 
             component.loadPage(0);
