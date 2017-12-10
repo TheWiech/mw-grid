@@ -50,15 +50,22 @@ export class MwGridComponent implements OnInit, AfterViewInit {
     @Input() theme: MwGridTheme;
     @Input() rowHeight: number;
     @Input() columnHeaderHeight: number;
+    @Input() rowsPerPage = 25;
+    @Input() usePagination;
+    @Input() useInfiniteScroll = false;
 
     @ContentChildren(MwColumnDirective) columnDefinitions: QueryList<MwColumnDirective>;
     @ViewChild('gridContainer') gridContainer: ElementRef;
     @ViewChild('gridContent') gridContent: ElementRef;
-    @ViewChild(MwGridColumnHeaderHostDirective) gridColumnHeadersHost: MwGridColumnHeaderHostDirective;  // Anchor element for row container
-    @ViewChild(MwGridContentHostDirective) gridContentHost: MwGridContentHostDirective;  // Anchor element for row container
+    // Anchor element for column headers container
+    @ViewChild(MwGridColumnHeaderHostDirective) gridColumnHeadersHost: MwGridColumnHeaderHostDirective;
+    // Anchor element for row container
+    @ViewChild(MwGridContentHostDirective) gridContentHost: MwGridContentHostDirective;
 
     gridTheme: String;
     starSizeTotalWidth: number;
+    totalPages: number;
+    currentPage = 1;
 
     private rows: Array<ComponentRef<MwRowComponent>> = [];
     private numberOfVisibleRows: number;
@@ -67,7 +74,9 @@ export class MwGridComponent implements OnInit, AfterViewInit {
     constructor(private rowFactory: RowFactoryService, private ref: ChangeDetectorRef) { }
 
     ngOnInit() {
+        this.totalPages = Math.ceil(this.data.length / this.rowsPerPage);
         this.setGridTheme();
+        this.setupDataManagementStrategy();
     }
 
     ngAfterViewInit() {
@@ -78,7 +87,10 @@ export class MwGridComponent implements OnInit, AfterViewInit {
             this.setGridHeight();
             this.setGridHeaders();
             this.initializeRows();
-            this.addScrollListener();
+
+            if (this.useInfiniteScroll) {
+                this.addScrollListener();
+            }
         });
     }
 
@@ -93,6 +105,32 @@ export class MwGridComponent implements OnInit, AfterViewInit {
                 return;
             default:
                 this.gridTheme = 'modern';
+        }
+    }
+
+    private setupDataManagementStrategy() {
+        this.usePagination = this.useInfiniteScroll === true ? false : true;
+    }
+
+    loadPage(pageNumber) {
+        if (pageNumber > this.totalPages || pageNumber < 1) {
+            return;
+        }
+
+        this.removeAllRows();
+
+        this.currentPage = pageNumber;
+        const firstRowToDisplay = this.rowsPerPage * pageNumber - this.rowsPerPage;
+        const lastRowToDisplay = this.rowsPerPage * pageNumber;
+
+        for (let i = firstRowToDisplay; i < lastRowToDisplay; i++) {
+            this.addNewRow(i, false);
+        }
+    }
+
+    private removeAllRows() {
+        while (this.rows.length !== 0) {
+            this.removeRow(false);
         }
     }
 
@@ -160,9 +198,14 @@ export class MwGridComponent implements OnInit, AfterViewInit {
     }
 
     private initializeRows() {
-        const gridHeight = this.gridContainer.nativeElement.offsetHeight;
-        this.numberOfVisibleRows = Math.ceil( (gridHeight - this.headerHeight()) / this.rowHeight);
-        const rowsNeeded = Math.ceil(this.numberOfVisibleRows * 2.5);
+        let rowsNeeded = 0;
+        if (this.usePagination) {
+            rowsNeeded = this.rowsPerPage;
+        } else {
+            const gridHeight = this.gridContainer.nativeElement.offsetHeight;
+            this.numberOfVisibleRows = Math.ceil( (gridHeight - this.headerHeight()) / this.rowHeight);
+            rowsNeeded = Math.ceil(this.numberOfVisibleRows * 2.5);
+        }
 
         for (let i = 0; i < rowsNeeded; i++) {
             this.addNewRow(i, false);
@@ -170,11 +213,17 @@ export class MwGridComponent implements OnInit, AfterViewInit {
     }
 
     private setGridHeight() {
-        this.gridContent.nativeElement.style.height = `${ this.rowHeight * this.data.length + this.headerHeight() }px`;
+        const numberOfRows = this.usePagination === true ? this.rowsPerPage : this.data.length;
+        this.gridContent.nativeElement.style.height = `${ this.rowHeight * numberOfRows + this.headerHeight() }px`;
     }
 
-    private positionGridRow(row: ComponentRef<MwRowComponent>, index: number) {
-        row.location.nativeElement.style.top = `${ (index * this.rowHeight) + this.headerHeight() }px`;
+    private positionGridRow(row: ComponentRef<MwRowComponent>) {
+        if (this.useInfiniteScroll) {
+            row.location.nativeElement.style.top = `${ (row.instance.rowNumber * this.rowHeight) + this.headerHeight() }px`;
+        } else {
+            const rowIndex = row.instance.rowNumber % this.rowsPerPage;
+            row.location.nativeElement.style.top = `${ (rowIndex * this.rowHeight) + this.headerHeight() }px`;
+        }
     }
 
     private addRowsOnBottom(numOfRowsToCreate: number, scrollTop: number) {
@@ -230,7 +279,7 @@ export class MwGridComponent implements OnInit, AfterViewInit {
             this,
             this.data[rowNumber]);
             newRow.instance.rowNumber = rowNumber;
-        this.positionGridRow(newRow, rowNumber);
+        this.positionGridRow(newRow);
         addToTop === true ? this.rows.unshift(newRow) : this.rows.push(newRow);
     }
 

@@ -4,3 +4,10 @@
         <ng-template mw-grid-content-host></ng-template>
     </div>
 </div>
+<mw-pagination-control *ngIf="usePagination"
+    [totalItems]="data.length"
+    [totalPages]="totalPages"
+    [itemsPerPage]="rowsPerPage"
+    [currentPage]="currentPage"
+    (goToPage)="loadPage($event)">
+</mw-pagination-control>
