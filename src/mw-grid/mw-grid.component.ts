@@ -42,6 +42,7 @@ type WhatWGAddEventListener = (
         './themes/mw-grid.modern.scss',
         './themes/mw-grid.spreadsheet.scss'
     ],
+    providers: [ RowFactoryService ],
     encapsulation: ViewEncapsulation.None
 })
 export class MwGridComponent implements OnInit, AfterViewInit {
@@ -160,9 +161,8 @@ export class MwGridComponent implements OnInit, AfterViewInit {
      * because angular binding does not support the passive parameter.
      */
     private addScrollListener() {
-        const nativeGridElement = window.document.querySelector('.mw-grid-container');
         // https://github.com/Microsoft/TypeScript/issues/9548
-        (nativeGridElement.addEventListener as WhatWGAddEventListener)('scroll', this.onGridScroll.bind(this), { passive: true, });
+        (this.gridContainer.nativeElement.addEventListener as WhatWGAddEventListener)('scroll', this.onGridScroll.bind(this), { passive: true, });
     }
 
     onGridScroll($event) {
