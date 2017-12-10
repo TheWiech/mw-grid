@@ -1,0 +1,14 @@
+<div #paginationContainer class="pagination-container">
+    <div class="items-overview" *ngIf="!isSmallContainer()">
+        Showing {{ currentPage * itemsPerPage - itemsPerPage + 1 }} to {{ currentPage * itemsPerPage }}  of {{ totalItems }} total items
+    </div>
+    <div class="stepper">
+        <button class="previous-page-btn" (click)="goToPageClick(currentPage - 1)" [disabled]="currentPage <= 1">Previous</button>
+        <button *ngFor="let pageNumber of selectablePages"
+            [ngClass]="{'selected-page': pageNumber === currentPage}"
+            (click)="goToPageClick(pageNumber)">
+            {{ pageNumber }}
+        </button>
+        <button class="next-page-btn" (click)="goToPageClick(currentPage + 1)" [disabled]="currentPage >= totalPages">Next</button>
+    </div>
+</div>

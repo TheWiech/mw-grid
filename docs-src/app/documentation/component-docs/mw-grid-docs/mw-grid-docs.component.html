@@ -22,6 +22,15 @@
         <mw-binding-doc binding="columnHeaderHeight" type="number">
             The height of column headers in px
         </mw-binding-doc>
+        <mw-binding-doc binding="usePagination" type="boolean">
+            Use paginitation for loading and displaying pages. This is the default data management strategy. Ignored if useInfiniteScroll is true.
+        </mw-binding-doc>
+        <mw-binding-doc binding="useInfiniteScroll" type="boolean">
+            Loads page results once the grid has been scrolled to the bottom.
+        </mw-binding-doc>
+        <mw-binding-doc binding="rowsPerPage" type="number">
+            The number of rows to load for each page. Defaults to 25.
+        </mw-binding-doc>
     </div>
 </div>
 <div class="doc-section">
