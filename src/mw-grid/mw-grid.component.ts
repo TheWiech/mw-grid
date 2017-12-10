@@ -162,7 +162,8 @@ export class MwGridComponent implements OnInit, AfterViewInit {
      */
     private addScrollListener() {
         // https://github.com/Microsoft/TypeScript/issues/9548
-        (this.gridContainer.nativeElement.addEventListener as WhatWGAddEventListener)('scroll', this.onGridScroll.bind(this), { passive: true, });
+        (this.gridContainer.nativeElement.addEventListener as WhatWGAddEventListener)
+            ('scroll', this.onGridScroll.bind(this), { passive: true, });
     }
 
     onGridScroll($event) {
