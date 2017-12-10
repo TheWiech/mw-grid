@@ -1,5 +1,5 @@
-webpackJsonp([0],Array(67).concat([
-/* 67 */
+webpackJsonp([0],Array(49).concat([
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54,6 +54,24 @@ var RowType;
 //# sourceMappingURL=mw-row.component.js.map
 
 /***/ }),
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
 /* 68 */,
 /* 69 */,
 /* 70 */,
@@ -107,8 +125,9 @@ webpackEmptyAsyncContext.id = 97;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mw_column_mw_column_directive__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__row_factory_service__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mw_grid_content_host_directive__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mw_grid_column_header_host_directive__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mw_row_mw_row_component__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mw_grid_content_host_directive__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mw_grid_column_header_host_directive__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -123,6 +142,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MwGridComponent = (function () {
     function MwGridComponent(rowFactory, ref) {
         this.rowFactory = rowFactory;
@@ -132,6 +152,7 @@ var MwGridComponent = (function () {
         this.currentPage = 1;
         this.rows = [];
         this.lastScrollPosition = 0;
+        this._rowFactory = rowFactory;
     }
     MwGridComponent.prototype.ngOnInit = function () {
         this.totalPages = Math.ceil(this.data.length / this.rowsPerPage);
@@ -208,9 +229,8 @@ var MwGridComponent = (function () {
      * because angular binding does not support the passive parameter.
      */
     MwGridComponent.prototype.addScrollListener = function () {
-        var nativeGridElement = window.document.querySelector('.mw-grid-container');
         // https://github.com/Microsoft/TypeScript/issues/9548
-        nativeGridElement.addEventListener('scroll', this.onGridScroll.bind(this), { passive: true, });
+        this.gridContainer.nativeElement.addEventListener('scroll', this.onGridScroll.bind(this), { passive: true, });
     };
     MwGridComponent.prototype.onGridScroll = function ($event) {
         if (this.hasScrolledDown($event.target.scrollTop) && this.shouldAddRows(false, $event.target)) {
@@ -393,18 +413,20 @@ __decorate([
     __metadata("design:type", typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _c || Object)
 ], MwGridComponent.prototype, "gridContent", void 0);
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_4__mw_grid_column_header_host_directive__["a" /* MwGridColumnHeaderHostDirective */]),
-    __metadata("design:type", typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__mw_grid_column_header_host_directive__["a" /* MwGridColumnHeaderHostDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__mw_grid_column_header_host_directive__["a" /* MwGridColumnHeaderHostDirective */]) === "function" && _d || Object)
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_5__mw_grid_column_header_host_directive__["a" /* MwGridColumnHeaderHostDirective */]),
+    __metadata("design:type", typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__mw_grid_column_header_host_directive__["a" /* MwGridColumnHeaderHostDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__mw_grid_column_header_host_directive__["a" /* MwGridColumnHeaderHostDirective */]) === "function" && _d || Object)
 ], MwGridComponent.prototype, "gridColumnHeadersHost", void 0);
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_3__mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */]),
-    __metadata("design:type", typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */]) === "function" && _e || Object)
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_4__mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */]),
+    __metadata("design:type", typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__mw_grid_content_host_directive__["a" /* MwGridContentHostDirective */]) === "function" && _e || Object)
 ], MwGridComponent.prototype, "gridContentHost", void 0);
 MwGridComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'mw-grid',
         template: __webpack_require__(180),
         styles: [__webpack_require__(181), __webpack_require__(182), __webpack_require__(183)],
+        providers: [__WEBPACK_IMPORTED_MODULE_2__row_factory_service__["a" /* RowFactoryService */]],
+        entryComponents: [__WEBPACK_IMPORTED_MODULE_3__mw_row_mw_row_component__["a" /* MwRowComponent */]],
         encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ViewEncapsulation */].None
     }),
     __metadata("design:paramtypes", [typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__row_factory_service__["a" /* RowFactoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__row_factory_service__["a" /* RowFactoryService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */]) === "function" && _g || Object])
@@ -551,7 +573,7 @@ var _a;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RowFactoryService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mw_row_mw_row_component__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mw_row_mw_row_component__ = __webpack_require__(49);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -764,7 +786,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* pl
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_mw_grid_module__ = __webpack_require__(176);
@@ -907,7 +929,7 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mw_cell_mw_cell_component__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mw_grid_mw_grid_content_host_directive__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mw_grid_mw_grid_column_header_host_directive__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mw_row_mw_row_component__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mw_row_mw_row_component__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__row_factory_service__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__mw_pagination_control_mw_pagination_control_component__ = __webpack_require__(187);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1048,7 +1070,7 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MwCellComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mw_row_mw_row_component__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mw_row_mw_row_component__ = __webpack_require__(49);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1844,7 +1866,7 @@ GridExampleComponent = __decorate([
 /* 213 */
 /***/ (function(module, exports) {
 
-module.exports = "<h3 style=\"padding-top: 30px;\">Pagination</h3>\n<mw-grid [data]=\"users\" [theme]=\"theme\" [rowHeight]=\"55\">\n    <mw-column [binding]=\"'selected'\" [width]=\"'35'\" [cellClass]=\"'checkbox-cell'\">\n        <ng-template let-item let-index=\"rowNumber\">\n            <input id=\"grid-checkbox-{{index}}\" name=\"grid-checkbox-{{index}}\" type=\"checkbox\" class=\"mw-checkbox\" (click)=\"onCheckboxClicked(item)\" [checked]=\"item.selected\">\n            <label for=\"grid-checkbox-{{index}}\"></label>\n        </ng-template>\n    </mw-column>\n    <mw-column [binding]=\"'name'\" [minWidth]=\"200\" [cellClass]=\"'name-cell'\">\n        <ng-template let-item>\n            <mw-user-icon [letter]=\"item.name.charAt(0).toUpperCase()\"></mw-user-icon>\n            <div class=\"users-info\">\n                <div class=\"user-name\">{{ item.name }}</div>\n                <div class=\"user-title\">{{ item.title }}</div>\n            </div>\n        </ng-template>\n    </mw-column>\n    <mw-column [binding]=\"'username'\" [width]=\"'1*'\" [minWidth]=\"150\"></mw-column>\n    <mw-column [binding]=\"'email'\" [width]=\"'1*'\"></mw-column>\n    <mw-column [binding]=\"'phoneNumber'\" [maxWidth]=\"150\"></mw-column>\n</mw-grid>\n\n<h3>Infinite Scroll</h3>\n<mw-grid [data]=\"users\" [theme]=\"theme\" [rowHeight]=\"55\" [useInfiniteScroll]=\"true\">\n    <mw-column [binding]=\"'selected'\" [width]=\"'35'\" [cellClass]=\"'checkbox-cell'\">\n        <ng-template let-item let-index=\"rowNumber\">\n            <input id=\"grid-checkbox-{{index}}\" name=\"grid-checkbox-{{index}}\" type=\"checkbox\" class=\"mw-checkbox\" (click)=\"onCheckboxClicked(item)\" [checked]=\"item.selected\">\n            <label for=\"grid-checkbox-{{index}}\"></label>\n        </ng-template>\n    </mw-column>\n    <mw-column [binding]=\"'name'\" [minWidth]=\"200\" [cellClass]=\"'name-cell'\">\n        <ng-template let-item>\n            <mw-user-icon [letter]=\"item.name.charAt(0).toUpperCase()\"></mw-user-icon>\n            <div class=\"users-info\">\n                <div class=\"user-name\">{{ item.name }}</div>\n                <div class=\"user-title\">{{ item.title }}</div>\n            </div>\n        </ng-template>\n    </mw-column>\n    <mw-column [binding]=\"'username'\" [width]=\"'1*'\" [minWidth]=\"150\"></mw-column>\n    <mw-column [binding]=\"'email'\" [width]=\"'1*'\"></mw-column>\n    <mw-column [binding]=\"'phoneNumber'\" [maxWidth]=\"150\"></mw-column>\n</mw-grid>\n"
+module.exports = "<h3>Pagination</h3>\n<mw-grid [data]=\"users\" [theme]=\"theme\" [rowHeight]=\"55\">\n    <mw-column [binding]=\"'selected'\" [width]=\"'35'\" [cellClass]=\"'checkbox-cell'\">\n        <ng-template let-item let-index=\"rowNumber\">\n            <input id=\"grid-checkbox-{{index}}\" name=\"grid-checkbox-{{index}}\" type=\"checkbox\" class=\"mw-checkbox\" (click)=\"onCheckboxClicked(item)\" [checked]=\"item.selected\">\n            <label for=\"grid-checkbox-{{index}}\"></label>\n        </ng-template>\n    </mw-column>\n    <mw-column [binding]=\"'name'\" [minWidth]=\"200\" [cellClass]=\"'name-cell'\">\n        <ng-template let-item>\n            <mw-user-icon [letter]=\"item.name.charAt(0).toUpperCase()\"></mw-user-icon>\n            <div class=\"users-info\">\n                <div class=\"user-name\">{{ item.name }}</div>\n                <div class=\"user-title\">{{ item.title }}</div>\n            </div>\n        </ng-template>\n    </mw-column>\n    <mw-column [binding]=\"'username'\" [width]=\"'1*'\" [minWidth]=\"150\"></mw-column>\n    <mw-column [binding]=\"'email'\" [width]=\"'1*'\"></mw-column>\n    <mw-column [binding]=\"'phoneNumber'\" [maxWidth]=\"150\"></mw-column>\n</mw-grid>\n\n<h3 style=\"padding-top: 30px;\">Infinite Scroll</h3>\n<mw-grid [data]=\"users\" [theme]=\"theme\" [rowHeight]=\"55\" [useInfiniteScroll]=\"true\">\n    <mw-column [binding]=\"'selected'\" [width]=\"'35'\" [cellClass]=\"'checkbox-cell'\">\n        <ng-template let-item let-index=\"rowNumber\">\n            <input id=\"grid-checkbox-{{index}}\" name=\"grid-checkbox-{{index}}\" type=\"checkbox\" class=\"mw-checkbox\" (click)=\"onCheckboxClicked(item)\" [checked]=\"item.selected\">\n            <label for=\"grid-checkbox-{{index}}\"></label>\n        </ng-template>\n    </mw-column>\n    <mw-column [binding]=\"'name'\" [minWidth]=\"200\" [cellClass]=\"'name-cell'\">\n        <ng-template let-item>\n            <mw-user-icon [letter]=\"item.name.charAt(0).toUpperCase()\"></mw-user-icon>\n            <div class=\"users-info\">\n                <div class=\"user-name\">{{ item.name }}</div>\n                <div class=\"user-title\">{{ item.title }}</div>\n            </div>\n        </ng-template>\n    </mw-column>\n    <mw-column [binding]=\"'username'\" [width]=\"'1*'\" [minWidth]=\"150\"></mw-column>\n    <mw-column [binding]=\"'email'\" [width]=\"'1*'\"></mw-column>\n    <mw-column [binding]=\"'phoneNumber'\" [maxWidth]=\"150\"></mw-column>\n</mw-grid>\n"
 
 /***/ }),
 /* 214 */
