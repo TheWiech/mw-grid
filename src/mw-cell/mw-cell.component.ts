@@ -8,6 +8,7 @@ import { MwRowComponent } from '../mw-row/mw-row.component';
 })
 export class MwCellComponent implements OnInit {
     @Input() item: any;
+    @Input() title: string;
     @Input() binding: string;
     @Input() template: TemplateRef<any>;
     @Input() row: MwRowComponent;

@@ -4,6 +4,7 @@
         'mw-column-header': rowType === 1 }">
     <mw-cell *ngFor="let colDefinition of grid.columnDefinitions"
         [row]="this"
+        [title]="colDefinition.getTitle()"
         [item]="item"
         [binding]="colDefinition.binding"
         [style.width]="colDefinition.getWidth()"
