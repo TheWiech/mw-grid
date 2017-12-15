@@ -9,6 +9,7 @@ import { MwGridComponent } from '../mw-grid/mw-grid.component';
 export class MwColumnDirective implements OnInit {
     // Key on object that holds the value to be displayed in the grid
     @Input() binding: string;
+    @Input() columnTitle: string; // Will also accept the value as a boolean when compiled to js
     @Input() width: string;
     @Input() minWidth: number;
     @Input() maxWidth: number;
@@ -23,6 +24,21 @@ export class MwColumnDirective implements OnInit {
 
     ngOnInit() {
         this.validateWidths();
+    }
+
+    getTitle() {
+        const parsedTitleValue = typeof this.columnTitle === 'boolean' ?
+            this.columnTitle as boolean : this.columnTitle;
+
+        if (parsedTitleValue === undefined || parsedTitleValue === 'true' || parsedTitleValue === true) {
+            return this.binding;
+        }
+
+        if (parsedTitleValue === false || parsedTitleValue === 'false') {
+            return '';
+        }
+
+        return this.columnTitle;
     }
 
     validateWidths() {

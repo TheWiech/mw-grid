@@ -1,6 +1,6 @@
 <h3>Pagination</h3>
 <mw-grid [data]="users" [theme]="theme" [rowHeight]="55">
-    <mw-column [binding]="'selected'" [width]="'35'" [cellClass]="'checkbox-cell'">
+    <mw-column [binding]="'selected'" [width]="'35'" [cellClass]="'checkbox-cell'" [columnTitle]="false">
         <ng-template let-item let-index="rowNumber">
             <input id="grid-checkbox-{{index}}" name="grid-checkbox-{{index}}" type="checkbox" class="mw-checkbox" (click)="onCheckboxClicked(item)" [checked]="item.selected">
             <label for="grid-checkbox-{{index}}"></label>
@@ -22,7 +22,7 @@
 
 <h3 style="padding-top: 30px;">Infinite Scroll</h3>
 <mw-grid [data]="users" [theme]="theme" [rowHeight]="55" [useInfiniteScroll]="true">
-    <mw-column [binding]="'selected'" [width]="'35'" [cellClass]="'checkbox-cell'">
+    <mw-column [binding]="'selected'" [width]="'35'" [cellClass]="'checkbox-cell'" [columnTitle]="false">
         <ng-template let-item let-index="rowNumber">
             <input id="grid-checkbox-{{index}}" name="grid-checkbox-{{index}}" type="checkbox" class="mw-checkbox" (click)="onCheckboxClicked(item)" [checked]="item.selected">
             <label for="grid-checkbox-{{index}}"></label>

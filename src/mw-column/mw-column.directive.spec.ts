@@ -160,4 +160,27 @@ describe('MwColumnDirective', () => {
             expect(directive.getMaxWidth()).toEqual('');
         });
     });
+
+    describe('getTitle method', () => {
+        it(`should return '' when set to false`, () => {
+            directive.columnTitle = 'false';
+            expect(directive.getTitle()).toEqual('');
+        });
+
+        it(`should return value of binding when title is not set`, () => {
+            directive.binding = 'bindingProp';
+            expect(directive.getTitle()).toEqual('bindingProp');
+        });
+
+        it(`should return value of binding when title is true`, () => {
+            directive.binding = 'bindingProp';
+            directive.columnTitle = 'true';
+            expect(directive.getTitle()).toEqual('bindingProp');
+        });
+
+        it(`should return value of title when title is string`, () => {
+            directive.columnTitle = 'test title';
+            expect(directive.getTitle()).toEqual('test title');
+        });
+    });
 });
